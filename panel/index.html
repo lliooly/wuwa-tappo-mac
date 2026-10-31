@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; img-src 'self' file: data:; style-src 'self' 'unsafe-inline' file:; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Wuwa Tappo · 背包</title>
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+<div id="panel">
+  <aside class="rail">
+    <div class="drag-region" aria-label="拖动窗口"></div>
+    <img class="logo" src="../assets/界面/原版/logo.png" alt="Wuwa Tappo">
+    <nav aria-label="功能导航">
+      <button class="nav active" data-page="bag"><i data-icon="bags"></i><span>背包</span></button>
+      <button class="nav" data-page="atlas"><i data-icon="atlas"></i><span>图鉴</span></button>
+      <button class="nav" data-page="synthesis"><i data-icon="synthesis"></i><span>合成</span></button>
+      <button class="nav" data-page="rooms"><i data-icon="rooms"></i><span>联机</span></button>
+      <button class="nav" data-page="settings"><i data-icon="setting"></i><span>设置</span></button>
+    </nav>
+    <button id="collapse" class="nav collapse" aria-expanded="true"><i data-icon="shrink"></i><span>收起</span></button>
+  </aside>
+  <main>
+    <div class="paper"></div>
+    <div class="drag-region header-drag" aria-label="拖动窗口"></div>
+    <button id="close" class="close" aria-label="关闭面板"></button>
+    <section id="bag-page" class="page">
+      <div class="top">
+        <div class="preview-area">
+          <div class="portrait">
+            <div id="preview-character"></div>
+          </div>
+          <div id="emote-slots"></div>
+        </div>
+        <div class="presets">
+          <h1>我的预设</h1>
+          <div id="preset-list" aria-label="本地预设"></div>
+        </div>
+      </div>
+      <div class="filters" role="tablist" aria-label="物品分类">
+        <div class="filter-slider" aria-hidden="true"></div>
+        <button role="tab" aria-selected="true" class="selected" data-filter="all">最近获得</button>
+        <button role="tab" aria-selected="false" data-filter="character_skin">角色</button>
+        <button role="tab" aria-selected="false" data-filter="accessory">配件</button>
+        <button role="tab" aria-selected="false" data-filter="emote">表情</button>
+      </div>
+      <div id="items" class="items" aria-label="本地素材列表"></div>
+      <p class="local-note">本地素材预览 · 尚未连接官方账号</p>
+    </section>
+    <section id="placeholder-page" class="page placeholder" hidden>
+      <img id="placeholder-icon" alt="">
+      <h1 id="placeholder-title"></h1>
+      <p id="placeholder-description"></p>
+      <span class="placeholder-badge">页面占位</span>
+      <button id="return-bag" class="primary">返回背包</button>
+    </section>
+    <output id="notice" role="status" aria-live="polite"></output>
+  </main>
+  <div id="login-overlay" hidden>
+    <section class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-tip" aria-describedby="login-status" tabindex="-1">
+      <div class="login-background"></div>
+      <img class="login-logo" src="../assets/界面/原版/login-select/logo.png" alt="KURO GAMES">
+      <button id="login-close" class="login-close" aria-label="关闭登录方式选择"><img src="../assets/界面/原版/login-select/close.png" alt=""></button>
+      <p id="login-tip">活动需要登录参与，请选择登录方式</p>
+      <p id="login-status" role="status" aria-live="polite"></p>
+      <div class="login-actions">
+        <button id="login-passport" class="login-button passport">通行证登录</button>
+        <button id="login-uid" class="login-button uid">游戏UID登录</button>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="panel-data.js"></script>
+<script src="type-tabs.js"></script>
+<script src="panel.js"></script>
+</body>
+</html>
