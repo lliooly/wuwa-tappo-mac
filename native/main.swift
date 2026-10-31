@@ -41,6 +41,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 originalFrontend?.onRequestInputAccess = { [weak self] in self?.requestPermission() }
                 originalFrontend?.start()
+                if let index = CommandLine.arguments.firstIndex(of: "--maintenance-check"), CommandLine.arguments.indices.contains(index+1) {
+                    originalFrontend?.testMaintenance(path: CommandLine.arguments[index+1])
+                    return
+                }
                 if let index = CommandLine.arguments.firstIndex(of: "--online-report"), CommandLine.arguments.indices.contains(index+1) {
                     originalFrontend?.startOnlineReport(path: CommandLine.arguments[index+1])
                 }

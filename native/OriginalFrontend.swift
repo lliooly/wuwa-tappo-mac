@@ -1113,6 +1113,47 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
     }
 
+    /// Runs only in an isolated offline check, without contacting a server.
+    func testMaintenance(path: String, attempt: Int = 0) {
+        guard !online else { return }
+        guard ready.contains("main") else {
+            if attempt < 100 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in self?.testMaintenance(path: path, attempt: attempt + 1) }
+            } else { writeMaintenanceResult(path: path, passed: false) }
+            return
+        }
+        do { _ = try invoke("open_maintenance_notice", ["payload": [:]], "main") }
+        catch { writeMaintenanceResult(path: path, passed: false); return }
+        checkMaintenance(path: path)
+    }
+
+    private func checkMaintenance(path: String, attempt: Int = 0) {
+        guard let view = views["maintenance"], ready.contains("maintenance") else {
+            if attempt < 100 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in self?.checkMaintenance(path: path, attempt: attempt + 1) }
+            } else { writeMaintenanceResult(path: path, passed: false) }
+            return
+        }
+        view.evaluateJavaScript("!!document.querySelector('.app-update-overlay__panel--maintenance') && document.querySelector('.app-update-overlay__title').textContent.trim().length > 0") { [weak self] result, error in
+            guard let self = self else { return }
+            let passed = error == nil && result as? Bool == true && self.maintenanceActive && self.windows["main"]?.isVisible == false
+            if !passed && attempt < 100 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { self.checkMaintenance(path: path, attempt: attempt + 1) }
+            } else { self.writeMaintenanceResult(path: path, passed: passed) }
+        }
+    }
+
+    private func writeMaintenanceResult(path: String, passed: Bool) {
+        let report: [String: Any] = ["status": passed ? "passed" : "failed", "offline": !online,
+                                   "originalNoticeRendered": passed, "mainHidden": windows["main"]?.isVisible == false,
+                                   "unknownCommands": Array(unknownCommands).sorted()]
+        if let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
+            try? data.write(to: URL(fileURLWithPath: path), options: .atomic)
+        }
+        stop()
+        exit(passed ? 0 : 1)
+    }
+
     /// Opt-in local report contains readiness/state counts, never credentials.
     func startOnlineReport(path: String) {
         guard online else { return }
