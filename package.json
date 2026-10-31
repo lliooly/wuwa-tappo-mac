@@ -1,7 +1,7 @@
 {
   "name": "wuwa-tappo-mac",
-  "version": "0.2.0",
-  "description": "Wuwa Tappo 非官方 macOS 未登录功能适配",
+  "version": "0.3.0",
+  "description": "Wuwa Tappo 非官方 macOS 适配",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "engines": {

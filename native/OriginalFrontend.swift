@@ -314,7 +314,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             return null
         }
         switch command {
-        case "plugin:app|version": return Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "0.2.0"
+        case "plugin:app|version": return Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "0.3.0"
         case "plugin:app|name": return "Wuwa Tappo macOS"
         case "plugin:app|identifier": return Bundle.main.bundleIdentifier ?? "io.lliooly.wuwa-tappo.mac"
         case "plugin:app|tauri_version": return "macOS AppKit adapter"

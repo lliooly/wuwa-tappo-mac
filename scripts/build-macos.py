@@ -196,7 +196,7 @@ def main():
             'CFBundleIdentifier': 'io.lliooly.wuwa-tappo.mac',
             'CFBundleExecutable': 'WuwaTappo', 'CFBundlePackageType': 'APPL',
             'CFBundleIconFile': 'WuwaTappo.icns',
-            'CFBundleShortVersionString': '0.2.0', 'CFBundleVersion': '7',
+            'CFBundleShortVersionString': '0.3.0', 'CFBundleVersion': '8',
             'LSMinimumSystemVersion': '13.0', 'LSUIElement': True,
             'NSHighResolutionCapable': True,
             'NSInputMonitoringUsageDescription': '监听键盘和鼠标操作以驱动玩偶动画，不读取或保存输入文本。'

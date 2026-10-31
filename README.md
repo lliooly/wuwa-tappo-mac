@@ -6,7 +6,7 @@
   <p>
     <img src="https://img.shields.io/badge/macOS-13%2B-555555?style=flat-square" alt="macOS 13 及以上">
     <img src="https://img.shields.io/badge/architecture-arm64-555555?style=flat-square" alt="Apple Silicon arm64">
-    <img src="https://img.shields.io/badge/version-0.2.0-926044?style=flat-square" alt="版本 0.2.0">
+    <img src="https://img.shields.io/badge/version-0.3.0-926044?style=flat-square" alt="版本 0.3.0">
     <a href="LICENSE"><img src="https://img.shields.io/badge/original_code-MIT-926044?style=flat-square" alt="原创适配代码采用 MIT"></a>
   </p>
   <p>
@@ -22,7 +22,7 @@
 
 这是面向 Apple Silicon Mac 的 **Wuwa Tappo 非官方适配**。项目托管从 Windows CN 1.0.2 发行包恢复的 Vue/CSS 前端，通过 AppKit、WKWebView 和独立兼容层接入 macOS，保留原版桌宠动作、面板和本地交互。
 
-离线基线为 **0.2.0（build 7）**，已完成约定的未登录功能与系统交互验收，详见 [验收报告](docs/最终验收结果.md)。当前 main 已完成常规官方在线业务接入与验收，登录、账号读取、换装、计数同步和跨账号双向进房及动作／表情／换装同步已有实测，完整范围见 [在线接入记录](docs/superpowers/specs/2026-10-31-online-services.md)。仓库目前私有，尚未提供 GitHub Release 下载；可按下文从源码构建。
+离线基线为 **0.2.0（build 7）**，已完成约定的未登录功能与系统交互验收，详见 [验收报告](docs/最终验收结果.md)。当前 main 已完成常规官方在线业务接入与验收，登录、账号读取、换装、计数同步和跨账号双向进房及动作／表情／换装同步已有实测，完整范围见 [在线接入记录](docs/superpowers/specs/2026-10-31-online-services.md)。当前发行版为 **0.3.0（build 8）**。仓库目前私有，可在 [GitHub Release](https://github.com/lliooly/wuwa-tappo-mac/releases/tag/v0.3.0) 下载 Apple Silicon 安装包，也可按下文从源码构建。
 
 > 本项目与库洛游戏无官方关联。MIT 仅适用于原创适配代码与文档，官方恢复前端、游戏素材、字体和商标保留各自权利。使用前请阅读 [非官方声明](DISCLAIMER.md) 和 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
