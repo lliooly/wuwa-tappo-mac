@@ -12,4 +12,4 @@
 *.woff2 binary
 *.icns binary
 # Recovery evidence must retain its exact original bytes and hashes.
-recovered/** -text
+recovered/** -text -whitespace

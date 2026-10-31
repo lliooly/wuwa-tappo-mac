@@ -1,0 +1,220 @@
+{
+  "source": "WuwaTappo/uninstall.exe",
+  "resourceCount": 28,
+  "resources": [
+    {
+      "path": "/assets/index-B-qYmWPM.css",
+      "compressedOffset": "0xc19522",
+      "compressedSize": 91,
+      "size": 126,
+      "sha256": "a4112f95a6501825064eb70e1d693e90ee9444d1a44246d40bb9fdb61f0bbf5f"
+    },
+    {
+      "path": "/assets/login-D1ubV2l7.css",
+      "compressedOffset": "0xc19597",
+      "compressedSize": 3511,
+      "size": 15317,
+      "sha256": "4a568db9ff7140d2a68308f663d6f2687767b78e5486174d8e9d9627ea65eb14"
+    },
+    {
+      "path": "/assets/index-CjVU6-sV.js",
+      "compressedOffset": "0xc5f20b",
+      "compressedSize": 1543,
+      "size": 3486,
+      "sha256": "a57f8c1f9c6e80dc9d1c918a29896e6850663c9104f89ff165c78468dc96cacd"
+    },
+    {
+      "path": "/assets/quitApp-DhG4MomM.js",
+      "compressedOffset": "0xc61d19",
+      "compressedSize": 172,
+      "size": 331,
+      "sha256": "b389256057e21284adbfed74a038bb69919d31f5420b728562626c20b8f8b305"
+    },
+    {
+      "path": "/assets/index-D_jog4_N.js",
+      "compressedOffset": "0xc61dde",
+      "compressedSize": 3807,
+      "size": 11443,
+      "sha256": "a61714d3c7b8d4926b01dd7b8d0b9e96b4b94abc427876f30aab1190169a4239"
+    },
+    {
+      "path": "/assets/index-BSFuec6O.css",
+      "compressedOffset": "0xc694fc",
+      "compressedSize": 2164,
+      "size": 9484,
+      "sha256": "3579fe59706697d2fead2e6db2aa2daa221b28db8896346b1802bed6fcf4f404"
+    },
+    {
+      "path": "/index.html",
+      "compressedOffset": "0xc69d7b",
+      "compressedSize": 263,
+      "size": 588,
+      "sha256": "2d943d9ab6e7e3a4e772fa13aa6169529f30b5dd4dbb4c86631c999291658d2a"
+    },
+    {
+      "path": "/assets/aboutData-BjpKQvB5.js",
+      "compressedOffset": "0xc83667",
+      "compressedSize": 335,
+      "size": 555,
+      "sha256": "bda8e6e498e76519d65c6c26df8973820aeacd019f7ca5e9ba563cab0b8a08e4"
+    },
+    {
+      "path": "/assets/login-A8nPlNWb.js",
+      "compressedOffset": "0x13fee0c",
+      "compressedSize": 6026,
+      "size": 18562,
+      "sha256": "607a661c8fcc1dd6c1cfe0de04559e3658beb77fe977bf93454ab00f616092d0"
+    },
+    {
+      "path": "/assets/index-CIrGzazx.css",
+      "compressedOffset": "0x14005b0",
+      "compressedSize": 5690,
+      "size": 9518,
+      "sha256": "b8b7a726ef132c1686c37396675b2f7b941a2aeac7dd338a2f56a2dd618995cd"
+    },
+    {
+      "path": "/assets/useLogin-CEjeTFKc.js",
+      "compressedOffset": "0x1401c06",
+      "compressedSize": 5867,
+      "size": 18369,
+      "sha256": "f4d65fa3327dfb06e0a4325ad347209a9b22b5f15f223e5665ebe93c87c4ac64"
+    },
+    {
+      "path": "/assets/index-DBNfHZk5.js",
+      "compressedOffset": "0x140c787",
+      "compressedSize": 2450,
+      "size": 8127,
+      "sha256": "c1de97959640642859c9b088a491556897372da3144e1182d696a440f5fafc47"
+    },
+    {
+      "path": "/assets/index-DJKE2jne.css",
+      "compressedOffset": "0x140d133",
+      "compressedSize": 86857,
+      "size": 221415,
+      "sha256": "7ff7ab71170aaeb35c8a42c6fcc1e731912b6dd9a018a5d0526afd8b74617062"
+    },
+    {
+      "path": "/assets/switchDisplayMonitor-ChOYrxxq.js",
+      "compressedOffset": "0x142574a",
+      "compressedSize": 7294,
+      "size": 21815,
+      "sha256": "261d41cd2a48205c828fd8820b81837d8dbf373f1101dcc972e6751ec83ece31"
+    },
+    {
+      "path": "/assets/modalBridge-CBLH8cuv.js",
+      "compressedOffset": "0x1a73033",
+      "compressedSize": 470,
+      "size": 1160,
+      "sha256": "d5c59733debee476e6d30b7773a53fb10536f87c366bbda5ea80ae78076079f3"
+    },
+    {
+      "path": "/assets/index-tyFSuIGn.js",
+      "compressedOffset": "0x1a85960",
+      "compressedSize": 229,
+      "size": 315,
+      "sha256": "eb0c0a8b097a42b34d41bc84f714bb17fcf2a0876eb8c8b985921802fb9f527e"
+    },
+    {
+      "path": "/assets/index-C8fHeYdg.js",
+      "compressedOffset": "0x1ae39f3",
+      "compressedSize": 510,
+      "size": 1566,
+      "sha256": "823b8df8f383bb89a62f68d7cd2a5436b4f70f525dd2f97465b3dfc810e7fb9d"
+    },
+    {
+      "path": "/assets/index-k_1AGXXO.js",
+      "compressedOffset": "0x1afa960",
+      "compressedSize": 283247,
+      "size": 926913,
+      "sha256": "1697299b78ca6bc7ed2f1437a02028f12d70d646839306805cae4a08d8efd2b2"
+    },
+    {
+      "path": "/assets/index-CnItxMnl.css",
+      "compressedOffset": "0x1b40c3d",
+      "compressedSize": 952,
+      "size": 3731,
+      "sha256": "707db6371a51d818b13e1f492181edf725e403b7ddb8092a7dca2abc0b9fe2a7"
+    },
+    {
+      "path": "/assets/index-BlDZ3Kh3.js",
+      "compressedOffset": "0x1b480df",
+      "compressedSize": 12236,
+      "size": 43718,
+      "sha256": "b35d6c67e14a4a857cd8cd7baa5c51f9df8800021177127e1a43677eba3e4290"
+    },
+    {
+      "path": "/assets/modalWindows-BtozLgAr.js",
+      "compressedOffset": "0x21509bc",
+      "compressedSize": 487,
+      "size": 1243,
+      "sha256": "5f0e27cb9714f78cba6de6c937ce0c59bb3afe25228500f14567dd90046f6e12"
+    },
+    {
+      "path": "/assets/index-U7zNa-G8.css",
+      "compressedOffset": "0x2a9a192",
+      "compressedSize": 515,
+      "size": 1606,
+      "sha256": "e6aa102ef47c63b5cd44f633b1235b938f7f4f2c30cc8c95a9839d9319bfbb45"
+    },
+    {
+      "path": "/assets/index-BUvO_b8F.js",
+      "compressedOffset": "0x2a9a3ae",
+      "compressedSize": 23441,
+      "size": 82073,
+      "sha256": "d0ccdc54dd27ae522e68bde8a0fc67b6faa2ceb123848eb0518ec01599b1827b"
+    },
+    {
+      "path": "/assets/installerTranslations-Kz1krc5h.js",
+      "compressedOffset": "0x2ab3d09",
+      "compressedSize": 12928,
+      "size": 32503,
+      "sha256": "e1cd5fc1848c0df9a48730978973303a46340ded1c4dc848973bfd43b59b3b41"
+    },
+    {
+      "path": "/assets/index-Cc0NdApl.js",
+      "compressedOffset": "0x2ab6fa2",
+      "compressedSize": 67115,
+      "size": 204022,
+      "sha256": "14f15f77c83dd7f2aea0220bceec67c2324fd736886c2790f41200f1347aba1c"
+    },
+    {
+      "path": "/assets/index-BrG_s_cj.js",
+      "compressedOffset": "0x2ac75e6",
+      "compressedSize": 15877,
+      "size": 71869,
+      "sha256": "cf44e3217a999f90004c224b6a2c045d2bbec06495bf0370f45f8cdd05859abb"
+    },
+    {
+      "path": "/assets/index-CDs0T_p9.css",
+      "compressedOffset": "0x2ae055d",
+      "compressedSize": 3004,
+      "size": 12424,
+      "sha256": "33d3809d12684390b8a50d4b286a17d46a9716ccecba69d850087abdb4d40e97"
+    },
+    {
+      "path": "/assets/index-Dp9gpRCW.css",
+      "compressedOffset": "0x330ceab",
+      "compressedSize": 5698,
+      "size": 9235,
+      "sha256": "6037407d946f4361905b584f13536069c1f66ced180c2378b2fec654feb5e53b"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/index.html",
+      "offset": "0x40b8b47"
+    },
+    {
+      "path": "/index.html",
+      "offset": "0x40b8b55"
+    },
+    {
+      "path": "/index.html",
+      "offset": "0x4141578"
+    },
+    {
+      "path": "/index.html",
+      "offset": "0x4141bc0"
+    }
+  ]
+}

@@ -1,0 +1,932 @@
+{
+  "source": "WuwaTappo/WuwaTappo.exe",
+  "sourceSha256": "cedc37d0c11d112f4d933647fb6cf00e1dca847fc763250984c647080f849080",
+  "compression": "brotli",
+  "resourceCount": 132,
+  "resources": [
+    {
+      "path": "/assets/modalBridge-BCKChgOL.js",
+      "compressedOffset": "0xb4b3ef",
+      "compressedSize": 450,
+      "size": 1106,
+      "sha256": "260ab362ee24aaaf98082be460d4443d8fe6cfc81ecd5b098d5dace41f7993e6"
+    },
+    {
+      "path": "/kurodata-browser/kurodata.esm.min.d.ts",
+      "compressedOffset": "0xb4b5d8",
+      "compressedSize": 528,
+      "size": 2786,
+      "sha256": "82b84ea4640f384856bcdacf22a44b24997ea78fec4ff7151c79f0538a1550a6"
+    },
+    {
+      "path": "/assets/quitApp-DE3M1AoN.js",
+      "compressedOffset": "0xb4b803",
+      "compressedSize": 173,
+      "size": 331,
+      "sha256": "3c82ae2b3740aafe5d3fa37950808191ca05c11b2074c8cf4b3b955a3a3ba3e2"
+    },
+    {
+      "path": "/assets/gold-ray-CSyzYeGB.png",
+      "compressedOffset": "0xb4b8cd",
+      "compressedSize": 20467,
+      "size": 20837,
+      "sha256": "aed82cbb05a1d71b28233a068d8a7b4a0632ea99280f8b3e8fe657b8e4fd95eb"
+    },
+    {
+      "path": "/assets/role_1501_1001_body_2-2Sc2anyE.png",
+      "compressedOffset": "0xb508ea",
+      "compressedSize": 9631,
+      "size": 10273,
+      "sha256": "d54a2ddf5cd9ec8101e1c6d906dce56c5eb199f18d3a61500ae9ce98a5e8e17c"
+    },
+    {
+      "path": "/assets/slogan-jp-DBN6QxlY.png",
+      "compressedOffset": "0xb52ea7",
+      "compressedSize": 77518,
+      "size": 77513,
+      "sha256": "620c7d2b85cf752348114119a2ba36bf222ab0294b3b96b602dac9aeb4e3e6ce"
+    },
+    {
+      "path": "/assets/ribbons-gold-BMkqBO3j.png",
+      "compressedOffset": "0xb65d96",
+      "compressedSize": 7455,
+      "size": 7873,
+      "sha256": "0459f44a06c1a2667b7ab95c21cdcd701957c7e196982f33864906124fed41aa"
+    },
+    {
+      "path": "/assets/index-Bby1nrat.css",
+      "compressedOffset": "0xb67acf",
+      "compressedSize": 941,
+      "size": 3709,
+      "sha256": "c9fb7a1503c2c66ae5f55084da7afd445c623f6c74dc2b783cfcd8e6ff9aaf4f"
+    },
+    {
+      "path": "/assets/slogan-pt-DX5ZfpyB.png",
+      "compressedOffset": "0xb67e9a",
+      "compressedSize": 78815,
+      "size": 78810,
+      "sha256": "69331d7efc2cce5d61c2396cbf8cb7a40abbedd0be313f1ad6015525bbeec161"
+    },
+    {
+      "path": "/assets/role_1501_1001_body_3-DWC1vYwd.png",
+      "compressedOffset": "0xb7b2a3",
+      "compressedSize": 8993,
+      "size": 9637,
+      "sha256": "e9c1638fa9b825270bdef148760472cd54af58ff4e455ad7fc438e270e3e63dd"
+    },
+    {
+      "path": "/assets/slogan-DBjvdhWG.png",
+      "compressedOffset": "0xb7d5df",
+      "compressedSize": 40690,
+      "size": 40686,
+      "sha256": "9be5ef75ff80916966f134b9d8cd61ad1afbffbadf95dcb99fc826d7cc713a7f"
+    },
+    {
+      "path": "/assets/index-CnCaebIc.css",
+      "compressedOffset": "0xb874eb",
+      "compressedSize": 2149,
+      "size": 9409,
+      "sha256": "e19c5cbd4fe09b214111741de052fc603cb76b932f7993171392ed9a49380b01"
+    },
+    {
+      "path": "/assets/login-B1hThJN-.js",
+      "compressedOffset": "0xb87d69",
+      "compressedSize": 5970,
+      "size": 18443,
+      "sha256": "16f1ebc595424c02754aed9df25c4b24508c1fe60244e4756e51c147d2d22902"
+    },
+    {
+      "path": "/assets/index-BdFmB89r.js",
+      "compressedOffset": "0xb894d4",
+      "compressedSize": 2447,
+      "size": 8127,
+      "sha256": "f6d7c3dcdb174fd5d13f647ba03623ae8b5321b108bfd714ace85a94f6cba8d8"
+    },
+    {
+      "path": "/assets/uninstaller-background-CUKJSDm9.png",
+      "compressedOffset": "0xb89e8e",
+      "compressedSize": 38603,
+      "size": 38686,
+      "sha256": "874a066cf56c3b1691dded1b6e29fcea6ae95fe6266c9fc4767d713ec8a325b2"
+    },
+    {
+      "path": "/assets/ribbons-purple-TsMgf6e5.png",
+      "compressedOffset": "0xb9357c",
+      "compressedSize": 7318,
+      "size": 7756,
+      "sha256": "9580f0ba9df38ceda404d3825ccc92fefbda1ea39cdd94fad8e7fbe4dd5d10c2"
+    },
+    {
+      "path": "/assets/index-pp8VWaUF.js",
+      "compressedOffset": "0xb9522b",
+      "compressedSize": 65665,
+      "size": 198774,
+      "sha256": "1bc1c66b99239e69eef3023ef6564db04a1e7a25972504da1df0daeb0f0039a7"
+    },
+    {
+      "path": "/assets/index-BEWn23m-.js",
+      "compressedOffset": "0xba52c5",
+      "compressedSize": 15848,
+      "size": 71835,
+      "sha256": "d9280aa5e02a838dd14ba4e79d8c2c6ad6b519f9eb6a4520826df6cf9bffd6d5"
+    },
+    {
+      "path": "/assets/role_1502_1001-D-TWsCaa.png",
+      "compressedOffset": "0xba90d0",
+      "compressedSize": 32618,
+      "size": 33244,
+      "sha256": "87500e3100f4ed23bf662d326ca6b2d211878643449309007b5546155252aab8"
+    },
+    {
+      "path": "/assets/synthesis-caidai-By6O7BNV.png",
+      "compressedOffset": "0xbb105f",
+      "compressedSize": 5852,
+      "size": 5870,
+      "sha256": "aad2261be6f4ed3b8146d97887d92b72caf904af18d074672d2937365011f324"
+    },
+    {
+      "path": "/vite.svg",
+      "compressedOffset": "0xbb2744",
+      "compressedSize": 712,
+      "size": 1497,
+      "sha256": "4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb"
+    },
+    {
+      "path": "/assets/role_1501_1001_head_2-DzXpli8b.png",
+      "compressedOffset": "0xbb2a36",
+      "compressedSize": 24946,
+      "size": 25644,
+      "sha256": "e0164cb76a37c5a926e1dc3833f6ff2caae82f93fa6669412adbe1a5957f6419"
+    },
+    {
+      "path": "/assets/Prompt-Medium-2sUdh2as.woff2",
+      "compressedOffset": "0xbb8bcc",
+      "compressedSize": 49384,
+      "size": 49380,
+      "sha256": "5f4d4d5423dc5f2639f7489da89deda9421cfc0a053b55001bd70ae4ee052554"
+    },
+    {
+      "path": "/assets/NanumGothicBold-DhuCROc1.woff2",
+      "compressedOffset": "0xbc4cda",
+      "compressedSize": 1827516,
+      "size": 1827508,
+      "sha256": "4f43f9dc8827041e6d7829b982044fb9f1f13809c74ebdb7c8641f88a2b14f4b"
+    },
+    {
+      "path": "/assets/uninstaller-progress-character-COdI26wG.png",
+      "compressedOffset": "0xd82fc9",
+      "compressedSize": 118505,
+      "size": 118500,
+      "sha256": "cb6740ada00212d33910ad2416f0df224c97d47c105548087112efe3baf57642"
+    },
+    {
+      "path": "/assets/modalWindows-N5EpJKJM.js",
+      "compressedOffset": "0xd9fed2",
+      "compressedSize": 469,
+      "size": 1212,
+      "sha256": "5ad7d97ba26c7c863b57635a8aa498eb83746102d33ceb6ffcf0a22f6de063ff"
+    },
+    {
+      "path": "/assets/role_1501_1001_body_1-hAgyAGyx.png",
+      "compressedOffset": "0xda00d1",
+      "compressedSize": 9022,
+      "size": 9696,
+      "sha256": "d25eddf392f396e476d252f7ddc0aa767228375daa19fc2b8e3fc0ba998ce2cd"
+    },
+    {
+      "path": "/assets/SourceHanSansCN-Medium-nCy0uXL7.woff2",
+      "compressedOffset": "0xda243c",
+      "compressedSize": 6260108,
+      "size": 6260088,
+      "sha256": "b647663dcdd0c8b9366a1c920302ef4db7280e9e34a594284c98ecb2a086b28a"
+    },
+    {
+      "path": "/assets/975MaruSC-Bold-iviPgHHc.woff2",
+      "compressedOffset": "0x139a9ed",
+      "compressedSize": 6195950,
+      "size": 6225848,
+      "sha256": "27d9f9f7bc9fad8e06db89004f27e2d59b26443ea9f3c61123455f25141ade99"
+    },
+    {
+      "path": "/assets/role_1502_1001-CUqa2El3.png",
+      "compressedOffset": "0x19834fe",
+      "compressedSize": 32382,
+      "size": 33261,
+      "sha256": "da2ae78d55b7fbedf6e79e2453881acca6d9cd35de3ecfec7d4482bc58857379"
+    },
+    {
+      "path": "/assets/uninstaller-character-g7xsjdPx.png",
+      "compressedOffset": "0x198b3a6",
+      "compressedSize": 110409,
+      "size": 110404,
+      "sha256": "f6c978b5464eaec7a1d6c5e1104a58fa8aa5c6f6a5a1ff97e6251e3351556ed5"
+    },
+    {
+      "path": "/assets/update-bg-D6TRUARR.jpg",
+      "compressedOffset": "0x19a630d",
+      "compressedSize": 3329,
+      "size": 5035,
+      "sha256": "8e807707f121816cbd019f3693ada2b90acf89bb5fa0b37cfb5fdc92178e247a"
+    },
+    {
+      "path": "/assets/uid-button-CjqEnfMG.png",
+      "compressedOffset": "0x19a702d",
+      "compressedSize": 7261,
+      "size": 7267,
+      "sha256": "b443c97d7981d364b38ce3f44d08ef0a275c91d9443d8a5d91b047639ecbc0a8"
+    },
+    {
+      "path": "/assets/emote_pain-BsEvBL_J.png",
+      "compressedOffset": "0x19a8ca9",
+      "compressedSize": 25913,
+      "size": 26660,
+      "sha256": "5307e708f507e1cefaf66273cfcca1cca4f0809217ad226b9a48073e0b702c68"
+    },
+    {
+      "path": "/assets/chest-base-mask2-BqJrBxMz.png",
+      "compressedOffset": "0x19af207",
+      "compressedSize": 7996,
+      "size": 8392,
+      "sha256": "fc483e1c0f9e1dbb6124a6938b5b12600c89d621bff68fd4627c1950a9425b0a"
+    },
+    {
+      "path": "/assets/texture-Bfa05jOv.png",
+      "compressedOffset": "0x19b115f",
+      "compressedSize": 22339,
+      "size": 33966,
+      "sha256": "bdeffeab115058e365ca5ab2a9238352a9e64c3c1483e11ab88e939fc69f6ea3"
+    },
+    {
+      "path": "/assets/uidlogin-bg_01-BFmMXgit.png",
+      "compressedOffset": "0x19b68c5",
+      "compressedSize": 39745,
+      "size": 39929,
+      "sha256": "5e62833051443b2bb03f312f16454104f4153a6dea0776a221849e2105ea9486"
+    },
+    {
+      "path": "/assets/chest-base-purple2-B_oZ4Zmn.png",
+      "compressedOffset": "0x19c042d",
+      "compressedSize": 11731,
+      "size": 12251,
+      "sha256": "d54f902867ac9961b989e0fecde9341b4674f33e18f7450978c0e70b929a3b5c"
+    },
+    {
+      "path": "/assets/accessory_1000-CIBN2otw.png",
+      "compressedOffset": "0x19c3223",
+      "compressedSize": 13851,
+      "size": 14540,
+      "sha256": "edd4ee34d2f591f1de4648bb43c323126267d4ea8c35b56178b912c11660a05b"
+    },
+    {
+      "path": "/assets/chest-base-gold-mask-CPxqQ0gi.png",
+      "compressedOffset": "0x19c6867",
+      "compressedSize": 12925,
+      "size": 12936,
+      "sha256": "e3bc5bd24c4ac5f273d9d1bbb09ad3c853c9cac10a6f7dce66304d5d1f3f066e"
+    },
+    {
+      "path": "/assets/installer-background-BlOEDVA2.jpg",
+      "compressedOffset": "0x19c9b0d",
+      "compressedSize": 43332,
+      "size": 44545,
+      "sha256": "6acd675aa5f109d314c23e5fefb6461049de1a775db1543c9ff7d81956690225"
+    },
+    {
+      "path": "/assets/slogan-es-BuqpUHMK.png",
+      "compressedOffset": "0x19d446f",
+      "compressedSize": 82916,
+      "size": 82911,
+      "sha256": "03bcbd685344e892f4bbeb4a45c84ea8907ffc35031a41ee8236d8e1ac7f0b99"
+    },
+    {
+      "path": "/assets/emote_triumph-Cw1-2rLg.png",
+      "compressedOffset": "0x19e8875",
+      "compressedSize": 24753,
+      "size": 25556,
+      "sha256": "dc00b21f87687ff187eed7309a41c5bbe3ce817fd40a48569a73574b0df8f3fa"
+    },
+    {
+      "path": "/index.html",
+      "compressedOffset": "0x19ee931",
+      "compressedSize": 260,
+      "size": 588,
+      "sha256": "208dc298f5b3f8c77c6b91ccf03770db33df8a58c7f8a168bac2584252868179"
+    },
+    {
+      "path": "/assets/role_1501_1001-B4xwjAu7.png",
+      "compressedOffset": "0x19eea58",
+      "compressedSize": 28588,
+      "size": 29436,
+      "sha256": "5ee7f96e3fc7f560363646db8dee0c95b53358457e549d8e317ee87defcee008"
+    },
+    {
+      "path": "/assets/atlas-thumb-1-BLGUkvwT.png",
+      "compressedOffset": "0x19f5a26",
+      "compressedSize": 6627,
+      "size": 6623,
+      "sha256": "189d9f5fab181b3e01422ae9d8ee686476c5609c83bc2d3ff46119b784b9b025"
+    },
+    {
+      "path": "/assets/role_1501_1001_head_1-DcDYrJQZ.png",
+      "compressedOffset": "0x19f7433",
+      "compressedSize": 23500,
+      "size": 24158,
+      "sha256": "4e4855ceacf8f402dca73a2504623e4f7b7eb7cf2e2a9930debfb9b5082b98ca"
+    },
+    {
+      "path": "/assets/index-CB8_7sxZ.css",
+      "compressedOffset": "0x19fd019",
+      "compressedSize": 3002,
+      "size": 12377,
+      "sha256": "f243b0aa6c1288bd3c32a0105968d797fe370753b8892dd1f0ce5fdf4ca43e2e"
+    },
+    {
+      "path": "/assets/role_1502_1001_head_1-I3MQ1g5X.png",
+      "compressedOffset": "0x19fdbfd",
+      "compressedSize": 27381,
+      "size": 28023,
+      "sha256": "27673063c7ca93722bf4d4794d2952237a83a23ede8a08ea5d5c77b3881df2fe"
+    },
+    {
+      "path": "/assets/index-W69_mCjy.css",
+      "compressedOffset": "0x1a0470c",
+      "compressedSize": 5689,
+      "size": 9185,
+      "sha256": "d5a25a72bef5552f88a92e90c6692c98d842f00ff4e158557051e6a54364bfed"
+    },
+    {
+      "path": "/assets/ossNoticeData-BO8f3UDL.js",
+      "compressedOffset": "0x1a05d66",
+      "compressedSize": 9784,
+      "size": 187002,
+      "sha256": "248fbce4e81e1a088c7b63d7f152f49789d103176a117154eb7a652529ca2d80"
+    },
+    {
+      "path": "/assets/synthesis-circle-DvePk23l.png",
+      "compressedOffset": "0x1a083c3",
+      "compressedSize": 13255,
+      "size": 13252,
+      "sha256": "9a1deee345bac907991e503ca2cfa7e24405f56f8285adfbd138cc242bd96f09"
+    },
+    {
+      "path": "/assets/module-content-zs2-ioGDREC-.png",
+      "compressedOffset": "0x1a0b7b1",
+      "compressedSize": 4178,
+      "size": 4863,
+      "sha256": "85dc89d77c7448e9d80b7b29ee7c574864546eafa995f15613bf1701a3de239e"
+    },
+    {
+      "path": "/assets/dialog-background-D_KgCrCn.jpg",
+      "compressedOffset": "0x1a0c829",
+      "compressedSize": 380,
+      "size": 5730,
+      "sha256": "96bafd2af9638dc7783907daf1d17a94173f1740bcfc142fe5a6a8d4a09b4d06"
+    },
+    {
+      "path": "/assets/atlas-thumb-4-CDuzFic3.png",
+      "compressedOffset": "0x1a0c9c7",
+      "compressedSize": 6841,
+      "size": 6837,
+      "sha256": "9f07de66790a9d676a0e7737fc7efd6cf880c0ee0ed3a1293f5b15abf7c9d34d"
+    },
+    {
+      "path": "/assets/aboutData-DWou7S1_.js",
+      "compressedOffset": "0x1a0e49d",
+      "compressedSize": 320,
+      "size": 539,
+      "sha256": "c98b5a7849104e3bcc66d88759b2059108f180e41a9b0667031658e874ef1814"
+    },
+    {
+      "path": "/assets/purple-ray-C1PmrCvF.png",
+      "compressedOffset": "0x1a0e5fc",
+      "compressedSize": 20230,
+      "size": 20583,
+      "sha256": "f8057415d2711b99e1611ceb6757a3271956ffb5a8382b9d2204b79df9f7b4d7"
+    },
+    {
+      "path": "/assets/send-code-CqbweEOm.png",
+      "compressedOffset": "0x1a13520",
+      "compressedSize": 4908,
+      "size": 4904,
+      "sha256": "4f68f5731f244f7d1919645e633de2e6eee715b25f4a3ef9428556586433967e"
+    },
+    {
+      "path": "/assets/role_1502_1001_body_1-DTr2AI-2.png",
+      "compressedOffset": "0x1a14876",
+      "compressedSize": 9282,
+      "size": 9959,
+      "sha256": "19a383dc52d20ca074bc81a1d90dd38c7a4b046784cb769a6ca131d9be6ef956"
+    },
+    {
+      "path": "/assets/accessory_1000-DP0pthlH.png",
+      "compressedOffset": "0x1a16cdb",
+      "compressedSize": 50942,
+      "size": 53398,
+      "sha256": "0de91004d4d02cfb1953ffacf7fe46e147831e252df7e859f3e1a143ad5ba1d9"
+    },
+    {
+      "path": "/assets/preset-item-active-Cjz6cD7A.png",
+      "compressedOffset": "0x1a23400",
+      "compressedSize": 6970,
+      "size": 6966,
+      "sha256": "632679a541ad9e6ed68ad8318ab10600184d86067431c34a045bb046bbb1fc55"
+    },
+    {
+      "path": "/assets/close-DNwmqAuc.png",
+      "compressedOffset": "0x1a24f54",
+      "compressedSize": 7826,
+      "size": 7822,
+      "sha256": "61a2d0e75cf8d665bb7045a115d87e91bae0570e17c447345c10f8fecfc32b85"
+    },
+    {
+      "path": "/assets/logo-B8Z34k4r.png",
+      "compressedOffset": "0x1a26dff",
+      "compressedSize": 46765,
+      "size": 47255,
+      "sha256": "fbd37e26129baca81ee333cf8a18a2588956fb66d9794b8187b539d80eb3f789"
+    },
+    {
+      "path": "/assets/role_1502_1001_head_2-D99D0ANJ.png",
+      "compressedOffset": "0x1a324d6",
+      "compressedSize": 27836,
+      "size": 28453,
+      "sha256": "50e8e6abce5322f567cd1355d61641a90bdfff597eed42e98890151f20c83248"
+    },
+    {
+      "path": "/favicon.png",
+      "compressedOffset": "0x1a3919e",
+      "compressedSize": 3092,
+      "size": 3088,
+      "sha256": "f92eb12539517bc3c49a41d91fd077784015ec9cf9a4cc86a4e136640d45296e"
+    },
+    {
+      "path": "/assets/useLogin-pKgL9g9U.js",
+      "compressedOffset": "0x1a39dce",
+      "compressedSize": 5636,
+      "size": 17605,
+      "sha256": "e3de4441583d0195e6a04d328def68c636653e34363f2931c8ef6bd59a99e7e0"
+    },
+    {
+      "path": "/kurodata-browser/kurodata.esm.min.js",
+      "compressedOffset": "0x1a3b3f7",
+      "compressedSize": 15941,
+      "size": 57510,
+      "sha256": "ade0671fc60ea0e36fbf6af0c4ea7773db0da14c3866065d99e362e1ac140989"
+    },
+    {
+      "path": "/assets/emote_angry-0NPaMRoN.png",
+      "compressedOffset": "0x1a3f25c",
+      "compressedSize": 25413,
+      "size": 25967,
+      "sha256": "81dfe45d0ba221f822f6da64ebdff2eb922bea20d892922f535c3200e901d0e4"
+    },
+    {
+      "path": "/assets/chest-base-gold2-CkeOQBEG.png",
+      "compressedOffset": "0x1a455c6",
+      "compressedSize": 42469,
+      "size": 42619,
+      "sha256": "16546835cfeafd0c0a4cc2be1c45ae4d9d8c04bfdfe8b8f5a2477070b7b4b191"
+    },
+    {
+      "path": "/assets/index-CiT_jZa7.js",
+      "compressedOffset": "0x1a4fbc4",
+      "compressedSize": 22960,
+      "size": 80547,
+      "sha256": "5aff48329a879a9e10d8e342d740d0a4fa0f0c62d4763b625b98fb1f822fffbd"
+    },
+    {
+      "path": "/assets/index-CuzHFfJW.js",
+      "compressedOffset": "0x1a5558d",
+      "compressedSize": 282129,
+      "size": 921952,
+      "sha256": "fc7923890889ea34ab093bc1a5c8302a74439439c04b85b94a96277ef1c958c0"
+    },
+    {
+      "path": "/assets/module-mask-CAM-j16R.png",
+      "compressedOffset": "0x1a9a3be",
+      "compressedSize": 4382,
+      "size": 4783,
+      "sha256": "658c6f09c43bc4baf77c314ee35d8190d772c479ab16c950c196329394b6600d"
+    },
+    {
+      "path": "/assets/Prompt-Bold-DMiQg2kd.woff2",
+      "compressedOffset": "0x1a9b4fe",
+      "compressedSize": 50524,
+      "size": 50520,
+      "sha256": "7e04826c821aa7f1178a05b27a409dde82db8a369b332f490d1fdf2a81728cd5"
+    },
+    {
+      "path": "/assets/blue-star-_bFKRIjT.png",
+      "compressedOffset": "0x1aa7a78",
+      "compressedSize": 8953,
+      "size": 9058,
+      "sha256": "d759e88d7f0dc424284475fc4118292ff0fe54926a92c278a65c01aa449daddf"
+    },
+    {
+      "path": "/assets/index-BtAv0o2S.js",
+      "compressedOffset": "0x1aa9d8a",
+      "compressedSize": 472,
+      "size": 1316,
+      "sha256": "fbead5855692044b4df2d8fe5c6f238692962b167c2cfdc419b5c0ae4dacfe1b"
+    },
+    {
+      "path": "/assets/GenSenRoundedJP-M-ChVtG1bu.woff2",
+      "compressedOffset": "0x1aa9f8a",
+      "compressedSize": 7746761,
+      "size": 7746740,
+      "sha256": "189ca4b66bdb5f3585a2183b92956a8faa50fafc2bd2f4d7485b4c9dd4ac3b11"
+    },
+    {
+      "path": "/assets/emote_stunned-BZGSbuwi.png",
+      "compressedOffset": "0x220d475",
+      "compressedSize": 24317,
+      "size": 24907,
+      "sha256": "da206b066646a7ff3af2326ef98d4009f6a9ddcf7d4963ebbc4c7aeea7442df1"
+    },
+    {
+      "path": "/assets/index-De64ueED.js",
+      "compressedOffset": "0x221338b",
+      "compressedSize": 1512,
+      "size": 3407,
+      "sha256": "f7bb826a1029b8a38fc96633bd03fa24e4f1d64b7cbd81a60c27df35458d6be9"
+    },
+    {
+      "path": "/assets/logo-BnU-YByM.png",
+      "compressedOffset": "0x221398c",
+      "compressedSize": 20245,
+      "size": 20601,
+      "sha256": "efa6dfc1e7d9cfed0578b0c8d0017a9759cb1d852f31a96a4ae6cf09613a49f8"
+    },
+    {
+      "path": "/assets/slogan-th-DIZ2GP9C.png",
+      "compressedOffset": "0x22188bf",
+      "compressedSize": 86128,
+      "size": 86123,
+      "sha256": "2752fec231d572d4ff5052fbeedf70eebe16a5fdc960c683246d9f608603755d"
+    },
+    {
+      "path": "/assets/chest-base-blue-C9khToQ6.png",
+      "compressedOffset": "0x222d953",
+      "compressedSize": 21914,
+      "size": 22404,
+      "sha256": "1fee3dc5a7f131fe5a60276b19b457e7f82cd1fb4c5d6712eabc7f5b1316604b"
+    },
+    {
+      "path": "/assets/index-TmZ7LawI.js",
+      "compressedOffset": "0x2232f06",
+      "compressedSize": 12199,
+      "size": 43630,
+      "sha256": "b2733bf4de392fdedc97731c243612f1f999ca80e0164053b9ee7a6ae0412b60"
+    },
+    {
+      "path": "/assets/chest-base-gold-BKP4rDVz.png",
+      "compressedOffset": "0x2235ed1",
+      "compressedSize": 46603,
+      "size": 46965,
+      "sha256": "c227b2cf7394e85928ea22a6583a1f8f8bb7a0d2cc2250db04b3c9dd4af482ab"
+    },
+    {
+      "path": "/assets/slogan-en-B3BZtuZC.png",
+      "compressedOffset": "0x22414fa",
+      "compressedSize": 85371,
+      "size": 85366,
+      "sha256": "ebcc3f6e56dc175790b052b9c18ce0d73a62fdc5b753da49858e14ba2dcc8e5e"
+    },
+    {
+      "path": "/assets/slogan-tw-BgDIk0dX.png",
+      "compressedOffset": "0x2256293",
+      "compressedSize": 81283,
+      "size": 81278,
+      "sha256": "b43ec577dbc6c441269ec85936797a166363767747d786c6399cb98b40f926c5"
+    },
+    {
+      "path": "/app-icon.png",
+      "compressedOffset": "0x226a023",
+      "compressedSize": 222310,
+      "size": 222305,
+      "sha256": "86e051642863f046ae56f21ac46f4a841aca322b486fbf5ac8698f619af88b34"
+    },
+    {
+      "path": "/assets/slogan-de-BQmcR5ME.png",
+      "compressedOffset": "0x22a04a7",
+      "compressedSize": 83104,
+      "size": 83099,
+      "sha256": "d0df73be949635653139194440def004ae992f23ea58aba05770641509254573"
+    },
+    {
+      "path": "/assets/chest-base-green-Cjinxc87.png",
+      "compressedOffset": "0x22b496c",
+      "compressedSize": 21518,
+      "size": 22017,
+      "sha256": "d291f7e05d25d30792ddb0678928051a5b5c5f81a2b86c25f40ec737ccd8bb91"
+    },
+    {
+      "path": "/assets/index-sGhwaBCi.css",
+      "compressedOffset": "0x22b9d94",
+      "compressedSize": 508,
+      "size": 1581,
+      "sha256": "b7054932e57e7213fe9c19e28de5d03b74e58f473ed35ada0a4927eadb425ec4"
+    },
+    {
+      "path": "/assets/slogan-zh-tcs6Ry54.png",
+      "compressedOffset": "0x22b9fae",
+      "compressedSize": 75552,
+      "size": 75547,
+      "sha256": "aee875af30a2fa0ad21dd2ab100ef15b99366fdddb5f953ea273e6e1da70fff7"
+    },
+    {
+      "path": "/assets/index-C40QhZYu.js",
+      "compressedOffset": "0x22cc6e7",
+      "compressedSize": 3726,
+      "size": 11210,
+      "sha256": "9bb346263888a11eb32fab56766d933c729372cc0065a9ff7f24fe4a5a4e014a"
+    },
+    {
+      "path": "/assets/emote_happy-DbeXE30w.png",
+      "compressedOffset": "0x22cd595",
+      "compressedSize": 23458,
+      "size": 24224,
+      "sha256": "8855248dba965c95ba3e4874d2d98b45c153e6ff36b65f05133c3100e2793527"
+    },
+    {
+      "path": "/assets/atlas-thumb-2-CSkXBHLD.png",
+      "compressedOffset": "0x22d3159",
+      "compressedSize": 6742,
+      "size": 6738,
+      "sha256": "edb61e46aa17d45e9564ff3dce6dbf474753ae82632775c1fbb21139bf624f36"
+    },
+    {
+      "path": "/assets/emote_effort-BpXjyIRa.png",
+      "compressedOffset": "0x22d4bd0",
+      "compressedSize": 25213,
+      "size": 25939,
+      "sha256": "92af23a9984cac04ce827513326909ac08c9aec7f8acd0cc9f84113e0b0f20b0"
+    },
+    {
+      "path": "/assets/emote_idle-CuKYElgo.png",
+      "compressedOffset": "0x22dae6c",
+      "compressedSize": 23888,
+      "size": 24672,
+      "sha256": "7df5b27713de3acce053f9b75f2ecd082947b8ab79d951361209af7025145f80"
+    },
+    {
+      "path": "/assets/synthesis-success-4--FpNJkXG.png",
+      "compressedOffset": "0x22e0be4",
+      "compressedSize": 4140,
+      "size": 4288,
+      "sha256": "a99885f0a80543f550362eefe8a8cb8a847de5a1183d9825440f52951a5ba312"
+    },
+    {
+      "path": "/assets/index-C3fG-hsi.css",
+      "compressedOffset": "0x22e1c2a",
+      "compressedSize": 86855,
+      "size": 221097,
+      "sha256": "975832513782c5a6654b1bdd2774c7f112f6dde757a103449725ac29025dc4d6"
+    },
+    {
+      "path": "/assets/preview-main-DY5jSebv.png",
+      "compressedOffset": "0x22f6f92",
+      "compressedSize": 5360,
+      "size": 5356,
+      "sha256": "a9d7b1ba1f80a00c2e8e1f3eb876fb7003b81aa494ad49c94cdb2d6818681980"
+    },
+    {
+      "path": "/assets/index-DIAkjC0E.css",
+      "compressedOffset": "0x22f849c",
+      "compressedSize": 79,
+      "size": 104,
+      "sha256": "50aa8413631824458ea53ae6b0b0c5e86c9b24e317bde716162d0d6113418f7e"
+    },
+    {
+      "path": "/assets/emote_threaten-m1WdXRA1.png",
+      "compressedOffset": "0x22f850e",
+      "compressedSize": 24118,
+      "size": 24720,
+      "sha256": "224a2b8bb1a81c46437609d4fb734c704871310f23dcf10e1e37f1661818f87c"
+    },
+    {
+      "path": "/assets/chest-base-purple-B-cxm8kC.png",
+      "compressedOffset": "0x22fe36a",
+      "compressedSize": 20840,
+      "size": 21319,
+      "sha256": "6e44358bfc6208fd3370f7c4958a00c1cd717522910b3b80262ea68c099359e7"
+    },
+    {
+      "path": "/assets/SourceHanSansCN-Bold-B8C3iFQp.woff2",
+      "compressedOffset": "0x23034fd",
+      "compressedSize": 6475641,
+      "size": 6475624,
+      "sha256": "de7b291094918a0b3887d9ce7f2f4c2c7bf0e7d79f1cdb9630232b462f221c9f"
+    },
+    {
+      "path": "/assets/ribbons-blue-DkxlWDHD.png",
+      "compressedOffset": "0x2930497",
+      "compressedSize": 36186,
+      "size": 36720,
+      "sha256": "486f6bd5ba9b35bf2eddf92d8278d29143a66e85085be73df39242368ab54b53"
+    },
+    {
+      "path": "/assets/chest-base-mask-BiegO2aN.png",
+      "compressedOffset": "0x2939215",
+      "compressedSize": 8365,
+      "size": 8938,
+      "sha256": "d9012b0c3fc6837c0f0aff343b3df35738ddc829dec24cc896ba17132027acaa"
+    },
+    {
+      "path": "/assets/logo-DXZYMNpG.png",
+      "compressedOffset": "0x293b2db",
+      "compressedSize": 30254,
+      "size": 31311,
+      "sha256": "ebc62d5d2ff22b5fe0b8322e2a2a11c3e259b3d15c3772db118e5784c820e0bb"
+    },
+    {
+      "path": "/assets/synthesis-success-1-DqKfhVZY.png",
+      "compressedOffset": "0x2942931",
+      "compressedSize": 3821,
+      "size": 4177,
+      "sha256": "259e81315b8bc4b11ea0f13f2ed7fd103425e80d33f6fb640db2dfea7fe4085a"
+    },
+    {
+      "path": "/assets/module-content-bg-Dxg_k-a2.png",
+      "compressedOffset": "0x2943844",
+      "compressedSize": 3007,
+      "size": 6571,
+      "sha256": "a544f5028744d874185809bd94b976f326493fbdd4d7df49fe4e4fa9286916dd"
+    },
+    {
+      "path": "/assets/gold-star-Dl994PIs.png",
+      "compressedOffset": "0x2944421",
+      "compressedSize": 15326,
+      "size": 15754,
+      "sha256": "ee660b8ee2816bb2210ddb02e59f18d41f91fb3d1a67c788a59b32da123745bc"
+    },
+    {
+      "path": "/assets/975MaruSC-Medium-CqkJPt5f.woff2",
+      "compressedOffset": "0x2948026",
+      "compressedSize": 7242092,
+      "size": 7279428,
+      "sha256": "b8a649c9ccc3b2a303f5b553395943828c9ee0289bd5d3de19372870044ba8f5"
+    },
+    {
+      "path": "/assets/role_1501_1001-B7Jun5uv.png",
+      "compressedOffset": "0x30301b5",
+      "compressedSize": 28846,
+      "size": 29468,
+      "sha256": "ec2ec3345dd3cbb687f3fdc982f84a6911b563296429f8945bea5248aa0dfa47"
+    },
+    {
+      "path": "/assets/GenSenRoundedJP-B-CrIO1d5e.woff2",
+      "compressedOffset": "0x303728b",
+      "compressedSize": 7942997,
+      "size": 7942976,
+      "sha256": "99167e3d4da9634f6e6b2cdebe89adaaf524b89ba9fd9672ff53f9f6a6e72bfb"
+    },
+    {
+      "path": "/assets/switchDisplayMonitor-B50jXMGD.js",
+      "compressedOffset": "0x37ca608",
+      "compressedSize": 7112,
+      "size": 21180,
+      "sha256": "9ed4a94cc8a7aaab9ca760f0f915855dd1f029321e188638bf9db23c3e4aa955"
+    },
+    {
+      "path": "/assets/installerTranslations-DGtHZ_PT.js",
+      "compressedOffset": "0x37cc1f9",
+      "compressedSize": 12927,
+      "size": 32503,
+      "sha256": "1e67035c515f49f51d6f17a2490ce4d87c812339830d4fcfd7c9a9806db74517"
+    },
+    {
+      "path": "/assets/index-C55u91jw.js",
+      "compressedOffset": "0x37cf491",
+      "compressedSize": 228,
+      "size": 315,
+      "sha256": "1b2fc77c54f667b4b3573e2dcfd3ebc7f1058b6d4574eb4adfca3072cff0eaf3"
+    },
+    {
+      "path": "/assets/GenSenRounded-M-IdyG9UEk.woff2",
+      "compressedOffset": "0x37cf59b",
+      "compressedSize": 6293224,
+      "size": 6306744,
+      "sha256": "32f03e031a7599da6568bac8714aa16d1965b455cc58c86fb09aff337328e6f1"
+    },
+    {
+      "path": "/assets/role_1502_1001_body_2-D0-uX2J8.png",
+      "compressedOffset": "0x3dcfcad",
+      "compressedSize": 9410,
+      "size": 10035,
+      "sha256": "94d9ef6665d560821b059859f328198fa72c4d0cafef0bf2d58ffb78b3345fe3"
+    },
+    {
+      "path": "/assets/index-CaMAtNXT.css",
+      "compressedOffset": "0x3dd2189",
+      "compressedSize": 5683,
+      "size": 9468,
+      "sha256": "867ee6fcf504da28c5d2ba103b38d406504df6a8875775f24a062f435c82963f"
+    },
+    {
+      "path": "/assets/slogan-fr-B0yTYWj2.png",
+      "compressedOffset": "0x3dd37da",
+      "compressedSize": 75343,
+      "size": 75338,
+      "sha256": "4ed0020ccfee9db28d013ef15a2e838f5816d2d954382f3e7073cbfc4917547c"
+    },
+    {
+      "path": "/assets/slogan-kr-Dqdo3QDo.png",
+      "compressedOffset": "0x3de5e47",
+      "compressedSize": 76735,
+      "size": 76730,
+      "sha256": "b66ae5e3b9bce092df2f324093e77b6ec3d27f3116a0285ed5b1bf164ed70e5c"
+    },
+    {
+      "path": "/assets/role_1502_1001_body_3-mSXf9mwW.png",
+      "compressedOffset": "0x3df8a30",
+      "compressedSize": 9190,
+      "size": 9827,
+      "sha256": "64959f004a2e31d0dc27069c3cf2535baae3cd36d18d5a9f1d90c1bfecf073a7"
+    },
+    {
+      "path": "/assets/passport-button-Bb_rvpY5.png",
+      "compressedOffset": "0x3dfae3a",
+      "compressedSize": 7480,
+      "size": 7476,
+      "sha256": "c1629f8cc5d2c32522f827b37bf1437312aeb177317de85945fe0eb3e774abd1"
+    },
+    {
+      "path": "/assets/_plugin-vue_export-helper-DlAUqK2U.js",
+      "compressedOffset": "0x3dfcb9f",
+      "compressedSize": 82,
+      "size": 91,
+      "sha256": "cb85b0f263dbe24e857338301c0627076592e9f1f1a5662929f86d2c126444aa"
+    },
+    {
+      "path": "/assets/chest-base-green2-B7rOx7lH.png",
+      "compressedOffset": "0x3dfcc17",
+      "compressedSize": 12142,
+      "size": 12662,
+      "sha256": "41ee1265f856558ed994f61b9e668ddb6d7a67b2be08614b111cdbb30ccbd749"
+    },
+    {
+      "path": "/assets/chest-base-blue2-C5fw8WJ5.png",
+      "compressedOffset": "0x3dffbaa",
+      "compressedSize": 11943,
+      "size": 12412,
+      "sha256": "74db25c4aa051b9e48459ba51ebcdcf230d52afd355419ec093ef203ba2881fe"
+    },
+    {
+      "path": "/assets/atlas-thumb-3-Cf7ixdnU.png",
+      "compressedOffset": "0x3e02a73",
+      "compressedSize": 6702,
+      "size": 6698,
+      "sha256": "1990eaaf16c8207ba2e295ca9fff7748a8e8a607a66eecd050bfde76b23b0fa1"
+    },
+    {
+      "path": "/tauri.svg",
+      "compressedOffset": "0x3e044ab",
+      "compressedSize": 1289,
+      "size": 2605,
+      "sha256": "3f32698a9cb64f4d06d4df89ecb903418347589a17d297208a7f68741a8b5672"
+    },
+    {
+      "path": "/assets/login-ncGxoH10.css",
+      "compressedOffset": "0x3e049ce",
+      "compressedSize": 3504,
+      "size": 15091,
+      "sha256": "e6b5f0f5d7dc2ed2cd6e04f9084b58b15aaa367422006c2d8fabb021885d8e08"
+    },
+    {
+      "path": "/assets/purple-star-Bt6MA_zB.png",
+      "compressedOffset": "0x3e0579e",
+      "compressedSize": 10234,
+      "size": 10631,
+      "sha256": "08004dfdbfd91b8c434cc90fb244e36bb8fd7857562f12ba7037b6feb44f2329"
+    },
+    {
+      "path": "/assets/GenSenRounded-B-BZwrY0nR.woff2",
+      "compressedOffset": "0x3e07fbe",
+      "compressedSize": 6480580,
+      "size": 6480560,
+      "sha256": "f85be5fe865242819f8f1356318bd44b58c93549579c378f76a541b396ba732f"
+    },
+    {
+      "path": "/assets/NanumGothicExtraBold-BLf8lYnQ.woff2",
+      "compressedOffset": "0x44362ad",
+      "compressedSize": 1688768,
+      "size": 1688760,
+      "sha256": "21a5ad64aa463e8a5d6813c3a9b447125410c5477cc439f41662eaa9457101a6"
+    },
+    {
+      "path": "/assets/green-star-p7C4YQNP.png",
+      "compressedOffset": "0x45d278c",
+      "compressedSize": 13814,
+      "size": 14215,
+      "sha256": "f8502728ca5122977012ed847911ebbd8ba7ff7edaa39ec83cf5d5ae7c8cf839"
+    },
+    {
+      "path": "/assets/emote_surprised-VoLgChQ8.png",
+      "compressedOffset": "0x45d5da6",
+      "compressedSize": 24832,
+      "size": 25646,
+      "sha256": "54d80ad55fc7b6042f867d8dcb7786f4e97193ed92ca8bc595c94a235cdcd7e6"
+    }
+  ]
+}
