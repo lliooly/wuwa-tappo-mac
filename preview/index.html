@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wuwa Tappo · 动画验证</title>
+<style>
+  :root{font-family:system-ui,sans-serif;color:#473c33;background:#f5f1e8}
+  body{max-width:720px;margin:8vh auto;padding:24px}
+  h1{font-size:24px;font-weight:600}p{line-height:1.7;color:#756557}
+  #scene{height:320px;display:grid;place-items:center;border:1px solid #d6cbbd;border-radius:16px;background:#e5ddd0;margin:28px 0}
+  label{display:inline-block;margin:8px 16px 8px 0}select{max-width:220px;padding:6px}
+  output{display:block;margin-top:16px;font-variant-numeric:tabular-nums}
+</style>
+<h1>玩偶动画验证</h1>
+<p>在本页面按键或点击，观察交替拍击；每 5 秒眨眼一次。这里仅响应页面输入，尚未接入 macOS 全局监听和悬浮窗口。</p>
+<label>角色 <select id="character" aria-label="角色"></select></label>
+<label>配饰 <select id="accessory" aria-label="配饰"></select></label>
+<div id="scene"><div id="pet"></div></div>
+<output id="status" role="status">正在读取素材库…</output>
+<script type="module" src="/preview/main.js"></script>
+</html>
