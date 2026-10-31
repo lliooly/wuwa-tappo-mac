@@ -63,6 +63,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private var source: OriginalAssetScheme
     private let base = URL(string: "wuwa://app/")!
     private var flags: [String: Any] = [:]
+    private let clickStore = OriginalClickStore()
 
     init(resources: URL) {
         self.resources = resources.appendingPathComponent("original")
@@ -305,10 +306,8 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             emit("login-modal-open", ["intent": "login"], target: "login")
             return null
         case "close_login_window": windows["login"]?.orderOut(nil); return null
-        case "load_key_press_count", "load_cumulative_click_count": return UserDefaults.standard.integer(forKey: "localClickCount")
-        case "save_key_press_count", "save_cumulative_click_count":
-            let count = args["count"] as? Int ?? args["value"] as? Int ?? 0
-            UserDefaults.standard.set(count, forKey: "localClickCount"); return null
+        case "load_key_press_count", "load_cumulative_click_count", "save_key_press_count", "save_cumulative_click_count":
+            return try clickStore.invoke(command, args: args)
         case "is_force_update_locked", "is_internal_testing_build", "is_devtools_hotkeys_build", "has_maintenance_notice", "is_elevated_autostart_enabled": return false
         case "get_track_os_info": return ["os": "macOS", "osVersion": ProcessInfo.processInfo.operatingSystemVersionString]
         case "get_app_shortcuts": return flags["shortcuts"] ?? ["togglePet": ["key": 120, "modifiers": 0], "gameMode": ["key": 119, "modifiers": 0], "switchScreen": ["key": 121, "modifiers": 0]]
