@@ -121,6 +121,7 @@ open 'dist/Wuwa Tappo.app'
 | [原版移植规格](docs/superpowers/specs/2026-10-31-original-frontend-port.md) | 默认前端的移植边界、兼容层与实现记录。 |
 | [动画规格](docs/superpowers/specs/2026-10-30-animation-design.md) | 原版动作来源、时序及图层规则。 |
 | [最终验收结果](docs/最终验收结果.md) | build 7 的检查范围与实际系统验收记录。 |
+| [在线功能验收](docs/在线功能验收.md) | 当前 main 的账号／联机实际结果与待验收范围。 |
 | [宝箱与跨屏逻辑](docs/宝箱与跨屏原版逻辑.md) | 原版规则、未登录入口与验证依据。 |
 | [更新记录](CHANGELOG.md) | 当前已交付版本。 |
 

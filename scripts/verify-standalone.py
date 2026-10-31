@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import plistlib
 import shutil
+import struct
 import subprocess
 import tempfile
 import uuid
@@ -26,7 +27,26 @@ def hashes(root, resources_only=False):
 def unsigned_hash(executable, destination):
     shutil.copy2(executable, destination)
     subprocess.run(['codesign', '--remove-signature', str(destination)], check=True, capture_output=True)
-    return hashlib.sha256(destination.read_bytes()).hexdigest()
+    data = bytearray(destination.read_bytes())
+    magic, cpu, _, _, commands, command_bytes, _, _ = struct.unpack_from('<8I', data)
+    assert magic == 0xfeedfacf and cpu == 0x100000c, 'Expected a thin arm64 Mach-O'
+    offset = 32
+    for _ in range(commands):
+        command, size = struct.unpack_from('<II', data, offset)
+        assert size >= 8 and offset + size <= 32 + command_bytes, 'Malformed Mach-O command'
+        if command == 0x19 and data[offset + 8:offset + 24].rstrip(b'\0') == b'__LINKEDIT':
+            vm_size = struct.unpack_from('<Q', data, offset + 32)[0]
+            file_size = struct.unpack_from('<Q', data, offset + 48)[0]
+            # Apple's remove-signature truncates the signature bytes, but keeps
+            # the old VM allocation. A certificate chain needs more pages than
+            # ad-hoc signing. Normalize only this allocation field to the actual
+            # unsigned linkedit payload; every other byte remains compared.
+            canonical_size = (file_size + 0x3fff) & ~0x3fff
+            assert vm_size >= canonical_size and vm_size % 0x4000 == 0, 'Invalid linkedit VM allocation'
+            struct.pack_into('<Q', data, offset + 32, canonical_size)
+        offset += size
+    assert offset == 32 + command_bytes, 'Mach-O command inventory mismatch'
+    return hashlib.sha256(data).hexdigest()
 
 
 def main():
@@ -60,6 +80,7 @@ def main():
     evidence = {'status': 'passed', 'app': str(app), 'sourceBundleIdentifier': original_id,
                 'validationBundleIdentifier': validation_id, 'codeAndResourcesIdentical': True,
                 'comparedFiles': len(expected), 'unsignedExecutableSha256': code_hash,
+                'signatureLayoutNormalization': 'arm64 __LINKEDIT VM allocation after Apple signature removal',
                 'workingDirectory': '/private/tmp',
                 'isolatedPreferences': True, 'audit': str(PREFIX) + '.audit.json',
                 'finishedAt': report['finishedAt']}
