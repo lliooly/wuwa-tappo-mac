@@ -198,8 +198,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func buildMenu() {
-        status = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        status.button?.title = "团团"
+        status = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        MenuBarIcon.configure(status)
         let menu = NSMenu()
         statusRow = NSMenuItem(title: currentStatus, action: nil, keyEquivalent: "")
         menu.addItem(statusRow)

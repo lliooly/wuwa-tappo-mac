@@ -26,6 +26,7 @@ def main():
         shutil.rmtree(APP)
     (CONTENTS / 'MacOS').mkdir(parents=True)
     RESOURCES.mkdir()
+    shutil.copy2(ROOT / 'assets/macos/menu-bar-template.png', RESOURCES / 'menu-bar-template.png')
     catalog = json.loads((LIBRARY / 'data/catalog.json').read_text())
 
     def find(kind, name):

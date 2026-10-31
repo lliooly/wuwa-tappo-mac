@@ -636,7 +636,11 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     private func buildMenu() {
-        if status == nil { status = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength); status?.button?.title = "团团" }
+        if status == nil {
+            let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+            MenuBarIcon.configure(item)
+            status = item
+        }
         let menu = NSMenu()
         for (key, fallback, action) in [("openBag", "背包", "bag"), ("openAtlas", "图鉴", "atlas"), ("openExchange", "合成", "exchange"),
                                         ("openRoom", "联机", "room"), ("trayOpenSettings", "设置", "setting"),
