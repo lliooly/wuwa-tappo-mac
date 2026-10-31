@@ -48,10 +48,14 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     var runtimeErrors: [String] = []
     var onExit: (() -> Void)?
     var onRequestInputAccess: (() -> Void)?
+    var persistedClickCount: Int {
+        (try? clickStore.invoke("load_key_press_count", args: ["environment": OriginalClickStore.domesticEnvironment])) as? Int ?? 0
+    }
     private var ready = Set<String>()
     private var pointerTimer: Timer?
     private var mainHitRects: [[String: Any]] = []
     private var panelOpen = false
+    private var deferredPanelTab: String?
     private var resizeMonitor: Any?
     private var mouseDownMonitor: Any?
     private var lastMouseDown: NSEvent?
@@ -69,6 +73,9 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private let networkMonitor = NWPathMonitor()
     private var onlineReportTimer: Timer?
     private var networkRules: WKContentRuleList?
+    private var maintenanceActive = false
+    private var maintenancePayload: [String: Any] = [:]
+    private var socketBridge: OriginalSocketBridge?
     private let online = !CommandLine.arguments.contains("--offline") && !CommandLine.arguments.contains("--original-preview") && !CommandLine.arguments.contains("--original-audit")
 
     init(resources: URL) {
@@ -115,6 +122,10 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         windows["main"]?.orderFrontRegardless()
         buildApplicationMenu()
         buildMenu()
+        if let tab = deferredPanelTab {
+            deferredPanelTab = nil
+            openPanelFromMain(tab: tab)
+        }
         pointerTimer = Timer.scheduledTimer(withTimeInterval: 1/30, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             let point = self.screenPoint(NSEvent.mouseLocation)
@@ -140,16 +151,21 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         config.preferences.javaScriptCanOpenWindowsAutomatically = false
         config.userContentController.addScriptMessageHandler(self, contentWorld: .page, name: "originalInvoke")
         config.userContentController.addScriptMessageHandler(self, contentWorld: .page, name: "originalSession")
+        config.userContentController.addScriptMessageHandler(self, contentWorld: .page, name: "originalSocket")
         config.userContentController.add(self, name: "originalLog")
         let initialSession = online ? sessionStore.snapshot() : [:]
         let sessionJSON = String(data: try! JSONSerialization.data(withJSONObject: initialSession), encoding: .utf8)!
-        let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
+        let nativeSocket = !CommandLine.arguments.contains("--browser-socket")
+        let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_NATIVE_SOCKET__=\(nativeSocket ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
         config.userContentController.addUserScript(WKUserScript(source: bootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         if let session = try? String(contentsOf: resources.appendingPathComponent("session-adapter.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: session, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         }
         if let adapter = try? String(contentsOf: resources.appendingPathComponent("tauri-adapter.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: adapter, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        }
+        if let socket = try? String(contentsOf: resources.appendingPathComponent("socket-adapter.js"), encoding: .utf8) {
+            config.userContentController.addUserScript(WKUserScript(source: socket, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         }
         if let audit = try? String(contentsOf: resources.appendingPathComponent("audit.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: audit, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
@@ -200,6 +216,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func openPanelFromMain(tab: String = "bag", attempt: Int = 0) {
         if panelOpen { showPanel(tab: tab); return }
+        guard views["main"] != nil else { deferredPanelTab = tab; return }
         views["main"]?.evaluateJavaScript("(()=>{const button=document.querySelector('.settings-btn');if(!button)return false;button.click();return true})()") { [weak self] value, error in
             guard let self = self else { return }
             if value as? Bool == true {
@@ -211,6 +228,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     func emit(_ event: String, _ payload: Any = NSNull(), target: String? = nil) {
+        if maintenanceActive && ["key-press", "key-release", "mouse-button", "global-clap-mouse", "gamepad-button-press"].contains(event) { return }
         for (label, view) in views where target == nil || target == label {
             view.callAsyncJavaScript("window.__ORIGINAL_RECEIVE__(event, payload)", arguments: ["event": event, "payload": payload],
                                      in: nil, in: .page, completionHandler: nil)
@@ -224,6 +242,34 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage,
                                replyHandler: @escaping (Any?, String?) -> Void) {
+        if message.name == "originalSocket" {
+            guard online, !CommandLine.arguments.contains("--browser-socket"), message.frameInfo.isMainFrame,
+                  let body = message.body as? [String: Any], let id = body["id"] as? String,
+                  let label = views.first(where: { $0.value === message.webView })?.key,
+                  let action = body["action"] as? String else { replyHandler(nil, "Invalid WebSocket request"); return }
+            let key = label + "/" + id
+            if socketBridge == nil { socketBridge = OriginalSocketBridge() }
+            switch action {
+            case "open":
+                guard let raw = body["url"] as? String, let url = URL(string: raw),
+                      let token = sessionStore.snapshot()["infoToken"]?["value"] as? String else {
+                    replyHandler(nil, "Missing socket session"); return
+                }
+                do {
+                    try socketBridge?.open(id: key, url: url, token: token) { [weak view = message.webView] value in
+                        view?.callAsyncJavaScript("window.__MACOS_SOCKET_EVENT__(id, value)", arguments: ["id": id, "value": value], in: nil, in: .page, completionHandler: nil)
+                    }
+                    replyHandler(NSNull(), nil)
+                } catch { replyHandler(nil, "Invalid socket endpoint or session") }
+            case "send":
+                socketBridge?.send(id: key, text: body["text"] as? String, data: body["data"] as? String) { replyHandler(NSNull(), $0) }
+            case "close":
+                socketBridge?.close(id: key, code: body["code"] as? Int ?? 1000, reason: body["reason"] as? String ?? "")
+                replyHandler(NSNull(), nil)
+            default: replyHandler(nil, "Unknown WebSocket operation")
+            }
+            return
+        }
         if message.name == "originalSession" {
             guard online, message.frameInfo.isMainFrame, let body = message.body as? [String: Any],
                   let name = body["name"] as? String, let value = body["value"] as? String,
@@ -375,7 +421,36 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         case "close_login_window": windows["login"]?.orderOut(nil); return null
         case "load_key_press_count", "load_cumulative_click_count", "save_key_press_count", "save_cumulative_click_count":
             return try clickStore.invoke(command, args: args)
-        case "is_force_update_locked", "is_internal_testing_build", "is_devtools_hotkeys_build", "has_maintenance_notice", "is_elevated_autostart_enabled": return false
+        case "is_force_update_locked": return maintenanceActive
+        case "has_maintenance_notice": return maintenanceActive
+        case "get_maintenance_notice_payload": return maintenancePayload
+        case "get_app_update_detail": return null
+        case "open_maintenance_notice":
+            let input = args["payload"] as? [String: Any] ?? [:]
+            var payload: [String: Any] = [:]
+            for prefix in ["title", "content"] {
+                if input[prefix + "Group"] as? String == "web",
+                   let key = input[prefix + "Key"] as? String,
+                   key.range(of: "^[a-zA-Z0-9_.-]{1,128}$", options: .regularExpression) != nil {
+                    payload[prefix + "Group"] = "web"; payload[prefix + "Key"] = key
+                }
+            }
+            if let host = input["assetsHost"] as? String, let url = externalURL(host), url.scheme == "https" {
+                payload["assetsHost"] = url.absoluteString
+            }
+            maintenancePayload = payload; maintenanceActive = true
+            resetInput()
+            emit("cat-force-update-lock", true)
+            create(label: "maintenance", route: "/update").makeKeyAndOrderFront(nil)
+            emit("maintenance-notice-open", payload, target: "maintenance")
+            return null
+        case "hide_main_after_maintenance_notice_ready":
+            guard caller == "maintenance", maintenanceActive else { throw CocoaError(.coderInvalidValue) }
+            for (name, window) in windows where name != "maintenance" { window.orderOut(nil) }
+            return null
+        case "exit_maintenance_app":
+            emit("tray-quit", target: "main"); return null
+        case "is_internal_testing_build", "is_devtools_hotkeys_build", "is_elevated_autostart_enabled": return false
         case "get_track_os_info": return ["os": "macOS", "osVersion": ProcessInfo.processInfo.operatingSystemVersionString]
         case "get_app_shortcuts": return flags["shortcuts"] ?? ["togglePet": ["key": 120, "modifiers": 0], "gameMode": ["key": 119, "modifiers": 0], "switchScreen": ["key": 121, "modifiers": 0]]
         case "set_app_shortcuts":
@@ -512,6 +587,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     func key(_ code: Int, down: Bool, flags rawFlags: UInt64 = 0, repeated: Bool = false) {
+        guard !maintenanceActive else { return }
         emit(down ? "key-press" : "key-release", String(code), target: "main")
         if down && !repeated && !shortcutCapture {
             let bindings = flags["shortcuts"] as? [String: [String: Int]] ??
@@ -525,6 +601,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
     }
     func mouse(button: String, down: Bool, location: CGPoint? = nil) {
+        guard !maintenanceActive else { return }
         if button == "left" {
             if down, let panel = windows["panel"], panel.isVisible {
                 let point = location.map { NSPoint(x: $0.x, y: (NSScreen.screens.first?.frame.maxY ?? 0)-$0.y) } ?? NSEvent.mouseLocation
@@ -539,6 +616,8 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                 return
             }
         }
+        let point = location.map { NSPoint(x: $0.x, y: $0.y) } ?? screenPoint(NSEvent.mouseLocation)
+        emit("mouse-move", ["x": point.x, "y": point.y], target: "main")
         emit("mouse-button", ["button": button, "action": down ? "press" : "release"], target: "main")
     }
     func resetInput() {
@@ -1051,10 +1130,15 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                         const store = window.__WUWA_ORIGINAL__?.globalStore;
                         const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
                         return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
+                          pendingClicks: store?.localClickCount || 0,
+                          confirmedClicks: store?.serverClickTotal || 0,
+                          consumedClicks: store?.serverClickConsume || 0,
+                          clickReportSuccesses: window.__ORIGINAL_DIAGNOSTICS__?.clickReportSuccesses || 0,
                           hasSession: !!window.__MACOS_SESSION__.get('infoToken'),
                           sdkLoaded: !!sdk, sdkReady: sdk?.core?.getInitStatus?.() === true,
                           loginChoices: [...document.querySelectorAll('.login-dialog-button')].map(el=>el.textContent.trim()),
                           hasUidForm: !!document.querySelector('.uid-cont'),
+                          socketTransport: window.__ORIGINAL_DIAGNOSTICS__?.socketTransport || null,
                           errorCount: window.__ORIGINAL_DIAGNOSTICS__?.errors.length || 0};
                         """, arguments: [:], in: nil, in: .page) { continuation.resume(with: $0) }
                         }
@@ -1077,6 +1161,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func stop() {
         networkMonitor.cancel()
+        socketBridge?.stop()
         onlineReportTimer?.invalidate()
         pointerTimer?.invalidate()
         if let resizeMonitor = resizeMonitor { NSEvent.removeMonitor(resizeMonitor) }

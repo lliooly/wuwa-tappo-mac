@@ -87,14 +87,14 @@ def prepare(resources):
     mouse_before = 'async function Xc(e,t,o,l,f){'
     if main_text.count(mouse_before) != 1:
         raise ValueError('Original pointer dispatch patch drift')
-    main_text = main_text.replace(mouse_before, mouse_before + 'if(window.__MACOS_DIRECT_MOUSE__)return;')
+    main_text = main_text.replace(mouse_before, mouse_before + 'if(window.__MACOS_DIRECT_MOUSE__){const hit=Wt(o,l);if(!hit||!document.elementFromPoint(hit.x,hit.y)?.closest("[data-room-cat-id]"))return;}')
     reset_before = 'const qr=new Set,va=new Set;'
     if main_text.count(reset_before) != 1:
         raise ValueError('Original key-state reset patch drift')
     main_text = main_text.replace(reset_before, reset_before + 'window.__MACOS_RESET_INPUT__=()=>{qr.clear();va.clear();Zd()};')
     main_file.write_text(main_text)
     patches.append({'reason': 'Recover key state after permission loss or sleep without inventing click counts', 'file': main_file.name, 'before': reset_before})
-    patches.append({'reason': 'Use actual WK mouse events inside native hit regions, avoid duplicate synthetic clicks', 'file': main_file.name, 'before': mouse_before})
+    patches.append({'reason': 'Use actual WK events for local controls and retain native-only remote member gestures', 'file': main_file.name, 'before': mouse_before})
     panel_file = target / 'assets/index-CiT_jZa7.js'
     panel_text = panel_file.read_text()
     input_before = 'set:x=>{ue({type:"set-room-id-input",value:x})}'
@@ -156,6 +156,7 @@ def prepare(resources):
     shutil.copy2(ROOT / 'original-adapter/tauri.js', target / 'tauri-adapter.js')
     shutil.copy2(ROOT / 'original-adapter/audit.js', target / 'audit.js')
     shutil.copy2(ROOT / 'original-adapter/session.js', target / 'session-adapter.js')
+    shutil.copy2(ROOT / 'original-adapter/socket.js', target / 'socket-adapter.js')
     inventory = []
     for path in sorted(source.rglob('*')):
         if path.is_file():

@@ -8,6 +8,8 @@
   };
   window.__ORIGINAL_DIAGNOSTICS__ = { calls: [], errors: [], blockedNetwork: [] };
   const diagnostics = window.__ORIGINAL_DIAGNOSTICS__;
+  diagnostics.clickReportSuccesses = 0;
+  window.addEventListener('cat-click-report-success', () => { diagnostics.clickReportSuccesses++; });
   let pendingRoomInput;
   let latestRoomInput, panelStream;
   let clientRoomSequence = 0, mainRoomSequence = 0;
@@ -122,6 +124,20 @@
     constructor() { throw new Error('Room/account connection is unavailable in offline mode'); }
   }
   if (!window.__MACOS_ONLINE__) window.WebSocket = OfflineSocket;
+  else {
+    const NativeWebSocket = window.WebSocket;
+    window.WebSocket = class extends NativeWebSocket {
+      constructor(url, protocols) {
+        super(url, protocols);
+        const parsed = new URL(url);
+        const state = {host:parsed.host, path:parsed.pathname, eio:parsed.searchParams.get('EIO'), status:'connecting'};
+        diagnostics.socketTransport = state;
+        this.addEventListener('open', () => {state.status='open';});
+        this.addEventListener('error', () => {state.status='error';});
+        this.addEventListener('close', event => {state.status='closed';state.code=event.code;state.clean=event.wasClean;});
+      }
+    };
+  }
   window.open = () => { report('unsupported', 'External browser requires native open_url'); return null; };
   window.__ORIGINAL_NATIVE_LABEL__ = label;
 })();

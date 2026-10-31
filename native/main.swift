@@ -32,7 +32,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     guard let self = self else { return }
                     self.originalExitApproved = true
                     self.writeQuitReport(["status": "complete", "systemRequestedExit": self.originalTerminationPending,
-                                          "savedCount": UserDefaults.standard.integer(forKey: "localClickCount")])
+                                          "savedCount": self.originalFrontend?.persistedClickCount ?? 0])
                     self.originalTerminationTimeout?.invalidate()
                     if self.originalTerminationPending {
                         self.originalTerminationPending = false
