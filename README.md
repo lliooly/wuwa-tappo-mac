@@ -13,39 +13,28 @@
 
 让共鸣者待在 Mac 桌面上，跟着键盘、鼠标和手柄的操作拍桌子。保留 Windows CN 版的界面，支持登录、换装、开箱、合成、兑换和好友联机。
 
-当前源码版本为 **1.0.3**，与所用 Windows CN 前端版本一致；Mac 构建号单独递增。本次从 0.3.0 调整版本编号，功能延续原有实现。
+当前源码版本为 **1.0.3**，与所用 Windows CN 前端版本一致。
 
 <p align="center">
   <img src="docs/images/backpack.png" alt="Mac 上的背包界面" width="900">
 </p>
 
-<details>
-<summary>设置界面</summary>
-
 <p align="center">
   <img src="docs/images/settings.png" alt="Mac 上的设置界面" width="900">
 </p>
 
-</details>
 
 ## 安装
 
 需要 **Apple Silicon Mac、macOS 13 或更新版本**。
 
-从 [Releases](https://github.com/lliooly/wuwa-tappo-mac/releases/latest) 下载 arm64 压缩包，解压后将 `Wuwa Tappo.app` 拖入「应用程序」。运行安装包无需安装 Node.js 或 Python。
+从 [Releases](https://github.com/lliooly/wuwa-tappo-mac/releases/latest) 下载 arm64 压缩包，解压后将 `Wuwa Tappo.app` 拖入「应用程序」。
 
 安装包未经过 Apple 公证。若系统拦截，请先尝试打开一次，再到「系统设置 → 隐私与安全性」中选择「仍要打开」。
 
 ## 使用说明
 
 首次启动，从菜单栏的桌宠图标选择「授权输入监控…」，在「系统设置 → 隐私与安全性 → 输入监控」中启用 Wuwa Tappo，然后回到应用选择「重试监听」。系统要求重启时，退出后重新打开应用。
-
-- 点击桌宠信息条或菜单栏入口，打开背包、图鉴、合成、联机和设置。
-- 在背包里更换角色、配件和表情，保存常用搭配；桌宠大小和透明度在设置里调整。
-- 拖动桌宠可在当前屏幕内移动。切换显示器使用设置按钮或 F10，部分键盘需要 Fn+F10。
-- 登录后使用账号背包、宝箱、合成、兑换和好友房间。联机支持动作、表情和换装同步。
-- 未登录也能使用默认桌宠。两个宝箱图标是登录入口，登录后按账号进度显示奖励。
-- 设置中可开启开机启动、调整快捷键，以及在其他应用全屏时自动进入游戏模式。
 
 输入监控只用于动作和计数，不记录输入文字。账号会话保存在系统钥匙串；重新签名后，系统可能要求重新授权。Mac 版通过 Releases 更新。
 
@@ -74,6 +63,12 @@ open 'dist/Wuwa Tappo.app'
 - [宝箱与屏幕切换规则](docs/宝箱与跨屏原版逻辑.md)
 - [联网接口索引](docs/原版联网业务索引.md)
 - [历史设计记录](docs/superpowers/specs/README.md)
+
+## 致谢
+
+- [Wuwa Tappo（CN 国服）](https://download-mc-wuwatappo.kurogames-global.com/download/)：原版桌宠及其角色美术与界面。
+- [wuwa-tappo-assets](https://github.com/lliooly/wuwa-tappo-assets)：整理本项目使用的角色、配件、表情、界面和字体素材，保留来源与校验信息。
+- Vue、Pinia、Socket.IO 等开源项目：支撑原版前端与联机功能，完整清单见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
 ## 许可
 
