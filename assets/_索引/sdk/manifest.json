@@ -1,0 +1,256 @@
+{
+  "capturedAtUtc": "2026-10-30T10:23:30.900171+00:00",
+  "sources": [
+    {
+      "path": "source/kr-sdk.js",
+      "url": "https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/kr-sdk.js",
+      "size": 455438,
+      "sha256": "03c4128337de004d64af67f46aa5f7cfa8554900413568e27651e90644eae031"
+    },
+    {
+      "path": "source/style.css",
+      "url": "https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/style.css",
+      "size": 212989,
+      "sha256": "3ff24f1fb1e892f25eb2c87365a098b371aad7c250da05cd455bbc676db998f2"
+    }
+  ],
+  "namedImages": 14,
+  "uniqueImageContents": 13,
+  "inlineOccurrences": 16,
+  "images": [
+    {
+      "variable": "bg",
+      "path": "images/bg.svg",
+      "mime": "svg+xml",
+      "size": 4851,
+      "sha256": "604bd13d986397b3775decf4bc87854010250cdd19bfcea888ca1eb57b072021",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 14425
+    },
+    {
+      "variable": "mainBgM",
+      "path": "images/mainBgM.svg",
+      "mime": "svg+xml",
+      "size": 4170,
+      "sha256": "8187030cc6c842b92e9501c2ca2fc9a1043bc80fe1a87e3ee1f08d379e7159f2",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 20930
+    },
+    {
+      "variable": "close$1",
+      "path": "images/close_1.svg",
+      "mime": "svg+xml",
+      "size": 322,
+      "sha256": "375e21c101d2c752adcf8019c969a3c10278974ed4ee64a82345ef7b9b6f4a6e",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 26527
+    },
+    {
+      "variable": "arrow",
+      "path": "images/arrow.svg",
+      "mime": "svg+xml",
+      "size": 368,
+      "sha256": "d48ed37c1383087e4d4f6113e4f14773dad51a3010c15d6181bd9ef1c1a963e1",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 26994
+    },
+    {
+      "variable": "circle$1",
+      "path": "images/circle_1.svg",
+      "mime": "svg+xml",
+      "size": 692,
+      "sha256": "41d0d3d7edce119c398627b05581816543d4d510d399f868c704da7ad013f1a7",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 27524
+    },
+    {
+      "variable": "arrowBlack",
+      "path": "images/arrowBlack.svg",
+      "mime": "svg+xml",
+      "size": 304,
+      "sha256": "0fec6c437d2ba6a49eb0438c8a5411b6e762cfa955c0e25b43eb8f2dfa40e999",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 28488
+    },
+    {
+      "variable": "arrowBlackRound",
+      "path": "images/arrowBlackRound.svg",
+      "mime": "svg+xml",
+      "size": 563,
+      "sha256": "b0e0a08c96eb8d0a48516cc17eecbaa0891f794fc6be9ed3b4d19212569eda4d",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 28941
+    },
+    {
+      "variable": "arrowBottom",
+      "path": "images/arrowBottom.svg",
+      "mime": "svg+xml",
+      "size": 145,
+      "sha256": "9ab47392e6f5936aa7fb0887ef0ed5d34b830578cd87b1b33ee0c6348d56f487",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 29734
+    },
+    {
+      "variable": "btnClear",
+      "path": "images/btnClear.svg",
+      "mime": "svg+xml",
+      "size": 465,
+      "sha256": "7359e8c7d61705b5b49601ee0f8172b7a5f08f03a9b1de96b60ecf772e7a2168",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 29968
+    },
+    {
+      "variable": "logo$1",
+      "path": "images/logo_1.svg",
+      "mime": "svg+xml",
+      "size": 9691,
+      "sha256": "6d1aa49fc51a122a7244832c9beb3628969e1f854a2de9a28ab246d21c1fee26",
+      "dimensions": null,
+      "source": "source/kr-sdk.js",
+      "characterOffset": 30624
+    },
+    {
+      "variable": "logoPc",
+      "path": "images/logoPc.png",
+      "mime": "png",
+      "size": 74995,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c",
+      "dimensions": [
+        7500,
+        750
+      ],
+      "source": "source/kr-sdk.js",
+      "characterOffset": 43584
+    },
+    {
+      "variable": "logoEn",
+      "path": "images/logoEn.png",
+      "mime": "png",
+      "size": 9663,
+      "sha256": "d4c987741cba5301948e45fe0c9c4eb8898c149b2399dd82a62fd3fa885511e0",
+      "dimensions": [
+        936,
+        464
+      ],
+      "source": "source/kr-sdk.js",
+      "characterOffset": 143612
+    },
+    {
+      "variable": "logoEnPc",
+      "path": "images/logoEnPc.png",
+      "mime": "png",
+      "size": 74995,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c",
+      "dimensions": [
+        7500,
+        750
+      ],
+      "source": "source/kr-sdk.js",
+      "characterOffset": 156530
+    },
+    {
+      "variable": "circle",
+      "path": "images/circle.png",
+      "mime": "png",
+      "size": 1998,
+      "sha256": "4579cce8223d1a8474536d71474af4fe3bee6191ec246c7e5f20396e5117e4ae",
+      "dimensions": [
+        72,
+        72
+      ],
+      "source": "source/kr-sdk.js",
+      "characterOffset": 260192
+    }
+  ],
+  "occurrences": [
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 14425,
+      "sha256": "604bd13d986397b3775decf4bc87854010250cdd19bfcea888ca1eb57b072021"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 20930,
+      "sha256": "8187030cc6c842b92e9501c2ca2fc9a1043bc80fe1a87e3ee1f08d379e7159f2"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 26527,
+      "sha256": "375e21c101d2c752adcf8019c969a3c10278974ed4ee64a82345ef7b9b6f4a6e"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 26994,
+      "sha256": "d48ed37c1383087e4d4f6113e4f14773dad51a3010c15d6181bd9ef1c1a963e1"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 27524,
+      "sha256": "41d0d3d7edce119c398627b05581816543d4d510d399f868c704da7ad013f1a7"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 28488,
+      "sha256": "0fec6c437d2ba6a49eb0438c8a5411b6e762cfa955c0e25b43eb8f2dfa40e999"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 28941,
+      "sha256": "b0e0a08c96eb8d0a48516cc17eecbaa0891f794fc6be9ed3b4d19212569eda4d"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 29734,
+      "sha256": "9ab47392e6f5936aa7fb0887ef0ed5d34b830578cd87b1b33ee0c6348d56f487"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 29968,
+      "sha256": "7359e8c7d61705b5b49601ee0f8172b7a5f08f03a9b1de96b60ecf772e7a2168"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 30624,
+      "sha256": "6d1aa49fc51a122a7244832c9beb3628969e1f854a2de9a28ab246d21c1fee26"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 43584,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 143612,
+      "sha256": "d4c987741cba5301948e45fe0c9c4eb8898c149b2399dd82a62fd3fa885511e0"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 156530,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c"
+    },
+    {
+      "source": "source/kr-sdk.js",
+      "characterOffset": 260192,
+      "sha256": "4579cce8223d1a8474536d71474af4fe3bee6191ec246c7e5f20396e5117e4ae"
+    },
+    {
+      "source": "source/style.css",
+      "characterOffset": 1187,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c"
+    },
+    {
+      "source": "source/style.css",
+      "characterOffset": 103131,
+      "sha256": "b6ea2b050b0815e2b3940bf56c20255422b2c766b8205d0a30e2fd1b7052aa6c"
+    }
+  ]
+}

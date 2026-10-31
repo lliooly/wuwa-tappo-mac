@@ -1,0 +1,10 @@
+{
+  "capturedAtUtc": "2026-10-30T10:14:28.526769+00:00",
+  "activityConfig": "https://api-mc-wuwatappo.kurogames-global.com/api/common/activity-config",
+  "atlas": "https://api-mc-wuwatappo.kurogames-global.com/api/common/atlas",
+  "appearanceHostIndex": "https://mc-wuwatappo.kurogames-global.com/app/json-host/appearance_asset_host.json",
+  "appearanceCatalog": "https://mc-wuwatappo.kurogames-global.com/app/asset-json/appearance_asset.json?t=1793328977",
+  "dictionaryHostIndex": "https://mc-wuwatappo.kurogames-global.com/app/json-host/dict_host.json",
+  "assetsHost": "https://mc-wuwatappo.kurogames-global.com",
+  "assetsJsonTimestamp": 1793328977611
+}

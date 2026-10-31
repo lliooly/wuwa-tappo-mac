@@ -1,0 +1,55 @@
+{
+  "frontendResourcesChecked": 132,
+  "bundledSourcePathsChecked": 190,
+  "inlineImages": {
+    "app": {
+      "occurrences": 183,
+      "unique": 96
+    },
+    "installer": {
+      "occurrences": 183,
+      "unique": 96
+    },
+    "uninstaller": {
+      "occurrences": 183,
+      "unique": 96
+    }
+  },
+  "otherBuilds": {
+    "installer": {
+      "distinctCodeResourcesChecked": 30,
+      "sharedCompressedResourcesChecked": 104,
+      "additionalStandaloneImagePaths": 0
+    },
+    "uninstaller": {
+      "distinctCodeResourcesChecked": 28,
+      "sharedCompressedResourcesChecked": 104,
+      "additionalStandaloneImagePaths": 0
+    }
+  },
+  "nativePngIconsChecked": 6,
+  "rawPngScan": {
+    "app": {
+      "signatures": 30,
+      "completePngs": 30,
+      "unmapped": 0
+    },
+    "installer": {
+      "signatures": 36,
+      "completePngs": 36,
+      "unmapped": 0
+    },
+    "uninstaller": {
+      "signatures": 30,
+      "completePngs": 30,
+      "unmapped": 0
+    }
+  },
+  "sdkNamedImagesChecked": 14,
+  "sdkInlineOccurrencesChecked": 16,
+  "remoteIndexedUrls": 3098,
+  "remotePngsChecked": 3098,
+  "namedPathsChecked": 3098,
+  "atlasEntriesChecked": 899,
+  "allChecksPassed": true
+}

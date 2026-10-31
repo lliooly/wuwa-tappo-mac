@@ -1,0 +1,183 @@
+{
+  "icons": [
+    {
+      "path": "icon-1-32x32.png",
+      "size": 3243,
+      "sha256": "e3786ed74d57f4d54aa4f0f18f28a82aa2cc29edfb41ccd8fbe70e26f6b788f9",
+      "dimensions": [
+        32,
+        32
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 1,
+          "languageId": 1033,
+          "fileOffset": "0xc02dc28"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 1,
+          "languageId": 1033,
+          "fileOffset": "0x4a4ce00"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 1,
+          "languageId": 1033,
+          "fileOffset": "0x434c630"
+        }
+      ]
+    },
+    {
+      "path": "icon-2-16x16.png",
+      "size": 983,
+      "sha256": "b14806e968c3410e04d67ce4e747e2981932802080606935c8ef4c3a8ac61b73",
+      "dimensions": [
+        16,
+        16
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 2,
+          "languageId": 1033,
+          "fileOffset": "0xc02e8d8"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 2,
+          "languageId": 1033,
+          "fileOffset": "0x4a4dab0"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 2,
+          "languageId": 1033,
+          "fileOffset": "0x434d2e0"
+        }
+      ]
+    },
+    {
+      "path": "icon-3-24x24.png",
+      "size": 1971,
+      "sha256": "0f0d2629c4a76a611a7501e830d85a7730cb825b551ea5072a805be1e4507cd9",
+      "dimensions": [
+        24,
+        24
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 3,
+          "languageId": 1033,
+          "fileOffset": "0xc02ecb0"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 3,
+          "languageId": 1033,
+          "fileOffset": "0x4a4de88"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 3,
+          "languageId": 1033,
+          "fileOffset": "0x434d6b8"
+        }
+      ]
+    },
+    {
+      "path": "icon-4-48x48.png",
+      "size": 6529,
+      "sha256": "de36911f39b407490aeccb13164f1fec214bef92eb2e797ef9081bb3391c7048",
+      "dimensions": [
+        48,
+        48
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 4,
+          "languageId": 1033,
+          "fileOffset": "0xc02f468"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 4,
+          "languageId": 1033,
+          "fileOffset": "0x4a4e640"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 4,
+          "languageId": 1033,
+          "fileOffset": "0x434de70"
+        }
+      ]
+    },
+    {
+      "path": "icon-5-64x64.png",
+      "size": 10453,
+      "sha256": "a297d1caed94cd1706635942e021badc457e2945e87129a6508d1a13f30130f9",
+      "dimensions": [
+        64,
+        64
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 5,
+          "languageId": 1033,
+          "fileOffset": "0xc030df0"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 5,
+          "languageId": 1033,
+          "fileOffset": "0x4a4ffc8"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 5,
+          "languageId": 1033,
+          "fileOffset": "0x434f7f8"
+        }
+      ]
+    },
+    {
+      "path": "icon-6-256x256.png",
+      "size": 77673,
+      "sha256": "2df91b92c58355311cffe3349a44cc4aebe52528b59d49aedfcabc1eb3854d6c",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sources": [
+        {
+          "source": "WuwaTappo-cn_1.0.2_x64-setup.exe",
+          "resourceId": 6,
+          "languageId": 1033,
+          "fileOffset": "0xc0336c8"
+        },
+        {
+          "source": "WuwaTappo/WuwaTappo.exe",
+          "resourceId": 6,
+          "languageId": 1033,
+          "fileOffset": "0x4a528a0"
+        },
+        {
+          "source": "WuwaTappo/uninstall.exe",
+          "resourceId": 6,
+          "languageId": 1033,
+          "fileOffset": "0x43520d0"
+        }
+      ]
+    }
+  ],
+  "ico": {
+    "path": "app.ico",
+    "size": 100954,
+    "sha256": "7ccc39a5f223f9fda0c350df63306a6d097524d1b27059838cd2924c485c9710"
+  }
+}

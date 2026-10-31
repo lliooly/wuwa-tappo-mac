@@ -1,0 +1,3206 @@
+{
+  "source": "frontend/assets/index-CuzHFfJW.js",
+  "fileCount": 190,
+  "inlineOccurrencesChecked": 183,
+  "uniqueInlineImagesChecked": 96,
+  "unmappedInlineImages": 0,
+  "files": [
+    {
+      "sourcePath": "/src/assets/role/accessory/accessory_1000.png",
+      "path": "source-tree/role/accessory/accessory_1000.png",
+      "origin": "frontend/assets/accessory_1000-DP0pthlH.png",
+      "size": 53398,
+      "sha256": "0de91004d4d02cfb1953ffacf7fe46e147831e252df7e859f3e1a143ad5ba1d9",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/accessory_atlas/accessory_1000.png",
+      "path": "source-tree/role/accessory_atlas/accessory_1000.png",
+      "origin": "frontend/assets/accessory_1000-CIBN2otw.png",
+      "size": 14540,
+      "sha256": "edd4ee34d2f591f1de4648bb43c323126267d4ea8c35b56178b912c11660a05b",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001.png",
+      "path": "source-tree/role/character/role_1501_1001.png",
+      "origin": "frontend/assets/role_1501_1001-B7Jun5uv.png",
+      "size": 29468,
+      "sha256": "ec2ec3345dd3cbb687f3fdc982f84a6911b563296429f8945bea5248aa0dfa47",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001_body_1.png",
+      "path": "source-tree/role/character/role_1501_1001_body_1.png",
+      "origin": "frontend/assets/role_1501_1001_body_1-hAgyAGyx.png",
+      "size": 9696,
+      "sha256": "d25eddf392f396e476d252f7ddc0aa767228375daa19fc2b8e3fc0ba998ce2cd",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001_body_2.png",
+      "path": "source-tree/role/character/role_1501_1001_body_2.png",
+      "origin": "frontend/assets/role_1501_1001_body_2-2Sc2anyE.png",
+      "size": 10273,
+      "sha256": "d54a2ddf5cd9ec8101e1c6d906dce56c5eb199f18d3a61500ae9ce98a5e8e17c",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001_body_3.png",
+      "path": "source-tree/role/character/role_1501_1001_body_3.png",
+      "origin": "frontend/assets/role_1501_1001_body_3-DWC1vYwd.png",
+      "size": 9637,
+      "sha256": "e9c1638fa9b825270bdef148760472cd54af58ff4e455ad7fc438e270e3e63dd",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001_head_1.png",
+      "path": "source-tree/role/character/role_1501_1001_head_1.png",
+      "origin": "frontend/assets/role_1501_1001_head_1-DcDYrJQZ.png",
+      "size": 24158,
+      "sha256": "4e4855ceacf8f402dca73a2504623e4f7b7eb7cf2e2a9930debfb9b5082b98ca",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1501_1001_head_2.png",
+      "path": "source-tree/role/character/role_1501_1001_head_2.png",
+      "origin": "frontend/assets/role_1501_1001_head_2-DzXpli8b.png",
+      "size": 25644,
+      "sha256": "e0164cb76a37c5a926e1dc3833f6ff2caae82f93fa6669412adbe1a5957f6419",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001.png",
+      "path": "source-tree/role/character/role_1502_1001.png",
+      "origin": "frontend/assets/role_1502_1001-D-TWsCaa.png",
+      "size": 33244,
+      "sha256": "87500e3100f4ed23bf662d326ca6b2d211878643449309007b5546155252aab8",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001_body_1.png",
+      "path": "source-tree/role/character/role_1502_1001_body_1.png",
+      "origin": "frontend/assets/role_1502_1001_body_1-DTr2AI-2.png",
+      "size": 9959,
+      "sha256": "19a383dc52d20ca074bc81a1d90dd38c7a4b046784cb769a6ca131d9be6ef956",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001_body_2.png",
+      "path": "source-tree/role/character/role_1502_1001_body_2.png",
+      "origin": "frontend/assets/role_1502_1001_body_2-D0-uX2J8.png",
+      "size": 10035,
+      "sha256": "94d9ef6665d560821b059859f328198fa72c4d0cafef0bf2d58ffb78b3345fe3",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001_body_3.png",
+      "path": "source-tree/role/character/role_1502_1001_body_3.png",
+      "origin": "frontend/assets/role_1502_1001_body_3-mSXf9mwW.png",
+      "size": 9827,
+      "sha256": "64959f004a2e31d0dc27069c3cf2535baae3cd36d18d5a9f1d90c1bfecf073a7",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001_head_1.png",
+      "path": "source-tree/role/character/role_1502_1001_head_1.png",
+      "origin": "frontend/assets/role_1502_1001_head_1-I3MQ1g5X.png",
+      "size": 28023,
+      "sha256": "27673063c7ca93722bf4d4794d2952237a83a23ede8a08ea5d5c77b3881df2fe",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character/role_1502_1001_head_2.png",
+      "path": "source-tree/role/character/role_1502_1001_head_2.png",
+      "origin": "frontend/assets/role_1502_1001_head_2-D99D0ANJ.png",
+      "size": 28453,
+      "sha256": "50e8e6abce5322f567cd1355d61641a90bdfff597eed42e98890151f20c83248",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character_atlas/role_1501_1001.png",
+      "path": "source-tree/role/character_atlas/role_1501_1001.png",
+      "origin": "frontend/assets/role_1501_1001-B4xwjAu7.png",
+      "size": 29436,
+      "sha256": "5ee7f96e3fc7f560363646db8dee0c95b53358457e549d8e317ee87defcee008",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/character_atlas/role_1502_1001.png",
+      "path": "source-tree/role/character_atlas/role_1502_1001.png",
+      "origin": "frontend/assets/role_1502_1001-CUqa2El3.png",
+      "size": 33261,
+      "sha256": "da2ae78d55b7fbedf6e79e2453881acca6d9cd35de3ecfec7d4482bc58857379",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_angry.png",
+      "path": "source-tree/role/emote/emote_angry.png",
+      "origin": "frontend/assets/emote_angry-0NPaMRoN.png",
+      "size": 25967,
+      "sha256": "81dfe45d0ba221f822f6da64ebdff2eb922bea20d892922f535c3200e901d0e4",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_effort.png",
+      "path": "source-tree/role/emote/emote_effort.png",
+      "origin": "frontend/assets/emote_effort-BpXjyIRa.png",
+      "size": 25939,
+      "sha256": "92af23a9984cac04ce827513326909ac08c9aec7f8acd0cc9f84113e0b0f20b0",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_happy.png",
+      "path": "source-tree/role/emote/emote_happy.png",
+      "origin": "frontend/assets/emote_happy-DbeXE30w.png",
+      "size": 24224,
+      "sha256": "8855248dba965c95ba3e4874d2d98b45c153e6ff36b65f05133c3100e2793527",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_idle.png",
+      "path": "source-tree/role/emote/emote_idle.png",
+      "origin": "frontend/assets/emote_idle-CuKYElgo.png",
+      "size": 24672,
+      "sha256": "7df5b27713de3acce053f9b75f2ecd082947b8ab79d951361209af7025145f80",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_pain.png",
+      "path": "source-tree/role/emote/emote_pain.png",
+      "origin": "frontend/assets/emote_pain-BsEvBL_J.png",
+      "size": 26660,
+      "sha256": "5307e708f507e1cefaf66273cfcca1cca4f0809217ad226b9a48073e0b702c68",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_stunned.png",
+      "path": "source-tree/role/emote/emote_stunned.png",
+      "origin": "frontend/assets/emote_stunned-BZGSbuwi.png",
+      "size": 24907,
+      "sha256": "da206b066646a7ff3af2326ef98d4009f6a9ddcf7d4963ebbc4c7aeea7442df1",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_surprised.png",
+      "path": "source-tree/role/emote/emote_surprised.png",
+      "origin": "frontend/assets/emote_surprised-VoLgChQ8.png",
+      "size": 25646,
+      "sha256": "54d80ad55fc7b6042f867d8dcb7786f4e97193ed92ca8bc595c94a235cdcd7e6",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_threaten.png",
+      "path": "source-tree/role/emote/emote_threaten.png",
+      "origin": "frontend/assets/emote_threaten-m1WdXRA1.png",
+      "size": 24720,
+      "sha256": "224a2b8bb1a81c46437609d4fb734c704871310f23dcf10e1e37f1661818f87c",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote/emote_triumph.png",
+      "path": "source-tree/role/emote/emote_triumph.png",
+      "origin": "frontend/assets/emote_triumph-Cw1-2rLg.png",
+      "size": 25556,
+      "sha256": "dc00b21f87687ff187eed7309a41c5bbe3ce817fd40a48569a73574b0df8f3fa",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_angry.png",
+      "path": "source-tree/role/emote_atlas/emote_angry.png",
+      "origin": "frontend/assets/emote_angry-0NPaMRoN.png",
+      "size": 25967,
+      "sha256": "81dfe45d0ba221f822f6da64ebdff2eb922bea20d892922f535c3200e901d0e4",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_effort.png",
+      "path": "source-tree/role/emote_atlas/emote_effort.png",
+      "origin": "frontend/assets/emote_effort-BpXjyIRa.png",
+      "size": 25939,
+      "sha256": "92af23a9984cac04ce827513326909ac08c9aec7f8acd0cc9f84113e0b0f20b0",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_happy.png",
+      "path": "source-tree/role/emote_atlas/emote_happy.png",
+      "origin": "frontend/assets/emote_happy-DbeXE30w.png",
+      "size": 24224,
+      "sha256": "8855248dba965c95ba3e4874d2d98b45c153e6ff36b65f05133c3100e2793527",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_idle.png",
+      "path": "source-tree/role/emote_atlas/emote_idle.png",
+      "origin": "frontend/assets/emote_idle-CuKYElgo.png",
+      "size": 24672,
+      "sha256": "7df5b27713de3acce053f9b75f2ecd082947b8ab79d951361209af7025145f80",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_pain.png",
+      "path": "source-tree/role/emote_atlas/emote_pain.png",
+      "origin": "frontend/assets/emote_pain-BsEvBL_J.png",
+      "size": 26660,
+      "sha256": "5307e708f507e1cefaf66273cfcca1cca4f0809217ad226b9a48073e0b702c68",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_stunned.png",
+      "path": "source-tree/role/emote_atlas/emote_stunned.png",
+      "origin": "frontend/assets/emote_stunned-BZGSbuwi.png",
+      "size": 24907,
+      "sha256": "da206b066646a7ff3af2326ef98d4009f6a9ddcf7d4963ebbc4c7aeea7442df1",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_surprised.png",
+      "path": "source-tree/role/emote_atlas/emote_surprised.png",
+      "origin": "frontend/assets/emote_surprised-VoLgChQ8.png",
+      "size": 25646,
+      "sha256": "54d80ad55fc7b6042f867d8dcb7786f4e97193ed92ca8bc595c94a235cdcd7e6",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_threaten.png",
+      "path": "source-tree/role/emote_atlas/emote_threaten.png",
+      "origin": "frontend/assets/emote_threaten-m1WdXRA1.png",
+      "size": 24720,
+      "sha256": "224a2b8bb1a81c46437609d4fb734c704871310f23dcf10e1e37f1661818f87c",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/role/emote_atlas/emote_triumph.png",
+      "path": "source-tree/role/emote_atlas/emote_triumph.png",
+      "origin": "frontend/assets/emote_triumph-Cw1-2rLg.png",
+      "size": 25556,
+      "sha256": "dc00b21f87687ff187eed7309a41c5bbe3ce817fd40a48569a73574b0df8f3fa",
+      "dimensions": [
+        560,
+        560
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-collect-active.png",
+      "path": "source-tree/img/atlas-collect-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_0",
+      "size": 691,
+      "sha256": "aeb3cedbc3b9f0844b65dfb9676e97b0019c857e30519fa4b179849bb83ac3b3",
+      "dimensions": [
+        19,
+        19
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-collect.png",
+      "path": "source-tree/img/atlas-collect.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_1",
+      "size": 671,
+      "sha256": "05e512e531596ae5169505742246d0f54a7d06d9636861bc872718117b33f8bf",
+      "dimensions": [
+        19,
+        19
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-item-bg.png",
+      "path": "source-tree/img/atlas-item-bg.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_2",
+      "size": 1940,
+      "sha256": "6f3d7e5985de02071e51751d5cee948ecde8eaebe086c6894d6d21c899e6b59f",
+      "dimensions": [
+        120,
+        139
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-item-mask.png",
+      "path": "source-tree/img/atlas-item-mask.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_3",
+      "size": 2746,
+      "sha256": "4e9426af754efed5c2969516c8a5c3bd2ed68cb464d6d1fa5491f854fc2c4234",
+      "dimensions": [
+        120,
+        150
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-new.png",
+      "path": "source-tree/img/atlas-new.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_4",
+      "size": 1991,
+      "sha256": "c74001417797725716391c62901785607cb1f54cfc714ad1cab802ad95b792fb",
+      "dimensions": [
+        36,
+        36
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-remove.png",
+      "path": "source-tree/img/atlas-remove.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_5",
+      "size": 987,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2",
+      "dimensions": [
+        23,
+        24
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-thumb-1.png",
+      "path": "source-tree/img/atlas-thumb-1.png",
+      "origin": "frontend/assets/atlas-thumb-1-BLGUkvwT.png",
+      "size": 6623,
+      "sha256": "189d9f5fab181b3e01422ae9d8ee686476c5609c83bc2d3ff46119b784b9b025",
+      "dimensions": [
+        110,
+        97
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-thumb-2.png",
+      "path": "source-tree/img/atlas-thumb-2.png",
+      "origin": "frontend/assets/atlas-thumb-2-CSkXBHLD.png",
+      "size": 6738,
+      "sha256": "edb61e46aa17d45e9564ff3dce6dbf474753ae82632775c1fbb21139bf624f36",
+      "dimensions": [
+        110,
+        97
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-thumb-3.png",
+      "path": "source-tree/img/atlas-thumb-3.png",
+      "origin": "frontend/assets/atlas-thumb-3-Cf7ixdnU.png",
+      "size": 6698,
+      "sha256": "1990eaaf16c8207ba2e295ca9fff7748a8e8a607a66eecd050bfde76b23b0fa1",
+      "dimensions": [
+        110,
+        97
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-thumb-4.png",
+      "path": "source-tree/img/atlas-thumb-4.png",
+      "origin": "frontend/assets/atlas-thumb-4-CDuzFic3.png",
+      "size": 6837,
+      "sha256": "9f07de66790a9d676a0e7737fc7efd6cf880c0ee0ed3a1293f5b15abf7c9d34d",
+      "dimensions": [
+        110,
+        97
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/atlas-type-arrow.png",
+      "path": "source-tree/img/atlas-type-arrow.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_10",
+      "size": 457,
+      "sha256": "b47fae8032e6645aa6fd05a21bb922c8c60f29838601c7f3a00c55a03137a272",
+      "dimensions": [
+        14,
+        20
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/blue-star.png",
+      "path": "source-tree/img/blue-star.png",
+      "origin": "frontend/assets/blue-star-_bFKRIjT.png",
+      "size": 9058,
+      "sha256": "d759e88d7f0dc424284475fc4118292ff0fe54926a92c278a65c01aa449daddf",
+      "dimensions": [
+        209,
+        157
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/bubble.png",
+      "path": "source-tree/img/bubble.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_12",
+      "size": 3658,
+      "sha256": "3d18a535fd87c8221eb239fcadd14f81921eb10a6b7b2192ae32ba6fc25a4f00",
+      "dimensions": [
+        196,
+        99
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-blue.png",
+      "path": "source-tree/img/chest-base-blue.png",
+      "origin": "frontend/assets/chest-base-blue-C9khToQ6.png",
+      "size": 22404,
+      "sha256": "1fee3dc5a7f131fe5a60276b19b457e7f82cd1fb4c5d6712eabc7f5b1316604b",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-blue2.png",
+      "path": "source-tree/img/chest-base-blue2.png",
+      "origin": "frontend/assets/chest-base-blue2-C5fw8WJ5.png",
+      "size": 12412,
+      "sha256": "74db25c4aa051b9e48459ba51ebcdcf230d52afd355419ec093ef203ba2881fe",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-gold-mask.png",
+      "path": "source-tree/img/chest-base-gold-mask.png",
+      "origin": "frontend/assets/chest-base-gold-mask-CPxqQ0gi.png",
+      "size": 12936,
+      "sha256": "e3bc5bd24c4ac5f273d9d1bbb09ad3c853c9cac10a6f7dce66304d5d1f3f066e",
+      "dimensions": [
+        359,
+        359
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-gold.png",
+      "path": "source-tree/img/chest-base-gold.png",
+      "origin": "frontend/assets/chest-base-gold-BKP4rDVz.png",
+      "size": 46965,
+      "sha256": "c227b2cf7394e85928ea22a6583a1f8f8bb7a0d2cc2250db04b3c9dd4af482ab",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-gold2.png",
+      "path": "source-tree/img/chest-base-gold2.png",
+      "origin": "frontend/assets/chest-base-gold2-CkeOQBEG.png",
+      "size": 42619,
+      "sha256": "16546835cfeafd0c0a4cc2be1c45ae4d9d8c04bfdfe8b8f5a2477070b7b4b191",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-green.png",
+      "path": "source-tree/img/chest-base-green.png",
+      "origin": "frontend/assets/chest-base-green-Cjinxc87.png",
+      "size": 22017,
+      "sha256": "d291f7e05d25d30792ddb0678928051a5b5c5f81a2b86c25f40ec737ccd8bb91",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-green2.png",
+      "path": "source-tree/img/chest-base-green2.png",
+      "origin": "frontend/assets/chest-base-green2-B7rOx7lH.png",
+      "size": 12662,
+      "sha256": "41ee1265f856558ed994f61b9e668ddb6d7a67b2be08614b111cdbb30ccbd749",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-mask.png",
+      "path": "source-tree/img/chest-base-mask.png",
+      "origin": "frontend/assets/chest-base-mask-BiegO2aN.png",
+      "size": 8938,
+      "sha256": "d9012b0c3fc6837c0f0aff343b3df35738ddc829dec24cc896ba17132027acaa",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-mask2.png",
+      "path": "source-tree/img/chest-base-mask2.png",
+      "origin": "frontend/assets/chest-base-mask2-BqJrBxMz.png",
+      "size": 8392,
+      "sha256": "fc483e1c0f9e1dbb6124a6938b5b12600c89d621bff68fd4627c1950a9425b0a",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-purple.png",
+      "path": "source-tree/img/chest-base-purple.png",
+      "origin": "frontend/assets/chest-base-purple-B-cxm8kC.png",
+      "size": 21319,
+      "sha256": "6e44358bfc6208fd3370f7c4958a00c1cd717522910b3b80262ea68c099359e7",
+      "dimensions": [
+        402,
+        402
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/chest-base-purple2.png",
+      "path": "source-tree/img/chest-base-purple2.png",
+      "origin": "frontend/assets/chest-base-purple2-B_oZ4Zmn.png",
+      "size": 12251,
+      "sha256": "d54f902867ac9961b989e0fecde9341b4674f33e18f7450978c0e70b929a3b5c",
+      "dimensions": [
+        512,
+        512
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/circle.png",
+      "path": "source-tree/img/circle.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_24",
+      "size": 998,
+      "sha256": "17885a32be6f5e8a7e4bb6724e6d5334379917c42452135f945c39bb87fd2847",
+      "dimensions": [
+        72,
+        72
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/circle2.png",
+      "path": "source-tree/img/circle2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_25",
+      "size": 3124,
+      "sha256": "8865d21f7d06389d0767617c0d649867facb1f83c65818bd598d61d533da8942",
+      "dimensions": [
+        72,
+        72
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/close.png",
+      "path": "source-tree/img/close.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_26",
+      "size": 3483,
+      "sha256": "2f706098e9d3454a616e24608b4c14c8d08cdd48529169b48b6156e7ea3b0a8b",
+      "dimensions": [
+        56,
+        61
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/close2.png",
+      "path": "source-tree/img/close2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_27",
+      "size": 1704,
+      "sha256": "b1bce09a37dcdf17e2f40cc78efdc9c1ce2c9d2ae7f7ebec9df3a5e0bd52ee85",
+      "dimensions": [
+        26,
+        26
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/emotion-dot-light.png",
+      "path": "source-tree/img/emotion-dot-light.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_28",
+      "size": 2145,
+      "sha256": "979d7d0a889b3260a0d2820ef5922aedd8c2abea6cfbc9aec53c5e1ab8f95cff",
+      "dimensions": [
+        44,
+        44
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/emotion-dot-light1.png",
+      "path": "source-tree/img/emotion-dot-light1.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_29",
+      "size": 2010,
+      "sha256": "c76e6f23ffc3a442895e8e78a39879965055923ebe3925320b979fd108b32496",
+      "dimensions": [
+        44,
+        44
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/emotion-dot-light2.png",
+      "path": "source-tree/img/emotion-dot-light2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_30",
+      "size": 1318,
+      "sha256": "e78e0bac708b5c1a7fba701d9c18a58954ab51423e0af8188c9020aa05212bea",
+      "dimensions": [
+        44,
+        44
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/gold-ray.png",
+      "path": "source-tree/img/gold-ray.png",
+      "origin": "frontend/assets/gold-ray-CSyzYeGB.png",
+      "size": 20837,
+      "sha256": "aed82cbb05a1d71b28233a068d8a7b4a0632ea99280f8b3e8fe657b8e4fd95eb",
+      "dimensions": [
+        120,
+        120
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/gold-star.png",
+      "path": "source-tree/img/gold-star.png",
+      "origin": "frontend/assets/gold-star-Dl994PIs.png",
+      "size": 15754,
+      "sha256": "ee660b8ee2816bb2210ddb02e59f18d41f91fb3d1a67c788a59b32da123745bc",
+      "dimensions": [
+        209,
+        157
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/green-star.png",
+      "path": "source-tree/img/green-star.png",
+      "origin": "frontend/assets/green-star-p7C4YQNP.png",
+      "size": 14215,
+      "sha256": "f8502728ca5122977012ed847911ebbd8ba7ff7edaa39ec83cf5d5ae7c8cf839",
+      "dimensions": [
+        209,
+        157
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/checkmark.png",
+      "path": "source-tree/img/installer/checkmark.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_34",
+      "size": 304,
+      "sha256": "013ce1b22b202f2eb094413241aa60a3093ea5c048b3c3d2116827f6f1291809",
+      "dimensions": [
+        13,
+        9
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/custom-install-chevron.png",
+      "path": "source-tree/img/installer/custom-install-chevron.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_35",
+      "size": 299,
+      "sha256": "2dfe0dcf1b5809fbe8f552f93ca3194d0703c363e91b8ee2deba87dc3fc6ed0a",
+      "dimensions": [
+        15,
+        9
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/dialog-background.jpg",
+      "path": "source-tree/img/installer/dialog-background.jpg",
+      "origin": "frontend/assets/dialog-background-D_KgCrCn.jpg",
+      "size": 5730,
+      "sha256": "96bafd2af9638dc7783907daf1d17a94173f1740bcfc142fe5a6a8d4a09b4d06",
+      "dimensions": [
+        492,
+        372
+      ],
+      "format": "JPEG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/dialog-divider.png",
+      "path": "source-tree/img/installer/dialog-divider.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_37",
+      "size": 452,
+      "sha256": "5b0d84ccba25f19d15e12625ffdbad455fa9fc4242a97f9e71d0ba2b9eb134b7",
+      "dimensions": [
+        433,
+        14
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/installer-background.jpg",
+      "path": "source-tree/img/installer/installer-background.jpg",
+      "origin": "frontend/assets/installer-background-BlOEDVA2.jpg",
+      "size": 44545,
+      "sha256": "6acd675aa5f109d314c23e5fefb6461049de1a775db1543c9ff7d81956690225",
+      "dimensions": [
+        720,
+        456
+      ],
+      "format": "JPEG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/language-chevron.png",
+      "path": "source-tree/img/installer/language-chevron.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_39",
+      "size": 302,
+      "sha256": "40ef4d3ff1efdc87a0d9f0e30a80c899d4caf717291c6705f2abf11256e61f79",
+      "dimensions": [
+        14,
+        9
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-de.png",
+      "path": "source-tree/img/installer/slogan-de.png",
+      "origin": "frontend/assets/slogan-de-BQmcR5ME.png",
+      "size": 83099,
+      "sha256": "d0df73be949635653139194440def004ae992f23ea58aba05770641509254573",
+      "dimensions": [
+        300,
+        271
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-en.png",
+      "path": "source-tree/img/installer/slogan-en.png",
+      "origin": "frontend/assets/slogan-en-B3BZtuZC.png",
+      "size": 85366,
+      "sha256": "ebcc3f6e56dc175790b052b9c18ce0d73a62fdc5b753da49858e14ba2dcc8e5e",
+      "dimensions": [
+        300,
+        275
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-es.png",
+      "path": "source-tree/img/installer/slogan-es.png",
+      "origin": "frontend/assets/slogan-es-BuqpUHMK.png",
+      "size": 82911,
+      "sha256": "03bcbd685344e892f4bbeb4a45c84ea8907ffc35031a41ee8236d8e1ac7f0b99",
+      "dimensions": [
+        300,
+        260
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-fr.png",
+      "path": "source-tree/img/installer/slogan-fr.png",
+      "origin": "frontend/assets/slogan-fr-B0yTYWj2.png",
+      "size": 75338,
+      "sha256": "4ed0020ccfee9db28d013ef15a2e838f5816d2d954382f3e7073cbfc4917547c",
+      "dimensions": [
+        300,
+        238
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-jp.png",
+      "path": "source-tree/img/installer/slogan-jp.png",
+      "origin": "frontend/assets/slogan-jp-DBN6QxlY.png",
+      "size": 77513,
+      "sha256": "620c7d2b85cf752348114119a2ba36bf222ab0294b3b96b602dac9aeb4e3e6ce",
+      "dimensions": [
+        300,
+        265
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-kr.png",
+      "path": "source-tree/img/installer/slogan-kr.png",
+      "origin": "frontend/assets/slogan-kr-Dqdo3QDo.png",
+      "size": 76730,
+      "sha256": "b66ae5e3b9bce092df2f324093e77b6ec3d27f3116a0285ed5b1bf164ed70e5c",
+      "dimensions": [
+        300,
+        260
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-pt.png",
+      "path": "source-tree/img/installer/slogan-pt.png",
+      "origin": "frontend/assets/slogan-pt-DX5ZfpyB.png",
+      "size": 78810,
+      "sha256": "69331d7efc2cce5d61c2396cbf8cb7a40abbedd0be313f1ad6015525bbeec161",
+      "dimensions": [
+        300,
+        241
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-th.png",
+      "path": "source-tree/img/installer/slogan-th.png",
+      "origin": "frontend/assets/slogan-th-DIZ2GP9C.png",
+      "size": 86123,
+      "sha256": "2752fec231d572d4ff5052fbeedf70eebe16a5fdc960c683246d9f608603755d",
+      "dimensions": [
+        300,
+        274
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-tw.png",
+      "path": "source-tree/img/installer/slogan-tw.png",
+      "origin": "frontend/assets/slogan-tw-BgDIk0dX.png",
+      "size": 81278,
+      "sha256": "b43ec577dbc6c441269ec85936797a166363767747d786c6399cb98b40f926c5",
+      "dimensions": [
+        300,
+        264
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan-zh.png",
+      "path": "source-tree/img/installer/slogan-zh.png",
+      "origin": "frontend/assets/slogan-zh-tcs6Ry54.png",
+      "size": 75547,
+      "sha256": "aee875af30a2fa0ad21dd2ab100ef15b99366fdddb5f953ea273e6e1da70fff7",
+      "dimensions": [
+        300,
+        252
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/slogan.png",
+      "path": "source-tree/img/installer/slogan.png",
+      "origin": "frontend/assets/slogan-DBjvdhWG.png",
+      "size": 40686,
+      "sha256": "9be5ef75ff80916966f134b9d8cd61ad1afbffbadf95dcb99fc826d7cc713a7f",
+      "dimensions": [
+        303,
+        190
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/success-check.png",
+      "path": "source-tree/img/installer/success-check.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_51",
+      "size": 362,
+      "sha256": "ff09e7f5f016eec01c25a67f153ce1ee566e2b371fb82256a263622a95ee0aea",
+      "dimensions": [
+        19,
+        13
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/uninstaller-background.png",
+      "path": "source-tree/img/installer/uninstaller-background.png",
+      "origin": "frontend/assets/uninstaller-background-CUKJSDm9.png",
+      "size": 38686,
+      "sha256": "874a066cf56c3b1691dded1b6e29fcea6ae95fe6266c9fc4767d713ec8a325b2",
+      "dimensions": [
+        684,
+        420
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/uninstaller-character.png",
+      "path": "source-tree/img/installer/uninstaller-character.png",
+      "origin": "frontend/assets/uninstaller-character-g7xsjdPx.png",
+      "size": 110404,
+      "sha256": "f6c978b5464eaec7a1d6c5e1104a58fa8aa5c6f6a5a1ff97e6251e3351556ed5",
+      "dimensions": [
+        390,
+        364
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/uninstaller-progress-character.png",
+      "path": "source-tree/img/installer/uninstaller-progress-character.png",
+      "origin": "frontend/assets/uninstaller-progress-character-COdI26wG.png",
+      "size": 118500,
+      "sha256": "cb6740ada00212d33910ad2416f0df224c97d47c105548087112efe3baf57642",
+      "dimensions": [
+        410,
+        383
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/window-close.png",
+      "path": "source-tree/img/installer/window-close.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_55",
+      "size": 3233,
+      "sha256": "d3ed2c4cea949112f2152aa4efc4f4b31ec3f9b1857cef68ff74886256c0bdb1",
+      "dimensions": [
+        51,
+        55
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/installer/window-minimize.png",
+      "path": "source-tree/img/installer/window-minimize.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_56",
+      "size": 2776,
+      "sha256": "dc389322335ba796f511f31487105feb0a26934b3da1e585c3121648215c9bb5",
+      "dimensions": [
+        51,
+        56
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/agreement-checked.png",
+      "path": "source-tree/img/login-select/agreement-checked.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_57",
+      "size": 692,
+      "sha256": "7f6e1b2902f1122f935e4ae66177505505a1a87397339d8620eeb1fa78e82061",
+      "dimensions": [
+        40,
+        40
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/close.png",
+      "path": "source-tree/img/login-select/close.png",
+      "origin": "frontend/assets/close-DNwmqAuc.png",
+      "size": 7822,
+      "sha256": "61a2d0e75cf8d665bb7045a115d87e91bae0570e17c447345c10f8fecfc32b85",
+      "dimensions": [
+        101,
+        110
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/logo.png",
+      "path": "source-tree/img/login-select/logo.png",
+      "origin": "frontend/assets/logo-DXZYMNpG.png",
+      "size": 31311,
+      "sha256": "ebc62d5d2ff22b5fe0b8322e2a2a11c3e259b3d15c3772db118e5784c820e0bb",
+      "dimensions": [
+        2888,
+        289
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/passport-button.png",
+      "path": "source-tree/img/login-select/passport-button.png",
+      "origin": "frontend/assets/passport-button-Bb_rvpY5.png",
+      "size": 7476,
+      "sha256": "c1629f8cc5d2c32522f827b37bf1437312aeb177317de85945fe0eb3e774abd1",
+      "dimensions": [
+        372,
+        88
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/role-dropdown-arrow.png",
+      "path": "source-tree/img/login-select/role-dropdown-arrow.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_61",
+      "size": 661,
+      "sha256": "2f7da3825446fbb13a10e3d1e0d461523ac4acbebe06e824ac5bf7c39f794f81",
+      "dimensions": [
+        42,
+        26
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/send-code.png",
+      "path": "source-tree/img/login-select/send-code.png",
+      "origin": "frontend/assets/send-code-CqbweEOm.png",
+      "size": 4904,
+      "sha256": "4f68f5731f244f7d1919645e633de2e6eee715b25f4a3ef9428556586433967e",
+      "dimensions": [
+        240,
+        64
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/texture.png",
+      "path": "source-tree/img/login-select/texture.png",
+      "origin": "frontend/assets/texture-Bfa05jOv.png",
+      "size": 33966,
+      "sha256": "bdeffeab115058e365ca5ab2a9238352a9e64c3c1483e11ab88e939fc69f6ea3",
+      "dimensions": [
+        1100,
+        760
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/login-select/uid-button.png",
+      "path": "source-tree/img/login-select/uid-button.png",
+      "origin": "frontend/assets/uid-button-CjqEnfMG.png",
+      "size": 7267,
+      "sha256": "b443c97d7981d364b38ce3f44d08ef0a275c91d9443d8a5d91b047639ecbc0a8",
+      "dimensions": [
+        372,
+        88
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/logo.png",
+      "path": "source-tree/img/logo.png",
+      "origin": "frontend/assets/logo-BnU-YByM.png",
+      "size": 20601,
+      "sha256": "efa6dfc1e7d9cfed0578b0c8d0017a9759cb1d852f31a96a4ae6cf09613a49f8",
+      "dimensions": [
+        300,
+        162
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/module-content-bg.png",
+      "path": "source-tree/img/module-content-bg.png",
+      "origin": "frontend/assets/module-content-bg-Dxg_k-a2.png",
+      "size": 6571,
+      "sha256": "a544f5028744d874185809bd94b976f326493fbdd4d7df49fe4e4fa9286916dd",
+      "dimensions": [
+        821,
+        744
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/module-content-zs.png",
+      "path": "source-tree/img/module-content-zs.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_67",
+      "size": 2328,
+      "sha256": "54b195cbbf018e8860e223c0b8151a8ec1f7efa2691b6e6e6107ba911340159e",
+      "dimensions": [
+        70,
+        70
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/module-content-zs1.png",
+      "path": "source-tree/img/module-content-zs1.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_68",
+      "size": 3164,
+      "sha256": "3a75786e6107a31ab139e36fed297ebb4676f777a51ed96e07f92f8f8ae4c6ac",
+      "dimensions": [
+        120,
+        43
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/module-content-zs2.png",
+      "path": "source-tree/img/module-content-zs2.png",
+      "origin": "frontend/assets/module-content-zs2-ioGDREC-.png",
+      "size": 4863,
+      "sha256": "85dc89d77c7448e9d80b7b29ee7c574864546eafa995f15613bf1701a3de239e",
+      "dimensions": [
+        132,
+        132
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/module-mask.png",
+      "path": "source-tree/img/module-mask.png",
+      "origin": "frontend/assets/module-mask-CAM-j16R.png",
+      "size": 4783,
+      "sha256": "658c6f09c43bc4baf77c314ee35d8190d772c479ab16c950c196329394b6600d",
+      "dimensions": [
+        317,
+        224
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-atlas-active.png",
+      "path": "source-tree/img/nav-atlas-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_71",
+      "size": 679,
+      "sha256": "9c6eed1bbc54aff3d3e95b38b3f1180467939d8265bd10f2f4ab189f9ba47290",
+      "dimensions": [
+        54,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-atlas.png",
+      "path": "source-tree/img/nav-atlas.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_72",
+      "size": 568,
+      "sha256": "550b32ad0609367beaf7d1f143166154c6b29dbad435a2d32c466558c25c2f91",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-bags-active.png",
+      "path": "source-tree/img/nav-bags-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_73",
+      "size": 962,
+      "sha256": "4dfd968a3ecfd5fe918821ba2a140789fa03d0f7d687fd2d40c83ca08180c0af",
+      "dimensions": [
+        54,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-bags.png",
+      "path": "source-tree/img/nav-bags.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_74",
+      "size": 723,
+      "sha256": "acb3b99a0c629192cf8872348b8050019970923d14fb59f7731b92fba5cdd397",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-rooms-active.png",
+      "path": "source-tree/img/nav-rooms-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_75",
+      "size": 761,
+      "sha256": "ec0e9da1b90a40bf7f24e2363bbd25a20a0327bfa7127bb3b9314cd0608bd5ff",
+      "dimensions": [
+        54,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-rooms.png",
+      "path": "source-tree/img/nav-rooms.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_76",
+      "size": 584,
+      "sha256": "dabe29b42dd2b807ffc71bf2bb9b2f3e9b38dbcbc7c1ef1ede27670576666008",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-setting-active.png",
+      "path": "source-tree/img/nav-setting-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_77",
+      "size": 1125,
+      "sha256": "28a66fbb5f42906aacfd61ff8b2c950f2f1def71072a2a5ab381ccb754d63545",
+      "dimensions": [
+        54,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-setting.png",
+      "path": "source-tree/img/nav-setting.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_78",
+      "size": 868,
+      "sha256": "a905a78a6fac03e488bf6ff5cbc5dc6473162c0c9add628ffe085521d4363764",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-shrink.png",
+      "path": "source-tree/img/nav-shrink.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_79",
+      "size": 536,
+      "sha256": "4e8d55216357eed490f6487b93d8fe1d931c37b405646bb8740f61e6328c20b1",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-synthesis-active.png",
+      "path": "source-tree/img/nav-synthesis-active.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_80",
+      "size": 878,
+      "sha256": "4ba2215f95c0b9f2ff9ecd29b6892369577911614a91f0de8b4225c46b28d840",
+      "dimensions": [
+        54,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/nav-synthesis.png",
+      "path": "source-tree/img/nav-synthesis.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_81",
+      "size": 741,
+      "sha256": "eedb87999604ca77f37720040d0c42cef68fae0553b3080659539b3a84b26d61",
+      "dimensions": [
+        48,
+        48
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/panel-title-icon1.png",
+      "path": "source-tree/img/panel-title-icon1.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_82",
+      "size": 631,
+      "sha256": "5787fa82d90f29e7ecb1db29d2aad15c4a3b0fa9c7e645a3a39fb3a6f2cd6c34",
+      "dimensions": [
+        49,
+        9
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/panel-title-icon2.png",
+      "path": "source-tree/img/panel-title-icon2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_83",
+      "size": 341,
+      "sha256": "f5c9fe7004f9037f8af6b22c4bd15fc7017a21e3066628d2e2043b8a76eb5a38",
+      "dimensions": [
+        13,
+        13
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/pet-info-container.png",
+      "path": "source-tree/img/pet-info-container.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_84",
+      "size": 2045,
+      "sha256": "70a81618bb85b5358dff3d91ded5146b86359127eacf621ef723cffaf3b2e813",
+      "dimensions": [
+        236,
+        45
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/pet-info-icon.png",
+      "path": "source-tree/img/pet-info-icon.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_85",
+      "size": 1441,
+      "sha256": "fbd8ae9258344fa9eb8fe353717e494dec043fd98383607ab98c1f8732fd4753",
+      "dimensions": [
+        24,
+        24
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/pet-info-number.png",
+      "path": "source-tree/img/pet-info-number.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_86",
+      "size": 1472,
+      "sha256": "14ac789f0d665ce578e2e97a89bd2ec2734704ca3732dab98eae371048adce5a",
+      "dimensions": [
+        17,
+        45
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/pet-info-setting.png",
+      "path": "source-tree/img/pet-info-setting.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_87",
+      "size": 2902,
+      "sha256": "15ffd6730f85604aea00c1f707cf6627e082cad49321408942343412f11eb200",
+      "dimensions": [
+        86,
+        45
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-icon-remove.png",
+      "path": "source-tree/img/preset-icon-remove.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_88",
+      "size": 987,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2",
+      "dimensions": [
+        23,
+        24
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-item-active.png",
+      "path": "source-tree/img/preset-item-active.png",
+      "origin": "frontend/assets/preset-item-active-Cjz6cD7A.png",
+      "size": 6966,
+      "sha256": "632679a541ad9e6ed68ad8318ab10600184d86067431c34a045bb046bbb1fc55",
+      "dimensions": [
+        124,
+        124
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-item-add.png",
+      "path": "source-tree/img/preset-item-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_90",
+      "size": 2906,
+      "sha256": "0beec0c093e8ebe1898c05a3041d8c601f026e29d1b2927a5187375363385c19",
+      "dimensions": [
+        105,
+        105
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-item-bg.png",
+      "path": "source-tree/img/preset-item-bg.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_91",
+      "size": 3920,
+      "sha256": "b81d7d2252f48f3f4dd4b8d1ca0e7e5b4bc4733534fe254682f799295699315c",
+      "dimensions": [
+        105,
+        105
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-item-mask.png",
+      "path": "source-tree/img/preset-item-mask.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_92",
+      "size": 1008,
+      "sha256": "b3c628743755f4bc0537a53908dffa2175880b54ce2b02a536228b3b6384fe93",
+      "dimensions": [
+        105,
+        105
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preset-title-icon.png",
+      "path": "source-tree/img/preset-title-icon.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_93",
+      "size": 599,
+      "sha256": "d1d6bf921e88e5d288e369d39eaff5a85f2a9699c430fb3018111262013479e0",
+      "dimensions": [
+        24,
+        44
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-1-add.png",
+      "path": "source-tree/img/preview-emote-1-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_94",
+      "size": 1624,
+      "sha256": "8de733135477f08461ac03dc2c7bbb9e537729d0809dc2bb2f856d63ba488d48",
+      "dimensions": [
+        60,
+        61
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-1.png",
+      "path": "source-tree/img/preview-emote-1.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_95",
+      "size": 1131,
+      "sha256": "e4b4d421e98eb68f0d11a6da96809fc27188f8a6048f769bd08419fd5c23bf1e",
+      "dimensions": [
+        60,
+        61
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-2-add.png",
+      "path": "source-tree/img/preview-emote-2-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_96",
+      "size": 1326,
+      "sha256": "843f8d6bfdf1b1faab11c93beb6afb38f2e60160c95d6eb252a18596b17aae2e",
+      "dimensions": [
+        52,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-2.png",
+      "path": "source-tree/img/preview-emote-2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_97",
+      "size": 933,
+      "sha256": "c06e7dd22aedae34c96cef4c29da67e28892296a3ba8ac34aabf72ea1c19db54",
+      "dimensions": [
+        52,
+        54
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-3-add.png",
+      "path": "source-tree/img/preview-emote-3-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_98",
+      "size": 1165,
+      "sha256": "b9a27d2d14d673cad2d89494fc070bdd77824100d416146c84266eed3a1dd2f2",
+      "dimensions": [
+        51,
+        53
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-3.png",
+      "path": "source-tree/img/preview-emote-3.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_99",
+      "size": 829,
+      "sha256": "ee7dd27458e848d897473e6e5c681307233caf7af0a2b30a3922f95c38fe0667",
+      "dimensions": [
+        51,
+        53
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-4-add.png",
+      "path": "source-tree/img/preview-emote-4-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_100",
+      "size": 1513,
+      "sha256": "3354fb275614272183411cd8c8f5d489ce4b8190038c3587674d632458556077",
+      "dimensions": [
+        59,
+        60
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-4.png",
+      "path": "source-tree/img/preview-emote-4.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_101",
+      "size": 1045,
+      "sha256": "713d3b48888e46a3222dc866b0212d4a577f26c3a3a4c252ea1fb3f01ee3e401",
+      "dimensions": [
+        59,
+        60
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-5-add.png",
+      "path": "source-tree/img/preview-emote-5-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_102",
+      "size": 1517,
+      "sha256": "4e0c76ef2677fe803baec558a8b338ff1fcd0e677b0fbcfad4a701212c23303e",
+      "dimensions": [
+        62,
+        62
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-5.png",
+      "path": "source-tree/img/preview-emote-5.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_103",
+      "size": 1092,
+      "sha256": "e1a759bab7bb455b2caaac91dfaa0ff83dc546c5221a9eb2493994afc28f2c72",
+      "dimensions": [
+        62,
+        62
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-add-icon.png",
+      "path": "source-tree/img/preview-emote-add-icon.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_104",
+      "size": 468,
+      "sha256": "edfa51df5438481206aef1d22aa1607a45d1475e610448bc152775a767da1c0b",
+      "dimensions": [
+        29,
+        29
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-emote-remove.png",
+      "path": "source-tree/img/preview-emote-remove.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_105",
+      "size": 1504,
+      "sha256": "3160bb3d705368b5a291a681491b49388d6fb72baac41c5ce066aa0722a28165",
+      "dimensions": [
+        16,
+        16
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-main-mask.png",
+      "path": "source-tree/img/preview-main-mask.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_106",
+      "size": 3982,
+      "sha256": "867cd67d6b5e866be29442b350209149ebbb362e6c99eb3354690c495ccce37b",
+      "dimensions": [
+        300,
+        300
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/preview-main.png",
+      "path": "source-tree/img/preview-main.png",
+      "origin": "frontend/assets/preview-main-DY5jSebv.png",
+      "size": 5356,
+      "sha256": "a9d7b1ba1f80a00c2e8e1f3eb876fb7003b81aa494ad49c94cdb2d6818681980",
+      "dimensions": [
+        228,
+        207
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/purple-ray.png",
+      "path": "source-tree/img/purple-ray.png",
+      "origin": "frontend/assets/purple-ray-C1PmrCvF.png",
+      "size": 20583,
+      "sha256": "f8057415d2711b99e1611ceb6757a3271956ffb5a8382b9d2204b79df9f7b4d7",
+      "dimensions": [
+        120,
+        120
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/purple-star.png",
+      "path": "source-tree/img/purple-star.png",
+      "origin": "frontend/assets/purple-star-Bt6MA_zB.png",
+      "size": 10631,
+      "sha256": "08004dfdbfd91b8c434cc90fb244e36bb8fd7857562f12ba7037b6feb44f2329",
+      "dimensions": [
+        209,
+        157
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/reward-btn-icon.png",
+      "path": "source-tree/img/reward-btn-icon.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_110",
+      "size": 914,
+      "sha256": "7b1352ead23a589b65adbda3642074b0df4b36b60044d9adb255d70802025df3",
+      "dimensions": [
+        36,
+        27
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/reward-btn-icon1.png",
+      "path": "source-tree/img/reward-btn-icon1.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_111",
+      "size": 1737,
+      "sha256": "4a4f0154b5550a687694ea5ccc80f7886bfbb81f826c136dd854f741b11a0d78",
+      "dimensions": [
+        36,
+        27
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/reward-btn-icon2.png",
+      "path": "source-tree/img/reward-btn-icon2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_112",
+      "size": 1281,
+      "sha256": "fd8c415bc6b8a34c652ae59fd218090e0b2ffdd0d1a803aa4eb1372ed6ac71b2",
+      "dimensions": [
+        36,
+        27
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/reward-btn.png",
+      "path": "source-tree/img/reward-btn.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_113",
+      "size": 2776,
+      "sha256": "b22d50935e64dfc02ec48feb2bc2f61f56b473e716cab4186c29fbdae4c8d63d",
+      "dimensions": [
+        84,
+        60
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/ribbons-blue.png",
+      "path": "source-tree/img/ribbons-blue.png",
+      "origin": "frontend/assets/ribbons-blue-DkxlWDHD.png",
+      "size": 36720,
+      "sha256": "486f6bd5ba9b35bf2eddf92d8278d29143a66e85085be73df39242368ab54b53",
+      "dimensions": [
+        690,
+        361
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/ribbons-gold.png",
+      "path": "source-tree/img/ribbons-gold.png",
+      "origin": "frontend/assets/ribbons-gold-BMkqBO3j.png",
+      "size": 7873,
+      "sha256": "0459f44a06c1a2667b7ab95c21cdcd701957c7e196982f33864906124fed41aa",
+      "dimensions": [
+        690,
+        361
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/ribbons-purple.png",
+      "path": "source-tree/img/ribbons-purple.png",
+      "origin": "frontend/assets/ribbons-purple-TsMgf6e5.png",
+      "size": 7756,
+      "sha256": "9580f0ba9df38ceda404d3825ccc92fefbda1ea39cdd94fad8e7fbe4dd5d10c2",
+      "dimensions": [
+        690,
+        361
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/rooms-copy-btn.png",
+      "path": "source-tree/img/rooms-copy-btn.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_117",
+      "size": 531,
+      "sha256": "eeb04a1f7eedc8cf15c5e7747040da832b86c319e56673c488a323ba3104f25f",
+      "dimensions": [
+        22,
+        22
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/rooms-invisible.png",
+      "path": "source-tree/img/rooms-invisible.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_118",
+      "size": 1734,
+      "sha256": "f252a39e65bc5d028b4025d8aa3b4074ed5fbb494fe7b0da99197d201d10e97d",
+      "dimensions": [
+        24,
+        17
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/rooms-owner.png",
+      "path": "source-tree/img/rooms-owner.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_119",
+      "size": 1098,
+      "sha256": "4cd7a25ef1e09a94302fba6ce976dbfaa11308f8a2ae3bff88355bc6627aea05",
+      "dimensions": [
+        27,
+        26
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/rooms-visible.png",
+      "path": "source-tree/img/rooms-visible.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_120",
+      "size": 1690,
+      "sha256": "9a81d42f0275ec44d730d4492c83c8c386826d7e61d72a1c74ff65bf7c61c364",
+      "dimensions": [
+        24,
+        17
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/select-icon.png",
+      "path": "source-tree/img/select-icon.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_121",
+      "size": 329,
+      "sha256": "964ae48ef55fc8a1c2c7f3f09c44d0424de78cf575c6b9b42ae6a488ae785ffe",
+      "dimensions": [
+        14,
+        9
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/select-icon2.png",
+      "path": "source-tree/img/select-icon2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_122",
+      "size": 1309,
+      "sha256": "7562217c05916dfbf2b1738414b99f343ae13a575995629f0ea98e0343e6d557",
+      "dimensions": [
+        22,
+        11
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-add.png",
+      "path": "source-tree/img/synthesis-add.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_123",
+      "size": 1547,
+      "sha256": "179e2d45d89d6d2eb053b7784f546fd07bc5982597b897464ffabb643bfc33a0",
+      "dimensions": [
+        66,
+        66
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-caidai.png",
+      "path": "source-tree/img/synthesis-caidai.png",
+      "origin": "frontend/assets/synthesis-caidai-By6O7BNV.png",
+      "size": 5870,
+      "sha256": "aad2261be6f4ed3b8146d97887d92b72caf904af18d074672d2937365011f324",
+      "dimensions": [
+        274,
+        196
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-circle.png",
+      "path": "source-tree/img/synthesis-circle.png",
+      "origin": "frontend/assets/synthesis-circle-DvePk23l.png",
+      "size": 13252,
+      "sha256": "9a1deee345bac907991e503ca2cfa7e24405f56f8285adfbd138cc242bd96f09",
+      "dimensions": [
+        264,
+        264
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success-1.png",
+      "path": "source-tree/img/synthesis-success-1.png",
+      "origin": "frontend/assets/synthesis-success-1-DqKfhVZY.png",
+      "size": 4177,
+      "sha256": "259e81315b8bc4b11ea0f13f2ed7fd103425e80d33f6fb640db2dfea7fe4085a",
+      "dimensions": [
+        79,
+        75
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success-2.png",
+      "path": "source-tree/img/synthesis-success-2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_127",
+      "size": 4088,
+      "sha256": "008b822dddd88443eb7331308c12c4e3d6b4d0d7db8228cc81f4c8275f98f544",
+      "dimensions": [
+        79,
+        75
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success-3.png",
+      "path": "source-tree/img/synthesis-success-3.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_128",
+      "size": 4025,
+      "sha256": "b643af95c426cdea333e8f122f225ff0d85cddd101dcea200704388cd74e5e23",
+      "dimensions": [
+        79,
+        75
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success-4.png",
+      "path": "source-tree/img/synthesis-success-4.png",
+      "origin": "frontend/assets/synthesis-success-4--FpNJkXG.png",
+      "size": 4288,
+      "sha256": "a99885f0a80543f550362eefe8a8cb8a847de5a1183d9825440f52951a5ba312",
+      "dimensions": [
+        79,
+        75
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success.png",
+      "path": "source-tree/img/synthesis-success.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_130",
+      "size": 2807,
+      "sha256": "5f4eef926c6d4f0a68ada4e2741b023ebdd772ee2c62051a5fde2af4b0a15d33",
+      "dimensions": [
+        172,
+        172
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-success2.png",
+      "path": "source-tree/img/synthesis-success2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_131",
+      "size": 1270,
+      "sha256": "680b9e70ab928b078f0d8d891ecca59282d0682de48374678fee2a817ef5894d",
+      "dimensions": [
+        79,
+        75
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-tip-l.png",
+      "path": "source-tree/img/synthesis-tip-l.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_132",
+      "size": 548,
+      "sha256": "1c776c613592233b8b7cb3f668e29f334d23b01edbbd133467b8ed68e26178da",
+      "dimensions": [
+        26,
+        13
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/synthesis-tip-r.png",
+      "path": "source-tree/img/synthesis-tip-r.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_133",
+      "size": 534,
+      "sha256": "4e776432f7065e131bd442605b8d1f43b46b1884ff87480656135d05286be616",
+      "dimensions": [
+        26,
+        13
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/type-icon-accessory.png",
+      "path": "source-tree/img/type-icon-accessory.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_134",
+      "size": 1270,
+      "sha256": "eeb25f59fb0320a8f676a1aae95e2e08a9455da5b7a526408bd62411f93277bc",
+      "dimensions": [
+        20,
+        20
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/type-icon-character.png",
+      "path": "source-tree/img/type-icon-character.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_135",
+      "size": 1355,
+      "sha256": "d37cae0300b543c5e72ce4a658f0295c4dcfd2589065c9b13a20c3478aa7b17e",
+      "dimensions": [
+        20,
+        20
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/type-icon-emote.png",
+      "path": "source-tree/img/type-icon-emote.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_136",
+      "size": 1296,
+      "sha256": "2e24215e4dcfdb7345faef7a35206f0ad0fc6fa794e70004c7e2dc1a2922173b",
+      "dimensions": [
+        20,
+        20
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/btn-send.png",
+      "path": "source-tree/img/uid/btn-send.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_137",
+      "size": 1081,
+      "sha256": "e5fb45c9f407853b395a83d5e6f1269372ad19557c28a3c70bf31677f1774808",
+      "dimensions": [
+        155,
+        56
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/btn-submit.png",
+      "path": "source-tree/img/uid/btn-submit.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_138",
+      "size": 2042,
+      "sha256": "6b8331647a99ceadf8415179b44b13cab17229a78ff6c49e07b08db262c33a3f",
+      "dimensions": [
+        656,
+        88
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/btn.png",
+      "path": "source-tree/img/uid/btn.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_139",
+      "size": 2570,
+      "sha256": "cab9a244d4fde25f04796486e03bb43f45b73880eec1a13ef151a59109077fc2",
+      "dimensions": [
+        426,
+        66
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/btn_close.png",
+      "path": "source-tree/img/uid/btn_close.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_140",
+      "size": 1245,
+      "sha256": "42978dcbb2ac4f2854eace0edb08dd5dc6578d8f913b02571de76072b07b7782",
+      "dimensions": [
+        24,
+        24
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/icon-arrow.png",
+      "path": "source-tree/img/uid/icon-arrow.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_141",
+      "size": 2598,
+      "sha256": "b96bd49c284c7902788791e9ed2b37e58da324777bcdbafbeabbb0a97d9a58d0",
+      "dimensions": [
+        61,
+        51
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/icon_agree.png",
+      "path": "source-tree/img/uid/icon_agree.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_142",
+      "size": 1169,
+      "sha256": "6927f169724a4fffefd3b40395bfa05636b7a8bb8f6d11dd496fee79d0eb38e8",
+      "dimensions": [
+        27,
+        27
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/icon_cancel.png",
+      "path": "source-tree/img/uid/icon_cancel.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_143",
+      "size": 1137,
+      "sha256": "42ca322bd8922d2b98ed7c464b98368eb7aee2c5cac88ced1a97a40f21e56c4a",
+      "dimensions": [
+        24,
+        24
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/icon_drop.png",
+      "path": "source-tree/img/uid/icon_drop.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_144",
+      "size": 1122,
+      "sha256": "a6bded9476c649f7b072240e1c43d42942c4d5c4d3482414a1f0d2ae4fd8c1ee",
+      "dimensions": [
+        23,
+        14
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/icon_normal.png",
+      "path": "source-tree/img/uid/icon_normal.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_145",
+      "size": 973,
+      "sha256": "b0e1264c91d861cb75e415da85d5f8608555ff388f9b7fc9ff9123a9feeec5dd",
+      "dimensions": [
+        27,
+        27
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/kuro-logo2.png",
+      "path": "source-tree/img/uid/kuro-logo2.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_146",
+      "size": 3554,
+      "sha256": "5f84d49c231dc6bc77cca8337fbb3c54335b7f7ed33f026089362d84555cb7ce",
+      "dimensions": [
+        211,
+        61
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/logo.png",
+      "path": "source-tree/img/uid/logo.png",
+      "origin": "frontend/assets/logo-B8Z34k4r.png",
+      "size": 47255,
+      "sha256": "fbd37e26129baca81ee333cf8a18a2588956fb66d9794b8187b539d80eb3f789",
+      "dimensions": [
+        570,
+        274
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/logo_outsea.png",
+      "path": "source-tree/img/uid/logo_outsea.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_148",
+      "size": 3356,
+      "sha256": "6c70313c4bf859beba58acab1e43ddfa3076f7f77b59cc7fd0ab543e593f3eb3",
+      "dimensions": [
+        238,
+        25
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/pop-back.png",
+      "path": "source-tree/img/uid/pop-back.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_149",
+      "size": 387,
+      "sha256": "3a018f9b4de527839945c9b7c58e59440bc4cc49993f3312bd164f91cc643750",
+      "dimensions": [
+        72,
+        73
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/pop-close.png",
+      "path": "source-tree/img/uid/pop-close.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_150",
+      "size": 667,
+      "sha256": "f24edaf1b4a32f1b8c97dfb0905fc5f8e118a1034426ad8400d99da5dcd4d0c6",
+      "dimensions": [
+        72,
+        73
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/uidlogin-bg_01.png",
+      "path": "source-tree/img/uid/uidlogin-bg_01.png",
+      "origin": "frontend/assets/uidlogin-bg_01-BFmMXgit.png",
+      "size": 39929,
+      "sha256": "5e62833051443b2bb03f312f16454104f4153a6dea0776a221849e2105ea9486",
+      "dimensions": [
+        752,
+        112
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/uidlogin-bg_02.png",
+      "path": "source-tree/img/uid/uidlogin-bg_02.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_152",
+      "size": 721,
+      "sha256": "b674c8ab6e280575183fec2d5ab97e1901cb1007c68dc544e1e29ac3fb33edc0",
+      "dimensions": [
+        752,
+        442
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/uidlogin-bg_03.png",
+      "path": "source-tree/img/uid/uidlogin-bg_03.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_153",
+      "size": 322,
+      "sha256": "e219a5f9539ebc8270c93257cfbf647d832c34483199533e2e8ac29eaa65db70",
+      "dimensions": [
+        752,
+        18
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/uid/wrap.png",
+      "path": "source-tree/img/uid/wrap.png",
+      "origin": "frontend/assets/index-CuzHFfJW.js#__vite_glob_0_154",
+      "size": 2436,
+      "sha256": "3e83eba1526f4c9e03c58e3704b73bd4b9b872b6bf78eb6cd3615a6d71f00c2d",
+      "dimensions": [
+        498,
+        396
+      ],
+      "format": "PNG"
+    },
+    {
+      "sourcePath": "/src/assets/img/update-bg.jpg",
+      "path": "source-tree/img/update-bg.jpg",
+      "origin": "frontend/assets/update-bg-D6TRUARR.jpg",
+      "size": 5035,
+      "sha256": "8e807707f121816cbd019f3693ada2b90acf89bb5fa0b37cfb5fdc92178e247a",
+      "dimensions": [
+        492,
+        372
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "inlineOccurrences": [
+    {
+      "file": "frontend/assets/index-TmZ7LawI.js",
+      "offset": 578,
+      "sha256": "2dfe0dcf1b5809fbe8f552f93ca3194d0703c363e91b8ee2deba87dc3fc6ed0a"
+    },
+    {
+      "file": "frontend/assets/index-pp8VWaUF.js",
+      "offset": 2512,
+      "sha256": "3d18a535fd87c8221eb239fcadd14f81921eb10a6b7b2192ae32ba6fc25a4f00"
+    },
+    {
+      "file": "frontend/assets/login-ncGxoH10.css",
+      "offset": 3756,
+      "sha256": "2f7da3825446fbb13a10e3d1e0d461523ac4acbebe06e824ac5bf7c39f794f81"
+    },
+    {
+      "file": "frontend/assets/login-ncGxoH10.css",
+      "offset": 13345,
+      "sha256": "7f6e1b2902f1122f935e4ae66177505505a1a87397339d8620eeb1fa78e82061"
+    },
+    {
+      "file": "frontend/assets/index-CnCaebIc.css",
+      "offset": 2365,
+      "sha256": "5b0d84ccba25f19d15e12625ffdbad455fa9fc4242a97f9e71d0ba2b9eb134b7"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 13001,
+      "sha256": "2e24215e4dcfdb7345faef7a35206f0ad0fc6fa794e70004c7e2dc1a2922173b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 14968,
+      "sha256": "eeb25f59fb0320a8f676a1aae95e2e08a9455da5b7a526408bd62411f93277bc"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 16907,
+      "sha256": "d37cae0300b543c5e72ce4a658f0295c4dcfd2589065c9b13a20c3478aa7b17e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 21605,
+      "sha256": "b22d50935e64dfc02ec48feb2bc2f61f56b473e716cab4186c29fbdae4c8d63d"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 25785,
+      "sha256": "4a4f0154b5550a687694ea5ccc80f7886bfbb81f826c136dd854f741b11a0d78"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 28164,
+      "sha256": "fd8c415bc6b8a34c652ae59fd218090e0b2ffdd0d1a803aa4eb1372ed6ac71b2"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 32065,
+      "sha256": "15ffd6730f85604aea00c1f707cf6627e082cad49321408942343412f11eb200"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 38728,
+      "sha256": "c76e6f23ffc3a442895e8e78a39879965055923ebe3925320b979fd108b32496"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 41482,
+      "sha256": "e78e0bac708b5c1a7fba701d9c18a58954ab51423e0af8188c9020aa05212bea"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 47913,
+      "sha256": "4dfd968a3ecfd5fe918821ba2a140789fa03d0f7d687fd2d40c83ca08180c0af"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 49300,
+      "sha256": "9c6eed1bbc54aff3d3e95b38b3f1180467939d8265bd10f2f4ab189f9ba47290"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 50314,
+      "sha256": "4ba2215f95c0b9f2ff9ecd29b6892369577911614a91f0de8b4225c46b28d840"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 51588,
+      "sha256": "ec0e9da1b90a40bf7f24e2363bbd25a20a0327bfa7127bb3b9314cd0608bd5ff"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 52709,
+      "sha256": "28a66fbb5f42906aacfd61ff8b2c950f2f1def71072a2a5ab381ccb754d63545"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 54421,
+      "sha256": "acb3b99a0c629192cf8872348b8050019970923d14fb59f7731b92fba5cdd397"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 55452,
+      "sha256": "550b32ad0609367beaf7d1f143166154c6b29dbad435a2d32c466558c25c2f91"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 56282,
+      "sha256": "eedb87999604ca77f37720040d0c42cef68fae0553b3080659539b3a84b26d61"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 57336,
+      "sha256": "dabe29b42dd2b807ffc71bf2bb9b2f3e9b38dbcbc7c1ef1ede27670576666008"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 58185,
+      "sha256": "a905a78a6fac03e488bf6ff5cbc5dc6473162c0c9add628ffe085521d4363764"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 59413,
+      "sha256": "4e8d55216357eed490f6487b93d8fe1d931c37b405646bb8740f61e6328c20b1"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 60730,
+      "sha256": "54b195cbbf018e8860e223c0b8151a8ec1f7efa2691b6e6e6107ba911340159e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 64049,
+      "sha256": "3a75786e6107a31ab139e36fed297ebb4676f777a51ed96e07f92f8f8ae4c6ac"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 68458,
+      "sha256": "2f706098e9d3454a616e24608b4c14c8d08cdd48529169b48b6156e7ea3b0a8b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 73305,
+      "sha256": "b1bce09a37dcdf17e2f40cc78efdc9c1ce2c9d2ae7f7ebec9df3a5e0bd52ee85"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 76401,
+      "sha256": "5787fa82d90f29e7ecb1db29d2aad15c4a3b0fa9c7e645a3a39fb3a6f2cd6c34"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 77415,
+      "sha256": "f5c9fe7004f9037f8af6b22c4bd15fc7017a21e3066628d2e2043b8a76eb5a38"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 78108,
+      "sha256": "8865d21f7d06389d0767617c0d649867facb1f83c65818bd598d61d533da8942"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 84004,
+      "sha256": "edfa51df5438481206aef1d22aa1607a45d1475e610448bc152775a767da1c0b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 84810,
+      "sha256": "3160bb3d705368b5a291a681491b49388d6fb72baac41c5ce066aa0722a28165"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 87293,
+      "sha256": "8de733135477f08461ac03dc2c7bbb9e537729d0809dc2bb2f856d63ba488d48"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 89752,
+      "sha256": "e4b4d421e98eb68f0d11a6da96809fc27188f8a6048f769bd08419fd5c23bf1e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 91455,
+      "sha256": "843f8d6bfdf1b1faab11c93beb6afb38f2e60160c95d6eb252a18596b17aae2e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 93507,
+      "sha256": "c06e7dd22aedae34c96cef4c29da67e28892296a3ba8ac34aabf72ea1c19db54"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 95034,
+      "sha256": "b9a27d2d14d673cad2d89494fc070bdd77824100d416146c84266eed3a1dd2f2"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 96872,
+      "sha256": "ee7dd27458e848d897473e6e5c681307233caf7af0a2b30a3922f95c38fe0667"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 98263,
+      "sha256": "3354fb275614272183411cd8c8f5d489ce4b8190038c3587674d632458556077"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 100565,
+      "sha256": "713d3b48888e46a3222dc866b0212d4a577f26c3a3a4c252ea1fb3f01ee3e401"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 102245,
+      "sha256": "4e0c76ef2677fe803baec558a8b338ff1fcd0e677b0fbcfad4a701212c23303e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 104388,
+      "sha256": "e1a759bab7bb455b2caaac91dfaa0ff83dc546c5221a9eb2493994afc28f2c72"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 106516,
+      "sha256": "867cd67d6b5e866be29442b350209149ebbb362e6c99eb3354690c495ccce37b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 111867,
+      "sha256": "867cd67d6b5e866be29442b350209149ebbb362e6c99eb3354690c495ccce37b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 118627,
+      "sha256": "b81d7d2252f48f3f4dd4b8d1ca0e7e5b4bc4733534fe254682f799295699315c"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 124162,
+      "sha256": "0beec0c093e8ebe1898c05a3041d8c601f026e29d1b2927a5187375363385c19"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 128240,
+      "sha256": "b3c628743755f4bc0537a53908dffa2175880b54ce2b02a536228b3b6384fe93"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 129623,
+      "sha256": "b3c628743755f4bc0537a53908dffa2175880b54ce2b02a536228b3b6384fe93"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 131614,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 134337,
+      "sha256": "b47fae8032e6645aa6fd05a21bb922c8c60f29838601c7f3a00c55a03137a272"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 135842,
+      "sha256": "964ae48ef55fc8a1c2c7f3f09c44d0424de78cf575c6b9b42ae6a488ae785ffe"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 136650,
+      "sha256": "7562217c05916dfbf2b1738414b99f343ae13a575995629f0ea98e0343e6d557"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 141654,
+      "sha256": "6f3d7e5985de02071e51751d5cee948ecde8eaebe086c6894d6d21c899e6b59f"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 144365,
+      "sha256": "4e9426af754efed5c2969516c8a5c3bd2ed68cb464d6d1fa5491f854fc2c4234"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 150595,
+      "sha256": "c74001417797725716391c62901785607cb1f54cfc714ad1cab802ad95b792fb"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 153427,
+      "sha256": "05e512e531596ae5169505742246d0f54a7d06d9636861bc872718117b33f8bf"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 154495,
+      "sha256": "aeb3cedbc3b9f0844b65dfb9676e97b0019c857e30519fa4b179849bb83ac3b3"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 155519,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 157161,
+      "sha256": "d37cae0300b543c5e72ce4a658f0295c4dcfd2589065c9b13a20c3478aa7b17e"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 159209,
+      "sha256": "eeb25f59fb0320a8f676a1aae95e2e08a9455da5b7a526408bd62411f93277bc"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 161129,
+      "sha256": "2e24215e4dcfdb7345faef7a35206f0ad0fc6fa794e70004c7e2dc1a2922173b"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 165385,
+      "sha256": "5f4eef926c6d4f0a68ada4e2741b023ebdd772ee2c62051a5fde2af4b0a15d33"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 169720,
+      "sha256": "008b822dddd88443eb7331308c12c4e3d6b4d0d7db8228cc81f4c8275f98f544"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 175263,
+      "sha256": "b643af95c426cdea333e8f122f225ff0d85cddd101dcea200704388cd74e5e23"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 181548,
+      "sha256": "1c776c613592233b8b7cb3f668e29f334d23b01edbbd133467b8ed68e26178da"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 182362,
+      "sha256": "4e776432f7065e131bd442605b8d1f43b46b1884ff87480656135d05286be616"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 183966,
+      "sha256": "680b9e70ab928b078f0d8d891ecca59282d0682de48374678fee2a817ef5894d"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 186497,
+      "sha256": "008b822dddd88443eb7331308c12c4e3d6b4d0d7db8228cc81f4c8275f98f544"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 192033,
+      "sha256": "b643af95c426cdea333e8f122f225ff0d85cddd101dcea200704388cd74e5e23"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 197699,
+      "sha256": "179e2d45d89d6d2eb053b7784f546fd07bc5982597b897464ffabb643bfc33a0"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 201481,
+      "sha256": "eeb04a1f7eedc8cf15c5e7747040da832b86c319e56673c488a323ba3104f25f"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 202760,
+      "sha256": "4cd7a25ef1e09a94302fba6ce976dbfaa11308f8a2ae3bff88355bc6627aea05"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 204614,
+      "sha256": "9a81d42f0275ec44d730d4492c83c8c386826d7e61d72a1c74ff65bf7c61c364"
+    },
+    {
+      "file": "frontend/assets/index-C3fG-hsi.css",
+      "offset": 207043,
+      "sha256": "f252a39e65bc5d028b4025d8aa3b4074ed5fbb494fe7b0da99197d201d10e97d"
+    },
+    {
+      "file": "frontend/assets/installerTranslations-DGtHZ_PT.js",
+      "offset": 37,
+      "sha256": "013ce1b22b202f2eb094413241aa60a3093ea5c048b3c3d2116827f6f1291809"
+    },
+    {
+      "file": "frontend/assets/installerTranslations-DGtHZ_PT.js",
+      "offset": 472,
+      "sha256": "ff09e7f5f016eec01c25a67f153ce1ee566e2b371fb82256a263622a95ee0aea"
+    },
+    {
+      "file": "frontend/assets/installerTranslations-DGtHZ_PT.js",
+      "offset": 983,
+      "sha256": "d3ed2c4cea949112f2152aa4efc4f4b31ec3f9b1857cef68ff74886256c0bdb1"
+    },
+    {
+      "file": "frontend/assets/installerTranslations-DGtHZ_PT.js",
+      "offset": 5322,
+      "sha256": "dc389322335ba796f511f31487105feb0a26934b3da1e585c3121648215c9bb5"
+    },
+    {
+      "file": "frontend/assets/index-CaMAtNXT.css",
+      "offset": 837,
+      "sha256": "2f706098e9d3454a616e24608b4c14c8d08cdd48529169b48b6156e7ea3b0a8b"
+    },
+    {
+      "file": "frontend/assets/index-CaMAtNXT.css",
+      "offset": 6802,
+      "sha256": "fbd8ae9258344fa9eb8fe353717e494dec043fd98383607ab98c1f8732fd4753"
+    },
+    {
+      "file": "frontend/assets/index-W69_mCjy.css",
+      "offset": 938,
+      "sha256": "2f706098e9d3454a616e24608b4c14c8d08cdd48529169b48b6156e7ea3b0a8b"
+    },
+    {
+      "file": "frontend/assets/index-W69_mCjy.css",
+      "offset": 6275,
+      "sha256": "fbd8ae9258344fa9eb8fe353717e494dec043fd98383607ab98c1f8732fd4753"
+    },
+    {
+      "file": "frontend/assets/index-CB8_7sxZ.css",
+      "offset": 8875,
+      "sha256": "5b0d84ccba25f19d15e12625ffdbad455fa9fc4242a97f9e71d0ba2b9eb134b7"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 181897,
+      "sha256": "17885a32be6f5e8a7e4bb6724e6d5334379917c42452135f945c39bb87fd2847"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 675909,
+      "sha256": "aeb3cedbc3b9f0844b65dfb9676e97b0019c857e30519fa4b179849bb83ac3b3"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 676874,
+      "sha256": "05e512e531596ae5169505742246d0f54a7d06d9636861bc872718117b33f8bf"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 677811,
+      "sha256": "6f3d7e5985de02071e51751d5cee948ecde8eaebe086c6894d6d21c899e6b59f"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 680440,
+      "sha256": "4e9426af754efed5c2969516c8a5c3bd2ed68cb464d6d1fa5491f854fc2c4234"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 684145,
+      "sha256": "c74001417797725716391c62901785607cb1f54cfc714ad1cab802ad95b792fb"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 686842,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 688512,
+      "sha256": "b47fae8032e6645aa6fd05a21bb922c8c60f29838601c7f3a00c55a03137a272"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 689241,
+      "sha256": "3d18a535fd87c8221eb239fcadd14f81921eb10a6b7b2192ae32ba6fc25a4f00"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 695070,
+      "sha256": "17885a32be6f5e8a7e4bb6724e6d5334379917c42452135f945c39bb87fd2847"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 696444,
+      "sha256": "8865d21f7d06389d0767617c0d649867facb1f83c65818bd598d61d533da8942"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 700654,
+      "sha256": "2f706098e9d3454a616e24608b4c14c8d08cdd48529169b48b6156e7ea3b0a8b"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 705340,
+      "sha256": "b1bce09a37dcdf17e2f40cc78efdc9c1ce2c9d2ae7f7ebec9df3a5e0bd52ee85"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 707654,
+      "sha256": "979d7d0a889b3260a0d2820ef5922aedd8c2abea6cfbc9aec53c5e1ab8f95cff"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 710556,
+      "sha256": "c76e6f23ffc3a442895e8e78a39879965055923ebe3925320b979fd108b32496"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 713278,
+      "sha256": "e78e0bac708b5c1a7fba701d9c18a58954ab51423e0af8188c9020aa05212bea"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 715305,
+      "sha256": "013ce1b22b202f2eb094413241aa60a3093ea5c048b3c3d2116827f6f1291809"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 715755,
+      "sha256": "2dfe0dcf1b5809fbe8f552f93ca3194d0703c363e91b8ee2deba87dc3fc6ed0a"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 716280,
+      "sha256": "5b0d84ccba25f19d15e12625ffdbad455fa9fc4242a97f9e71d0ba2b9eb134b7"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 717012,
+      "sha256": "40ef4d3ff1efdc87a0d9f0e30a80c899d4caf717291c6705f2abf11256e61f79"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 718280,
+      "sha256": "ff09e7f5f016eec01c25a67f153ce1ee566e2b371fb82256a263622a95ee0aea"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 719077,
+      "sha256": "d3ed2c4cea949112f2152aa4efc4f4b31ec3f9b1857cef68ff74886256c0bdb1"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 723431,
+      "sha256": "dc389322335ba796f511f31487105feb0a26934b3da1e585c3121648215c9bb5"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 727177,
+      "sha256": "7f6e1b2902f1122f935e4ae66177505505a1a87397339d8620eeb1fa78e82061"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 728365,
+      "sha256": "2f7da3825446fbb13a10e3d1e0d461523ac4acbebe06e824ac5bf7c39f794f81"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 729668,
+      "sha256": "54b195cbbf018e8860e223c0b8151a8ec1f7efa2691b6e6e6107ba911340159e"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 732814,
+      "sha256": "3a75786e6107a31ab139e36fed297ebb4676f777a51ed96e07f92f8f8ae4c6ac"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 737237,
+      "sha256": "9c6eed1bbc54aff3d3e95b38b3f1180467939d8265bd10f2f4ab189f9ba47290"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 738187,
+      "sha256": "550b32ad0609367beaf7d1f143166154c6b29dbad435a2d32c466558c25c2f91"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 738989,
+      "sha256": "4dfd968a3ecfd5fe918821ba2a140789fa03d0f7d687fd2d40c83ca08180c0af"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 740315,
+      "sha256": "acb3b99a0c629192cf8872348b8050019970923d14fb59f7731b92fba5cdd397"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 741321,
+      "sha256": "ec0e9da1b90a40bf7f24e2363bbd25a20a0327bfa7127bb3b9314cd0608bd5ff"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 742379,
+      "sha256": "dabe29b42dd2b807ffc71bf2bb9b2f3e9b38dbcbc7c1ef1ede27670576666008"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 743201,
+      "sha256": "28a66fbb5f42906aacfd61ff8b2c950f2f1def71072a2a5ab381ccb754d63545"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 744743,
+      "sha256": "a905a78a6fac03e488bf6ff5cbc5dc6473162c0c9add628ffe085521d4363764"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 745945,
+      "sha256": "4e8d55216357eed490f6487b93d8fe1d931c37b405646bb8740f61e6328c20b1"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 746703,
+      "sha256": "4ba2215f95c0b9f2ff9ecd29b6892369577911614a91f0de8b4225c46b28d840"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 747917,
+      "sha256": "eedb87999604ca77f37720040d0c42cef68fae0553b3080659539b3a84b26d61"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 748947,
+      "sha256": "5787fa82d90f29e7ecb1db29d2aad15c4a3b0fa9c7e645a3a39fb3a6f2cd6c34"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 749833,
+      "sha256": "f5c9fe7004f9037f8af6b22c4bd15fc7017a21e3066628d2e2043b8a76eb5a38"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 750331,
+      "sha256": "70a81618bb85b5358dff3d91ded5146b86359127eacf621ef723cffaf3b2e813"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 753101,
+      "sha256": "fbd8ae9258344fa9eb8fe353717e494dec043fd98383607ab98c1f8732fd4753"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 755067,
+      "sha256": "14ac789f0d665ce578e2e97a89bd2ec2734704ca3732dab98eae371048adce5a"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 757073,
+      "sha256": "15ffd6730f85604aea00c1f707cf6627e082cad49321408942343412f11eb200"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 760987,
+      "sha256": "27203ff194ff67621380af77696d79d7e9eefdeebfbdd5994f7b137cc1973ce2"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 762429,
+      "sha256": "0beec0c093e8ebe1898c05a3041d8c601f026e29d1b2927a5187375363385c19"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 766347,
+      "sha256": "b81d7d2252f48f3f4dd4b8d1ca0e7e5b4bc4733534fe254682f799295699315c"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 771617,
+      "sha256": "b3c628743755f4bc0537a53908dffa2175880b54ce2b02a536228b3b6384fe93"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 773003,
+      "sha256": "d1d6bf921e88e5d288e369d39eaff5a85f2a9699c430fb3018111262013479e0"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 773845,
+      "sha256": "8de733135477f08461ac03dc2c7bbb9e537729d0809dc2bb2f856d63ba488d48"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 776055,
+      "sha256": "e4b4d421e98eb68f0d11a6da96809fc27188f8a6048f769bd08419fd5c23bf1e"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 777605,
+      "sha256": "843f8d6bfdf1b1faab11c93beb6afb38f2e60160c95d6eb252a18596b17aae2e"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 779415,
+      "sha256": "c06e7dd22aedae34c96cef4c29da67e28892296a3ba8ac34aabf72ea1c19db54"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 780701,
+      "sha256": "b9a27d2d14d673cad2d89494fc070bdd77824100d416146c84266eed3a1dd2f2"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 782299,
+      "sha256": "ee7dd27458e848d897473e6e5c681307233caf7af0a2b30a3922f95c38fe0667"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 783450,
+      "sha256": "3354fb275614272183411cd8c8f5d489ce4b8190038c3587674d632458556077"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 785513,
+      "sha256": "713d3b48888e46a3222dc866b0212d4a577f26c3a3a4c252ea1fb3f01ee3e401"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 786952,
+      "sha256": "4e0c76ef2677fe803baec558a8b338ff1fcd0e677b0fbcfad4a701212c23303e"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 789019,
+      "sha256": "e1a759bab7bb455b2caaac91dfaa0ff83dc546c5221a9eb2493994afc28f2c72"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 790518,
+      "sha256": "edfa51df5438481206aef1d22aa1607a45d1475e610448bc152775a767da1c0b"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 791185,
+      "sha256": "3160bb3d705368b5a291a681491b49388d6fb72baac41c5ce066aa0722a28165"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 793236,
+      "sha256": "867cd67d6b5e866be29442b350209149ebbb362e6c99eb3354690c495ccce37b"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 798825,
+      "sha256": "7b1352ead23a589b65adbda3642074b0df4b36b60044d9adb255d70802025df3"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 800088,
+      "sha256": "4a4f0154b5550a687694ea5ccc80f7886bfbb81f826c136dd854f741b11a0d78"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 802447,
+      "sha256": "fd8c415bc6b8a34c652ae59fd218090e0b2ffdd0d1a803aa4eb1372ed6ac71b2"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 804198,
+      "sha256": "b22d50935e64dfc02ec48feb2bc2f61f56b473e716cab4186c29fbdae4c8d63d"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 808184,
+      "sha256": "eeb04a1f7eedc8cf15c5e7747040da832b86c319e56673c488a323ba3104f25f"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 808935,
+      "sha256": "f252a39e65bc5d028b4025d8aa3b4074ed5fbb494fe7b0da99197d201d10e97d"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 811290,
+      "sha256": "4cd7a25ef1e09a94302fba6ce976dbfaa11308f8a2ae3bff88355bc6627aea05"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 812797,
+      "sha256": "9a81d42f0275ec44d730d4492c83c8c386826d7e61d72a1c74ff65bf7c61c364"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 815096,
+      "sha256": "964ae48ef55fc8a1c2c7f3f09c44d0424de78cf575c6b9b42ae6a488ae785ffe"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 815579,
+      "sha256": "7562217c05916dfbf2b1738414b99f343ae13a575995629f0ea98e0343e6d557"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 817370,
+      "sha256": "179e2d45d89d6d2eb053b7784f546fd07bc5982597b897464ffabb643bfc33a0"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 819729,
+      "sha256": "008b822dddd88443eb7331308c12c4e3d6b4d0d7db8228cc81f4c8275f98f544"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 825224,
+      "sha256": "b643af95c426cdea333e8f122f225ff0d85cddd101dcea200704388cd74e5e23"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 830721,
+      "sha256": "5f4eef926c6d4f0a68ada4e2741b023ebdd772ee2c62051a5fde2af4b0a15d33"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 834508,
+      "sha256": "680b9e70ab928b078f0d8d891ecca59282d0682de48374678fee2a817ef5894d"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 836247,
+      "sha256": "1c776c613592233b8b7cb3f668e29f334d23b01edbbd133467b8ed68e26178da"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 837022,
+      "sha256": "4e776432f7065e131bd442605b8d1f43b46b1884ff87480656135d05286be616"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 837777,
+      "sha256": "eeb25f59fb0320a8f676a1aae95e2e08a9455da5b7a526408bd62411f93277bc"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 839516,
+      "sha256": "d37cae0300b543c5e72ce4a658f0295c4dcfd2589065c9b13a20c3478aa7b17e"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 841367,
+      "sha256": "2e24215e4dcfdb7345faef7a35206f0ad0fc6fa794e70004c7e2dc1a2922173b"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 843138,
+      "sha256": "e5fb45c9f407853b395a83d5e6f1269372ad19557c28a3c70bf31677f1774808"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 844625,
+      "sha256": "6b8331647a99ceadf8415179b44b13cab17229a78ff6c49e07b08db262c33a3f"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 847392,
+      "sha256": "cab9a244d4fde25f04796486e03bb43f45b73880eec1a13ef151a59109077fc2"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 850863,
+      "sha256": "42978dcbb2ac4f2854eace0edb08dd5dc6578d8f913b02571de76072b07b7782"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 852566,
+      "sha256": "b96bd49c284c7902788791e9ed2b37e58da324777bcdbafbeabbb0a97d9a58d0"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 856073,
+      "sha256": "6927f169724a4fffefd3b40395bfa05636b7a8bb8f6d11dd496fee79d0eb38e8"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 857676,
+      "sha256": "42ca322bd8922d2b98ed7c464b98368eb7aee2c5cac88ced1a97a40f21e56c4a"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 859235,
+      "sha256": "a6bded9476c649f7b072240e1c43d42942c4d5c4d3482414a1f0d2ae4fd8c1ee"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 860774,
+      "sha256": "b0e1264c91d861cb75e415da85d5f8608555ff388f9b7fc9ff9123a9feeec5dd"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 862117,
+      "sha256": "5f84d49c231dc6bc77cca8337fbb3c54335b7f7ed33f026089362d84555cb7ce"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 866971,
+      "sha256": "6c70313c4bf859beba58acab1e43ddfa3076f7f77b59cc7fd0ab543e593f3eb3"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 871490,
+      "sha256": "3a018f9b4de527839945c9b7c58e59440bc4cc49993f3312bd164f91cc643750"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 872049,
+      "sha256": "f24edaf1b4a32f1b8c97dfb0905fc5f8e118a1034426ad8400d99da5dcd4d0c6"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 873065,
+      "sha256": "b674c8ab6e280575183fec2d5ab97e1901cb1007c68dc544e1e29ac3fb33edc0"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 874072,
+      "sha256": "e219a5f9539ebc8270c93257cfbf647d832c34483199533e2e8ac29eaa65db70"
+    },
+    {
+      "file": "frontend/assets/index-CuzHFfJW.js",
+      "offset": 874547,
+      "sha256": "3e83eba1526f4c9e03c58e3704b73bd4b9b872b6bf78eb6cd3615a6d71f00c2d"
+    }
+  ]
+}
