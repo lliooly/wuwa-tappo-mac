@@ -1180,6 +1180,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                           loginChoices: [...document.querySelectorAll('.login-dialog-button')].map(el=>el.textContent.trim()),
                           hasUidForm: !!document.querySelector('.uid-cont'),
                           socketTransport: window.__ORIGINAL_DIAGNOSTICS__?.socketTransport || null,
+                          socketEventCounts: window.__ORIGINAL_DIAGNOSTICS__?.socketEventCounts || null,
                           errorCount: window.__ORIGINAL_DIAGNOSTICS__?.errors.length || 0};
                         """, arguments: [:], in: nil, in: .page) { continuation.resume(with: $0) }
                         }
@@ -1190,6 +1191,8 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                     report["panel"] = ["loggedIn": snapshot["isLoggedIn"] ?? false,
                                         "bagItems": (snapshot["bagList"] as? [Any])?.count ?? 0,
                                         "atlasItems": (snapshot["atlasList"] as? [Any])?.count ?? 0,
+                                        "presetCount": (snapshot["presetList"] as? [Any])?.count ?? 0,
+                                        "invalidPresetIdCount": (snapshot["presetList"] as? [[String: Any]] ?? []).filter { ($0["preset_id"] as? Int ?? 0) <= 0 }.count,
                                         "roomMode": snapshot["roomMode"] ?? "idle",
                                         "roomMembers": (snapshot["roomMembers"] as? [Any])?.count ?? 0]
                 }

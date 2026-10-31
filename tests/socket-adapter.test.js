@@ -39,6 +39,10 @@ test('native transport preserves Socket.IO text, binary ordering, events and clo
   assert.equal(calls[1].text, '42["rc"]');
   assert.equal(calls[2].data, 'AQI=');
   assert.equal(calls[3].data, 'AwQ=');
+  window.__MACOS_SOCKET_EVENT__(id, {type:'message',text:'421["ru",{"private":"not recorded"}]'});
+  assert.equal(window.__ORIGINAL_DIAGNOSTICS__.socketEventCounts.sent.rc, 1);
+  assert.equal(window.__ORIGINAL_DIAGNOSTICS__.socketEventCounts.received.ru, 1);
+  assert(!JSON.stringify(window.__ORIGINAL_DIAGNOSTICS__).includes('not recorded'));
   assert.equal(socket.bufferedAmount, 0);
   window.__MACOS_SOCKET_EVENT__(id, {type:'close',code:1000,wasClean:true});
   assert.equal(closed, 1000);

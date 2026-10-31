@@ -2,6 +2,18 @@
   if (!window.__MACOS_ONLINE__ || !window.__MACOS_NATIVE_SOCKET__) return;
   const sockets = new Map();
   const bridge = value => window.webkit.messageHandlers.originalSocket.postMessage(value);
+  const eventCounts = window.__ORIGINAL_DIAGNOSTICS__.socketEventCounts = {sent:{},received:{}};
+  const knownEvents = new Set(['cr','rm','rd','rc','re','ru','rj','rl','ro','rs','fd']);
+  function recordEvent(direction, text) {
+    // Only retain protocol event names and counts, never member IDs or payloads.
+    if (typeof text !== 'string') return;
+    const match = /^42\d*(\[.*)/s.exec(text);
+    if (!match) return;
+    try {
+      const name = JSON.parse(match[1])[0];
+      if (knownEvents.has(name)) eventCounts[direction][name] = (eventCounts[direction][name] || 0) + 1;
+    } catch {}
+  }
   class MacWebSocket extends EventTarget {
     static CONNECTING = 0; static OPEN = 1; static CLOSING = 2; static CLOSED = 3;
     CONNECTING = 0; OPEN = 1; CLOSING = 2; CLOSED = 3;
@@ -35,6 +47,7 @@
         event = new Event('open');
       } else if (value.type === 'message') {
         let data = value.text;
+        recordEvent('received', data);
         if (value.data !== undefined) {
           const bytes = Uint8Array.from(atob(value.data), character => character.charCodeAt(0));
           data = this.binaryType === 'arraybuffer' ? bytes.buffer : new Blob([bytes]);
@@ -58,7 +71,7 @@
       this.bufferedAmount += size;
       this.#outgoing = this.#outgoing.then(async () => {
         const payload = {action:'send',id:this.#id};
-        if (typeof value === 'string') payload.text = value;
+        if (typeof value === 'string') { payload.text = value; recordEvent('sent', value); }
         else {
           const buffer = value instanceof Blob ? await value.arrayBuffer() : value;
           const bytes = ArrayBuffer.isView(buffer) ? new Uint8Array(buffer.buffer,buffer.byteOffset,buffer.byteLength) : new Uint8Array(buffer);
