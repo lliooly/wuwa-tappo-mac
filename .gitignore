@@ -1,0 +1,39 @@
+# macOS / editors
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+
+# Generated packages, reports and tool caches
+/build/
+/dist/
+/output/
+/.playwright-cli/
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+src-tauri/target/
+src-tauri/gen/
+
+# Local Windows samples and reverse-engineering databases
+/WuwaTappo/
+/*.exe
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+
+# Credentials and signing material (never needed in source control)
+.env
+.env.*
+!.env.example
+*.p12
+*.p8
+*.pem
+*.key
+*.mobileprovision
