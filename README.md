@@ -55,7 +55,7 @@
 
 ```sh
 git clone https://github.com/lliooly/wuwa-tappo-assets.git
-git -C wuwa-tappo-assets checkout 3b23b04468174fd1329473c64e2a4254999bb819
+git -C wuwa-tappo-assets checkout 478ae2fdf4f1308189df87a5b249cd0deb1dfb64
 git clone https://github.com/lliooly/wuwa-tappo-mac.git
 cd wuwa-tappo-mac
 python3 scripts/build-macos.py
@@ -64,7 +64,7 @@ open 'dist/Wuwa Tappo.app'
 
 产物为 `dist/Wuwa Tappo.app` 和 `dist/Wuwa-Tappo-mac-arm64.zip`。运行测试另需 Node.js 22+，无需 `npm install`。
 
-目录结构、测试、签名和调试命令见 [开发指南](docs/开发指南.md)。选用素材前请阅读素材库的 [使用指南](https://github.com/lliooly/wuwa-tappo-assets/blob/3b23b04468174fd1329473c64e2a4254999bb819/docs/使用指南.md)。
+目录结构、测试、签名和调试命令见 [开发指南](docs/开发指南.md)。选用素材前请阅读素材库的 [使用指南](https://github.com/lliooly/wuwa-tappo-assets/blob/478ae2fdf4f1308189df87a5b249cd0deb1dfb64/docs/使用指南.md)。
 
 ## 项目文档
 

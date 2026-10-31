@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: lliooly/wuwa-tappo-assets
-          ref: 3b23b04468174fd1329473c64e2a4254999bb819
+          ref: 478ae2fdf4f1308189df87a5b249cd0deb1dfb64
           path: wuwa-tappo-assets
           persist-credentials: false
       - name: Set up Node.js

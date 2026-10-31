@@ -1162,48 +1162,56 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     func startOnlineReport(path: String) {
         guard online else { return }
         onlineReportTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                guard let self = self else { return }
-                var report: [String: Any] = ["status": "running", "time": ISO8601DateFormatter().string(from: Date()),
-                                             "unimplementedCommands": Array(self.unknownCommands).sorted()]
-                for label in ["main", "login"] {
-                    guard let view = self.views[label] else { continue }
-                    do {
-                        let result: Any = try await withCheckedThrowingContinuation { continuation in
-                            view.callAsyncJavaScript("""
-                        const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
-                        const store = window.__WUWA_ORIGINAL__?.globalStore;
-                        const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
-                        return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
-                          pendingClicks: store?.localClickCount || 0,
-                          confirmedClicks: store?.serverClickTotal || 0,
-                          consumedClicks: store?.serverClickConsume || 0,
-                          clickReportSuccesses: window.__ORIGINAL_DIAGNOSTICS__?.clickReportSuccesses || 0,
-                          hasSession: !!window.__MACOS_SESSION__.get('infoToken'),
-                          sdkLoaded: !!sdk, sdkReady: sdk?.core?.getInitStatus?.() === true,
-                          loginChoices: [...document.querySelectorAll('.login-dialog-button')].map(el=>el.textContent.trim()),
-                          hasUidForm: !!document.querySelector('.uid-cont'),
-                          socketTransport: window.__ORIGINAL_DIAGNOSTICS__?.socketTransport || null,
-                          socketEventCounts: window.__ORIGINAL_DIAGNOSTICS__?.socketEventCounts || null,
-                          errorCount: window.__ORIGINAL_DIAGNOSTICS__?.errors.length || 0};
-                        """, arguments: [:], in: nil, in: .page) { continuation.resume(with: $0) }
-                        }
-                        report[label] = result
-                    } catch { report[label] = ["status": "loading"] }
-                }
-                if let snapshot = self.lastSnapshot {
-                    report["panel"] = ["loggedIn": snapshot["isLoggedIn"] ?? false,
-                                        "bagItems": (snapshot["bagList"] as? [Any])?.count ?? 0,
-                                        "atlasItems": (snapshot["atlasList"] as? [Any])?.count ?? 0,
-                                        "presetCount": (snapshot["presetList"] as? [Any])?.count ?? 0,
-                                        "invalidPresetIdCount": (snapshot["presetList"] as? [[String: Any]] ?? []).filter { ($0["preset_id"] as? Int ?? 0) <= 0 }.count,
-                                        "roomMode": snapshot["roomMode"] ?? "idle",
-                                        "roomMembers": (snapshot["roomMembers"] as? [Any])?.count ?? 0]
-                }
-                if let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
-                    try? data.write(to: URL(fileURLWithPath: path), options: .atomic)
-                }
+            Task { @MainActor [weak self] in
+                await self?.writeOnlineReport(path: path)
             }
+        }
+    }
+
+    @MainActor
+    private func writeOnlineReport(path: String) async {
+        var report: [String: Any] = ["status": "running", "time": ISO8601DateFormatter().string(from: Date()),
+                                     "unimplementedCommands": Array(unknownCommands).sorted()]
+        for label in ["main", "login"] {
+            guard let view = views[label] else { continue }
+            do {
+                let result: Any = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Any, Error>) in
+                    view.callAsyncJavaScript("""
+                const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+                const store = window.__WUWA_ORIGINAL__?.globalStore;
+                const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
+                return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
+                  pendingClicks: store?.localClickCount || 0,
+                  confirmedClicks: store?.serverClickTotal || 0,
+                  consumedClicks: store?.serverClickConsume || 0,
+                  clickReportSuccesses: window.__ORIGINAL_DIAGNOSTICS__?.clickReportSuccesses || 0,
+                  hasSession: !!window.__MACOS_SESSION__.get('infoToken'),
+                  sdkLoaded: !!sdk, sdkReady: sdk?.core?.getInitStatus?.() === true,
+                  loginChoices: [...document.querySelectorAll('.login-dialog-button')].map(el=>el.textContent.trim()),
+                  hasUidForm: !!document.querySelector('.uid-cont'),
+                  socketTransport: window.__ORIGINAL_DIAGNOSTICS__?.socketTransport || null,
+                  socketEventCounts: window.__ORIGINAL_DIAGNOSTICS__?.socketEventCounts || null,
+                  errorCount: window.__ORIGINAL_DIAGNOSTICS__?.errors.length || 0};
+                """, arguments: [:], in: nil, in: .page) { continuation.resume(with: $0) }
+                }
+                report[label] = result
+            } catch { report[label] = ["status": "loading"] }
+        }
+        if let snapshot = lastSnapshot {
+            let presets = snapshot["presetList"] as? [[String: Any]] ?? []
+            let invalidPresets = presets.filter { ($0["preset_id"] as? Int ?? 0) <= 0 }.count
+            var panel: [String: Any] = [:]
+            panel["loggedIn"] = snapshot["isLoggedIn"] ?? false
+            panel["bagItems"] = (snapshot["bagList"] as? [Any])?.count ?? 0
+            panel["atlasItems"] = (snapshot["atlasList"] as? [Any])?.count ?? 0
+            panel["presetCount"] = (snapshot["presetList"] as? [Any])?.count ?? 0
+            panel["invalidPresetIdCount"] = invalidPresets
+            panel["roomMode"] = snapshot["roomMode"] ?? "idle"
+            panel["roomMembers"] = (snapshot["roomMembers"] as? [Any])?.count ?? 0
+            report["panel"] = panel
+        }
+        if let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
+            try? data.write(to: URL(fileURLWithPath: path), options: .atomic)
         }
     }
 

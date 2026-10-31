@@ -18,7 +18,7 @@
 
 ## 字体
 
-保留相邻素材库的 [字体许可核对](https://github.com/lliooly/wuwa-tappo-assets/blob/3b23b04468174fd1329473c64e2a4254999bb819/docs/字体授权.md) 及 [字体原始名称记录](https://github.com/lliooly/wuwa-tappo-assets/blob/3b23b04468174fd1329473c64e2a4254999bb819/data/来源快照/font-name-records.json)。
+保留相邻素材库的 [字体许可核对](https://github.com/lliooly/wuwa-tappo-assets/blob/478ae2fdf4f1308189df87a5b249cd0deb1dfb64/docs/字体授权.md) 及 [字体原始名称记录](https://github.com/lliooly/wuwa-tappo-assets/blob/478ae2fdf4f1308189df87a5b249cd0deb1dfb64/data/来源快照/font-name-records.json)。
 
 - `975MaruSC`、`GenSenRounded`／`GenSenRoundedJP`、`Prompt`：原字体字段注明 SIL OFL 1.1。
 - `NanumGothic`：原客户端声明为 SIL OFL 1.1，具体文件版权信息仍须一并保留。
@@ -30,7 +30,7 @@
 
 - [恢复清单与哈希](recovered/wuwa-tappo-cn-1.0.3/manifest.json)
 - [素材目录说明](assets/README.md)
-- [素材来源及权利说明](https://github.com/lliooly/wuwa-tappo-assets/blob/3b23b04468174fd1329473c64e2a4254999bb819/docs/版权与来源.md)
+- [素材来源及权利说明](https://github.com/lliooly/wuwa-tappo-assets/blob/478ae2fdf4f1308189df87a5b249cd0deb1dfb64/docs/版权与来源.md)
 - [本项目非官方声明](DISCLAIMER.md)
 
 第三方内容的使用以各项许可原文为准。
