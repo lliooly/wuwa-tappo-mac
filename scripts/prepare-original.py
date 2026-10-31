@@ -78,6 +78,9 @@ def prepare(resources):
     replace(staged[cookie_start:cookie_end],
             'getCookie=e=>window.__MACOS_SESSION__.get(e),setCookie=(e,t,n)=>window.__MACOS_SESSION__.set(e,t,n)',
             'Adapt Secure cookies unsupported by custom WKURLScheme to shared Keychain session')
+    replace('applyClickReportSuccess(e){const t=parseClickCount(e);this.userInfo&&(this.userInfo={...this.userInfo,total_click_count:t}),this.setLocalClickCount(0),this.serverClickSpend=0}',
+            'applyClickReportSuccess(e){const t=parseClickCount(e),n=this.cumulativeClickCount,s=Math.max(this.serverClickTotal,t);this.userInfo&&(this.userInfo={...this.userInfo,total_click_count:s}),this.setLocalClickCount(isFrozenClickCount(s)?0:Math.max(0,n-s)),this.serverClickSpend=0}',
+            'Keep clicks received while a report is in flight and never roll back a newer confirmed total')
     entry.write_text(staged)
     main_file = target / 'assets/index-pp8VWaUF.js'
     main_text = main_file.read_text()
