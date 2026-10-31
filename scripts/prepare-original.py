@@ -20,9 +20,9 @@ def prepare(resources):
     target = resources / 'original'
     shutil.copytree(source, target)
     html = (target / 'index.html').read_text()
-    # No cross-origin endpoints, JSONP, telemetry, accounts or server mutations in this phase.
+    # HTTPS official services are available in normal mode; audit mode stays offline.
     html = html.replace('<meta charset="UTF-8" />', '''<meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' wuwa: data: blob:; script-src 'self' wuwa: 'unsafe-inline' 'unsafe-eval'; style-src 'self' wuwa: 'unsafe-inline'; connect-src 'self' wuwa:; img-src 'self' wuwa: data: blob:; object-src 'none'; base-uri 'self'">''')
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' wuwa: data: blob:; script-src 'self' wuwa: 'unsafe-inline' 'unsafe-eval' https://*.kurogame.com https://*.kurogames.com https://*.kurogames-global.com; style-src 'self' wuwa: 'unsafe-inline' https://*.kurogame.com https://*.kurogames.com; connect-src 'self' wuwa: https://*.kurogame.com https://*.kurogames.com https://*.kurogames-global.com wss://api-mc-wuwatappo.kurogames-global.com; img-src 'self' wuwa: data: blob: https:; frame-src https://*.kurogame.com https://*.kurogames.com; object-src 'none'; base-uri 'self'">''')
     html = html.replace('<div id="app"></div>', '<div id="app"></div><script src="./offline-assets.js"></script>')
     (target / 'index.html').write_text(html)
     entry = target / 'assets/index-CuzHFfJW.js'
@@ -48,15 +48,21 @@ def prepare(resources):
         staged = staged.replace(before, 'macOSTracking.' + member)
         patches.append({'reason': 'Disable outbound telemetry member', 'member': member, 'count': count})
     staged = 'const macOSTracking={track(){},setSuperProperties(){},flush(){return Promise.resolve()},getDeviceId(){return ""}};\n' + staged
+    replace('isdkSrc="//pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/kr-sdk.js"',
+            'isdkSrc="https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/kr-sdk.js"',
+            'Use HTTPS SDK script instead of inheriting custom wuwa scheme')
+    replace('isdkCss="//pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/style.css"',
+            'isdkCss="https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/style.css"',
+            'Use HTTPS SDK stylesheet instead of inheriting custom wuwa scheme')
     replace('function getDictionaryAssetsHost(){const e=normalizeAssetsHost(readStoredDictionaryAssetsHost());return e&&e!==dictionaryAssetsHost&&(dictionaryAssetsHost=e),dictionaryAssetsHost}',
-            'function getDictionaryAssetsHost(){return "wuwa://app/public"}', 'Use archived public dictionaries')
+            'function getDictionaryAssetsHost(){if(!window.__MACOS_ONLINE__)return "wuwa://app/public";const e=normalizeAssetsHost(readStoredDictionaryAssetsHost());return e&&e!==dictionaryAssetsHost&&(dictionaryAssetsHost=e),dictionaryAssetsHost||"wuwa://app/public"}', 'Use live dictionary host with archived startup/offline fallback')
     replace('function shouldDeferRemoteDictionary(){return networkSnapshot.value.status==="offline"||networkSnapshot.value.status==="reconnecting"||networkSnapshot.value.status==="degraded"}',
-            'function shouldDeferRemoteDictionary(){return false}', 'Archived local dictionaries do not require internet')
+            'function shouldDeferRemoteDictionary(){return window.__MACOS_ONLINE__&&(networkSnapshot.value.status==="offline"||networkSnapshot.value.status==="reconnecting"||networkSnapshot.value.status==="degraded")}', 'Respect network gate only in online mode')
     replace('function atlas(){const e={loading:!0,reload:!0};return jsonpClient.get("api/common/atlas",{},e)}',
-            'function atlas(){return fetch("wuwa://app/public/atlas.json").then(r=>r.json())}', 'Load unmodified public atlas snapshot without account service')
+            'function atlas(){const local=()=>fetch("wuwa://app/public/atlas.json").then(r=>r.json());if(!window.__MACOS_ONLINE__)return local();return jsonpClient.get("api/common/atlas",{},{loading:!0,reload:!0}).catch(error=>{if(isNetworkApiError(error))return local();throw error})}', 'Use live public atlas and archived network-error fallback')
     network_start = staged[staged.index('function startNetworkMonitoring(){'):staged.index('function stopNetworkMonitoring(){')]
-    replace(network_start, 'function startNetworkMonitoring(){if(!started){started=true;setSnapshot({status:"offline",reason:"macos-local-only",retryAttempt:0})}}',
-            'Keep account connectivity explicitly offline without retrying excluded services')
+    replace(network_start, network_start.replace('function startNetworkMonitoring(){', 'function startNetworkMonitoring(){if(!window.__MACOS_ONLINE__){if(!started){started=true;setSnapshot({status:"offline",reason:"macos-local-only",retryAttempt:0})}return}'),
+            'Preserve original network monitor with explicit offline audit mode')
     replace('function isAppUpdaterEnabled(){if(!isTauriRuntime())return!1;const e="true".toLowerCase();return e!=="false"&&e!=="0"}',
             'function isAppUpdaterEnabled(){return false}', 'Windows updater cannot install into the macOS bundle; do not claim an update check succeeded')
     replace('function buildAssetUrl(e,t){const n=',
@@ -66,6 +72,12 @@ def prepare(resources):
     replace('bootstrap();export{',
             'window.__WUWA_ORIGINAL__={router,globalStore,loadDesktopCatSettings,persistDesktopCatSettings,showToast};bootstrap();export{',
             'Expose actual original router/store for integration verification')
+    # Preserve the release's synchronous token API, backed by the native Keychain.
+    cookie_start = staged.index('getCookie=e=>{const t=`kuro_${e}=`')
+    cookie_end = staged.index(',throttle$1=', cookie_start)
+    replace(staged[cookie_start:cookie_end],
+            'getCookie=e=>window.__MACOS_SESSION__.get(e),setCookie=(e,t,n)=>window.__MACOS_SESSION__.set(e,t,n)',
+            'Adapt Secure cookies unsupported by custom WKURLScheme to shared Keychain session')
     entry.write_text(staged)
     main_file = target / 'assets/index-pp8VWaUF.js'
     main_text = main_file.read_text()
@@ -92,11 +104,10 @@ def prepare(resources):
     # Keep the official selection dialog available without loading an account SDK.
     login_file = target / 'assets/login-B1hThJN-.js'
     login_text = login_file.read_text()
-    login_open = login_text[login_text.index('async function n(){if(!m){'):login_text.index('function e(){b&&clearTimeout(b)')]
     login_patches = [
-        (login_open, 'async function n(){p()}', 'Open original login choice without waiting for SDK'),
-        ('Re({link:[{rel:"stylesheet",href:Pe}],script:[{src:Ae,onload:()=>{_(),u&&(u=!1,n())}}]});', '', 'Do not load remote authentication SDK'),
-        ('window.addEventListener("cat-pass-login-overlay",F),K()});', 'window.addEventListener("cat-pass-login-overlay",F),p()});', 'Present choice on first native window mount'),
+        ('async function n(){if(!m){', 'async function n(){if(!window.__MACOS_ONLINE__){p();return}if(!m){', 'Keep offline choice while restoring original SDK initialization online'),
+        ('Re({link:[{rel:"stylesheet",href:Pe}],script:[{src:Ae,onload:()=>{_(),u&&(u=!1,n())}}]});', 'window.__MACOS_ONLINE__&&Re({link:[{rel:"stylesheet",href:Pe}],script:[{src:Ae,onload:()=>{_(),u&&(u=!1,n())}}]});', 'Load original authentication SDK only online'),
+        ('window.addEventListener("cat-pass-login-overlay",F),K()});', 'window.addEventListener("cat-pass-login-overlay",F),K(),n()});', 'Open original choice after mounting even if initial native open event preceded listeners'),
     ]
     for before, after, reason in login_patches:
         if login_text.count(before) != 1:
@@ -141,6 +152,7 @@ def prepare(resources):
     (target / 'offline-assets.js').write_text('window.__ORIGINAL_ASSET_MAP__=' + json.dumps(asset_map, ensure_ascii=False) + ';')
     shutil.copy2(ROOT / 'original-adapter/tauri.js', target / 'tauri-adapter.js')
     shutil.copy2(ROOT / 'original-adapter/audit.js', target / 'audit.js')
+    shutil.copy2(ROOT / 'original-adapter/session.js', target / 'session-adapter.js')
     inventory = []
     for path in sorted(source.rglob('*')):
         if path.is_file():

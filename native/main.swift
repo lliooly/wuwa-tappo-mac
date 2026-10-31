@@ -41,6 +41,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 originalFrontend?.onRequestInputAccess = { [weak self] in self?.requestPermission() }
                 originalFrontend?.start()
+                if let index = CommandLine.arguments.firstIndex(of: "--online-report"), CommandLine.arguments.indices.contains(index+1) {
+                    originalFrontend?.startOnlineReport(path: CommandLine.arguments[index+1])
+                }
+                if CommandLine.arguments.contains("--show-login") {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                        self?.originalFrontend?.create(label: "login", route: "/login").makeKeyAndOrderFront(nil)
+                    }
+                }
                 input.onRawKey = { [weak self] code, down, flags, repeated in self?.originalFrontend?.key(code, down: down, flags: flags, repeated: repeated) }
                 input.onMouseEvent = { [weak self] button, down, location in self?.originalFrontend?.mouse(button: button, down: down, location: location) }
                 input.onReset = { [weak self] in self?.originalFrontend?.resetInput() }

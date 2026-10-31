@@ -1,6 +1,7 @@
 import AppKit
 import WebKit
 import ServiceManagement
+import Network
 
 private final class OriginalWindow: NSWindow {
     var interactive = true
@@ -64,6 +65,11 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private let base = URL(string: "wuwa://app/")!
     private var flags: [String: Any] = [:]
     private let clickStore = OriginalClickStore()
+    private lazy var sessionStore = OriginalSessionStore()
+    private let networkMonitor = NWPathMonitor()
+    private var onlineReportTimer: Timer?
+    private var networkRules: WKContentRuleList?
+    private let online = !CommandLine.arguments.contains("--offline") && !CommandLine.arguments.contains("--original-preview") && !CommandLine.arguments.contains("--original-audit")
 
     init(resources: URL) {
         self.resources = resources.appendingPathComponent("original")
@@ -73,6 +79,32 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     func start() {
+        let filters = online ? [
+            "^https?://mp-cn-sdklog\\.kurogames\\.com/",
+            "^https?://ali-sh-datareceiver\\.kurogame\\.xyz/",
+            "^https?://sdkdataapi\\.kurogame\\.com/maidian",
+            "^https?://api-mc-wuwatappo\\.kurogames-global\\.com/zimple-api/frontend/report/"
+        ] : ["^https?://", "^wss?://"]
+        let rules = filters.map { ["trigger": ["url-filter": $0], "action": ["type": "block"]] }
+        let json = String(data: try! JSONSerialization.data(withJSONObject: rules), encoding: .utf8)!
+        WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "wuwa-\(online ? "online" : "offline")-v1", encodedContentRuleList: json) { [weak self] list, error in
+            guard let self = self, let list = list else {
+                NSLog("Network isolation rules unavailable; application startup stopped")
+                NSApp.terminate(nil)
+                return
+            }
+            self.networkRules = list
+            self.startRuntime()
+        }
+    }
+
+    private func startRuntime() {
+        if online {
+            networkMonitor.pathUpdateHandler = { [weak self] path in
+                DispatchQueue.main.async { self?.emit("cat-native-network-status-changed", ["internetAccess": path.status == .satisfied]) }
+            }
+            networkMonitor.start(queue: DispatchQueue(label: "wuwa.network-status"))
+        }
         // WK IPC arrives after the DOM mousedown handler returns. Keep the actual
         // originating event rather than relying on NSApp.currentEvent at reply time.
         mouseDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] event in
@@ -103,10 +135,19 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     @discardableResult func create(label: String, route: String) -> NSWindow {
         if let existing = windows[label] { return existing }
         let config = WKWebViewConfiguration()
+        if let rules = networkRules { config.userContentController.add(rules) }
         config.setURLSchemeHandler(source, forURLScheme: "wuwa")
         config.preferences.javaScriptCanOpenWindowsAutomatically = false
         config.userContentController.addScriptMessageHandler(self, contentWorld: .page, name: "originalInvoke")
+        config.userContentController.addScriptMessageHandler(self, contentWorld: .page, name: "originalSession")
         config.userContentController.add(self, name: "originalLog")
+        let initialSession = online ? sessionStore.snapshot() : [:]
+        let sessionJSON = String(data: try! JSONSerialization.data(withJSONObject: initialSession), encoding: .utf8)!
+        let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
+        config.userContentController.addUserScript(WKUserScript(source: bootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        if let session = try? String(contentsOf: resources.appendingPathComponent("session-adapter.js"), encoding: .utf8) {
+            config.userContentController.addUserScript(WKUserScript(source: session, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        }
         if let adapter = try? String(contentsOf: resources.appendingPathComponent("tauri-adapter.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: adapter, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         }
@@ -183,6 +224,20 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage,
                                replyHandler: @escaping (Any?, String?) -> Void) {
+        if message.name == "originalSession" {
+            guard online, message.frameInfo.isMainFrame, let body = message.body as? [String: Any],
+                  let name = body["name"] as? String, let value = body["value"] as? String,
+                  let days = body["days"] as? Double else { replyHandler(nil, "Invalid session request"); return }
+            do {
+                try sessionStore.set(name: name, value: value, days: days)
+                let snapshot = sessionStore.snapshot()
+                for view in views.values where view !== message.webView {
+                    view.callAsyncJavaScript("window.__MACOS_SESSION__.receive(snapshot)", arguments: ["snapshot": snapshot], in: nil, in: .page, completionHandler: nil)
+                }
+                replyHandler(NSNull(), nil)
+            } catch { replyHandler(nil, error.localizedDescription) }
+            return
+        }
         guard let body = message.body as? [String: Any], let label = body["label"] as? String,
               let command = body["command"] as? String else { replyHandler(nil, "Invalid platform request"); return }
         let args = body["args"] as? [String: Any] ?? [:]
@@ -192,7 +247,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let entry = message.body as? [String: Any] else { return }
-        let text = "[\(entry["label"] ?? "")] \(entry["kind"] ?? ""): \(entry["value"] ?? "")"
+        let text = redactOriginalLog("[\(entry["label"] ?? "")] \(entry["kind"] ?? ""): \(entry["value"] ?? "")")
         if ["error", "rejection"].contains(entry["kind"] as? String ?? "") { runtimeErrors.append(text) }
         NSLog("Original %@", text)
     }
@@ -303,7 +358,19 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         case "close_oss_notice_window": windows["oss-notice"]?.orderOut(nil); return null
         case "open_login_window":
             create(label: "login", route: "/login").makeKeyAndOrderFront(nil)
-            emit("login-modal-open", ["intent": "login"], target: "login")
+            emit("login-modal-open", ["intent": args["intent"] as? String ?? "login"], target: "login")
+            return null
+        case "resize_login_window_to_content":
+            guard let payload = args["payload"] as? [String: Any],
+                  let width = payload["width"] as? Double, let height = payload["height"] as? Double,
+                  width.isFinite, height.isFinite, width > 0, height > 0,
+                  let login = windows["login"] else { throw CocoaError(.coderInvalidValue) }
+            let visible = (login.screen ?? NSScreen.main)?.visibleFrame ?? login.frame
+            let size = NSSize(width: min(width, visible.width), height: min(height, visible.height))
+            let center = NSPoint(x: login.frame.midX, y: login.frame.midY)
+            login.setContentSize(size)
+            login.setFrameOrigin(NSPoint(x: max(visible.minX, min(center.x - size.width/2, visible.maxX - size.width)),
+                                         y: max(visible.minY, min(center.y - size.height/2, visible.maxY - size.height))))
             return null
         case "close_login_window": windows["login"]?.orderOut(nil); return null
         case "load_key_press_count", "load_cumulative_click_count", "save_key_press_count", "save_cumulative_click_count":
@@ -367,7 +434,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                 }
             }; return null
         case "write_app_log":
-            let line = "\(ISO8601DateFormatter().string(from: Date())) [\(args["level"] ?? "info")] \(args["message"] ?? "")\n"
+            let line = redactOriginalLog("\(ISO8601DateFormatter().string(from: Date())) [\(args["level"] ?? "info")] \(args["message"] ?? "")\n")
             let directory = try logDirectory()
             let file = directory.appendingPathComponent("app.log")
             if !FileManager.default.fileExists(atPath: file.path) { _ = FileManager.default.createFile(atPath: file.path, contents: nil) }
@@ -432,7 +499,16 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        decisionHandler(action.request.url?.scheme == "wuwa" ? .allow : .cancel)
+        let url = action.request.url
+        if url?.scheme == "wuwa" { decisionHandler(.allow); return }
+        if online, action.targetFrame?.isMainFrame == false, url?.scheme == "https",
+           let host = url?.host, ["kurogame.com", "kurogames.com", "kurogames-global.com"].contains(where: { host == $0 || host.hasSuffix("." + $0) }) {
+            decisionHandler(.allow); return
+        }
+        if action.navigationType == .linkActivated, let url = url, externalURL(url.absoluteString) != nil {
+            NSWorkspace.shared.open(url)
+        }
+        decisionHandler(.cancel)
     }
 
     func key(_ code: Int, down: Bool, flags rawFlags: UInt64 = 0, repeated: Bool = false) {
@@ -958,7 +1034,50 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
     }
 
+    /// Opt-in local report contains readiness/state counts, never credentials.
+    func startOnlineReport(path: String) {
+        guard online else { return }
+        onlineReportTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                guard let self = self else { return }
+                var report: [String: Any] = ["status": "running", "time": ISO8601DateFormatter().string(from: Date()),
+                                             "unimplementedCommands": Array(self.unknownCommands).sorted()]
+                for label in ["main", "login"] {
+                    guard let view = self.views[label] else { continue }
+                    do {
+                        let result: Any = try await withCheckedThrowingContinuation { continuation in
+                            view.callAsyncJavaScript("""
+                        const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+                        const store = window.__WUWA_ORIGINAL__?.globalStore;
+                        const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
+                        return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
+                          hasSession: !!window.__MACOS_SESSION__.get('infoToken'),
+                          sdkLoaded: !!sdk, sdkReady: sdk?.core?.getInitStatus?.() === true,
+                          loginChoices: [...document.querySelectorAll('.login-dialog-button')].map(el=>el.textContent.trim()),
+                          hasUidForm: !!document.querySelector('.uid-cont'),
+                          errorCount: window.__ORIGINAL_DIAGNOSTICS__?.errors.length || 0};
+                        """, arguments: [:], in: nil, in: .page) { continuation.resume(with: $0) }
+                        }
+                        report[label] = result
+                    } catch { report[label] = ["status": "loading"] }
+                }
+                if let snapshot = self.lastSnapshot {
+                    report["panel"] = ["loggedIn": snapshot["isLoggedIn"] ?? false,
+                                        "bagItems": (snapshot["bagList"] as? [Any])?.count ?? 0,
+                                        "atlasItems": (snapshot["atlasList"] as? [Any])?.count ?? 0,
+                                        "roomMode": snapshot["roomMode"] ?? "idle",
+                                        "roomMembers": (snapshot["roomMembers"] as? [Any])?.count ?? 0]
+                }
+                if let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
+                    try? data.write(to: URL(fileURLWithPath: path), options: .atomic)
+                }
+            }
+        }
+    }
+
     func stop() {
+        networkMonitor.cancel()
+        onlineReportTimer?.invalidate()
         pointerTimer?.invalidate()
         if let resizeMonitor = resizeMonitor { NSEvent.removeMonitor(resizeMonitor) }
         if let mouseDownMonitor = mouseDownMonitor { NSEvent.removeMonitor(mouseDownMonitor) }

@@ -65,6 +65,7 @@
     unregisterCallback: id => callbacks.delete(id),
     convertFileSrc: path => `wuwa://app/${path.replace(/^\/+/, '')}`,
     async invoke(command, args = {}) {
+      if (window.__MACOS_ONLINE__) await window.__MACOS_SESSION__.flush();
       diagnostics.calls.push(command);
       if (diagnostics.calls.length > 3000) diagnostics.calls.splice(0, 1000);
       if (command === 'plugin:event|listen') {
@@ -97,7 +98,7 @@
   };
   window.isTauri = true;
   window.__MACOS_DIRECT_MOUSE__ = true;
-  if (label === 'login') {
+  if (label === 'login' && !window.__MACOS_ONLINE__) {
     const placeholder = event => {
       if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
       if (!event.target.closest?.('.login-dialog-button')) return;
@@ -107,11 +108,12 @@
     document.addEventListener('click', placeholder, true);
     document.addEventListener('keydown', placeholder, true);
   }
-  // This phase deliberately excludes accounts and telemetry; no original network request leaves the app.
+  // Normal mode retains original fetch/XHR and Socket.IO. Audit mode never
+  // reaches account services, even if the user has a saved production session.
   const nativeFetch = window.fetch.bind(window);
   window.fetch = (input, options) => {
     const url = new URL(typeof input === 'string' ? input : input.url, location.href);
-    if (url.protocol === 'wuwa:') return nativeFetch(input, options);
+    if (url.protocol === 'wuwa:' || window.__MACOS_ONLINE__) return nativeFetch(input, options);
     diagnostics.blockedNetwork.push(url.origin + url.pathname);
     return Promise.reject(new Error('Account/network services are outside the offline macOS port'));
   };
@@ -119,7 +121,7 @@
     static CONNECTING = 0; static OPEN = 1; static CLOSING = 2; static CLOSED = 3;
     constructor() { throw new Error('Room/account connection is unavailable in offline mode'); }
   }
-  window.WebSocket = OfflineSocket;
+  if (!window.__MACOS_ONLINE__) window.WebSocket = OfflineSocket;
   window.open = () => { report('unsupported', 'External browser requires native open_url'); return null; };
   window.__ORIGINAL_NATIVE_LABEL__ = label;
 })();

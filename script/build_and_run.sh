@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 MODE="${1:-run}"
-case "$MODE" in run|--settings|--debug|--logs|--telemetry|--verify) ;; *) echo "usage: $0 [--settings|--debug|--logs|--telemetry|--verify]" >&2; exit 2;; esac
+case "$MODE" in run|--settings|--online-check|--debug|--logs|--telemetry|--verify) ;; *) echo "usage: $0 [--settings|--online-check|--debug|--logs|--telemetry|--verify]" >&2; exit 2;; esac
 killall -TERM WuwaTappo >/dev/null 2>&1 || true
 for _ in {1..100}; do
   if ! pgrep -x WuwaTappo >/dev/null; then break; fi
@@ -19,6 +19,8 @@ if [[ "$MODE" == --debug ]]; then
 fi
 if [[ "$MODE" == --settings ]]; then
   open -n "$ROOT_DIR/dist/Wuwa Tappo.app" --args --show-settings
+elif [[ "$MODE" == --online-check ]]; then
+  open -n "$ROOT_DIR/dist/Wuwa Tappo.app" --args --show-login --online-report "$ROOT_DIR/build/online-state.json"
 else
   open -n "$ROOT_DIR/dist/Wuwa Tappo.app"
 fi
