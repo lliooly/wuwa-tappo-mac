@@ -10,7 +10,7 @@ from collections import Counter
 from pathlib import Path, PurePosixPath
 
 
-ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.2/art-assets/remote"
+ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.3/art-assets/remote"
 
 
 def main() -> None:

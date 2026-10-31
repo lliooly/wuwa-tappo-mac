@@ -13,7 +13,7 @@ from pathlib import Path, PurePosixPath
 from PIL import Image
 
 
-ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.2"
+ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.3"
 FRONTEND = ROOT / "frontend"
 OUTPUT = ROOT / "art-assets/bundled"
 MAIN_JS = FRONTEND / "assets/index-CuzHFfJW.js"

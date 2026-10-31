@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+import struct
 import subprocess
 from urllib.parse import unquote, urlsplit
 
@@ -40,8 +41,27 @@ def main():
         if not path.exists():
             raise ValueError(f'Broken symlink: {path.relative_to(ROOT)} -> {path.readlink()}')
 
-    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.2'
+    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.3'
     manifest = json.loads((archive / 'manifest.json').read_text())
+    package = json.loads((ROOT / 'package.json').read_text())
+    if package['version'] != manifest['sourceVersion']:
+        raise ValueError('Application version differs from recovered Windows version')
+    if not isinstance(package['macosBuild'], int) or package['macosBuild'] < 1:
+        raise ValueError('macosBuild must be a positive integer')
+    executable = ROOT / manifest['source']
+    if executable.exists():
+        data = executable.read_bytes()
+        if hashlib.sha256(data).hexdigest() != manifest['sourceSha256']:
+            raise ValueError('Windows source hash differs from recovery manifest')
+        evidence = manifest['versionEvidence']
+        info = struct.unpack_from('<6I', data, int(evidence['offset'], 16))
+        if info[0] != 0xfeef04bd:
+            raise ValueError('Missing Windows VS_FIXEDFILEINFO signature')
+        for key, high, low in [('fileVersion', info[2], info[3]),
+                               ('productVersion', info[4], info[5])]:
+            version = '.'.join(map(str, [high >> 16, high & 0xffff, low >> 16, low & 0xffff]))
+            if version != evidence[key] or version.rsplit('.', 1)[0] != package['version']:
+                raise ValueError(f'Windows {key} differs from application version')
     for item in manifest['resources']:
         path = archive / 'frontend' / item['path'].lstrip('/')
         content = path.read_bytes()
@@ -56,9 +76,9 @@ def main():
     for path in js_files:
         subprocess.run(['node', '--check', str(path)], check=True, capture_output=True)
 
-    docs = [ROOT / name for name in ['README.md', 'CONTRIBUTING.md', 'SECURITY.md',
-                                    'DISCLAIMER.md', 'THIRD_PARTY_NOTICES.md', 'CHANGELOG.md',
-                                    'docs/开发指南.md']]
+    docs = [path for path in paths if path.is_file() and not path.is_symlink()
+            and path.suffix == '.md'
+            and (path.parent == ROOT or path.relative_to(ROOT).parts[0] == 'docs')]
     checked = 0
     for path in docs:
         text = path.read_text()

@@ -928,5 +928,12 @@
       "size": 25646,
       "sha256": "54d80ad55fc7b6042f867d8dcb7786f4e97193ed92ca8bc595c94a235cdcd7e6"
     }
-  ]
+  ],
+  "sourceVersion": "1.0.3",
+  "versionEvidence": {
+    "type": "VS_FIXEDFILEINFO",
+    "offset": "0x4a4cc48",
+    "fileVersion": "1.0.3.0",
+    "productVersion": "1.0.3.0"
+  }
 }

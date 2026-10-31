@@ -7,7 +7,7 @@ import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const recovered = path.join(root, 'recovered/wuwa-tappo-cn-1.0.2');
+const recovered = path.join(root, 'recovered/wuwa-tappo-cn-1.0.3');
 const baseline = JSON.parse(fs.readFileSync(path.join(recovered, 'manifest.json'), 'utf8'));
 const baselineNames = new Set(baseline.resources.map(item => item.path));
 const pattern = /\/(?:assets\/[A-Za-z0-9_.-]+\.(?:js|css)|index\.html)/g;

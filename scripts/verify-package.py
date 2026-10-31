@@ -38,6 +38,9 @@ def main():
         executable = members[APP.name + '/Contents/MacOS/WuwaTappo']
         assert (executable.external_attr >> 16) & 0o111, 'Archive lost executable permissions'
     plist = plistlib.loads((APP / 'Contents/Info.plist').read_bytes())
+    package = json.loads((ROOT / 'package.json').read_text())
+    assert plist['CFBundleShortVersionString'] == package['version'], 'Application version differs from package.json'
+    assert plist['CFBundleVersion'] == str(package['macosBuild']), 'Application build differs from package.json'
     report = {'status': 'passed', 'signedApplication': True, 'archiveMatchesApplication': True,
               'comparedFiles': len(files), 'version': plist['CFBundleShortVersionString'],
               'bundleIdentifier': plist['CFBundleIdentifier'], 'archiveBytes': ARCHIVE.stat().st_size,

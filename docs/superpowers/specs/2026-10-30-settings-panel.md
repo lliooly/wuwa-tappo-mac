@@ -4,7 +4,7 @@
 
 ## 原版依据
 
-依据本地恢复的 CN 1.0.2 `index-C3fG-hsi.css` 中 `.module-panel/.tab-bar/.module-content/.preset-content/.preset-preview/.my-preset/.atlas-item` 等规则以及用户截图。遵守相邻素材仓库 AGENTS 与使用指南：物品卡片用files.atlas，角色预览取同一条目的head1/body1，配件预览用files.image，配饰偏移取角色assetMetadata。女性角色在该面板统一使用catalog公开版本，不与同名内置版本混用。
+依据本地恢复的 CN 1.0.3 `index-C3fG-hsi.css` 中 `.module-panel/.tab-bar/.module-content/.preset-content/.preset-preview/.my-preset/.atlas-item` 等规则以及用户截图。遵守相邻素材仓库 AGENTS 与使用指南：物品卡片用files.atlas，角色预览取同一条目的head1/body1，配件预览用files.image，配饰偏移取角色assetMetadata。女性角色在该面板统一使用catalog公开版本，不与同名内置版本混用。
 
 原版逻辑基准：面板约1100×756，侧栏243；logo152×82；导航214×70；预览背景228×207；预设105×105；卡片120×139，内图110×97；中文使用原版975MaruSC常规和粗体。字体许可说明、OFL全文和原始名称记录均随包保留。所有图片从files/catalog索引核验SHA256后复制。文件路径保留用途差异，不把同名图鉴与佩戴图混用。
 
@@ -31,7 +31,7 @@ WebKit对file URL的CSS mask有来源限制，构建时把两张原版蒙版的�
 
 原生 --panel-preview 路径：启动实际应用窗口，等待字体与图片解码，验证四个占位页、分类数量2/1/9、角色预览切换、五个表情槽和预设位，恢复背包后导出原生WKWebView快照。检查不仅依赖资源是否加载，还目视检查快照中的角色、图鉴蒙版、背景、字体和卡片。
 
-原有Node动画测试与原生smoke-test仍需通过；构建做签名校验并输出0.1.3 .app及zip。新增script/build_and_run.sh作为停止旧实例、构建、运行统一入口，--settings可直接打开面板。没有创建worktree或dev分支。
+构建、签名与运行入口为 `script/build_and_run.sh`，`--settings` 直接打开面板。
 
 ## 本次验证记录
 

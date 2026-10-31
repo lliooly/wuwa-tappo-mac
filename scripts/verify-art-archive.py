@@ -17,7 +17,7 @@ from PIL import Image
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-RECOVERED = PROJECT / "recovered/wuwa-tappo-cn-1.0.2"
+RECOVERED = PROJECT / "recovered/wuwa-tappo-cn-1.0.3"
 ART = RECOVERED / "art-assets"
 DATA_URI = re.compile(r"data:image/([^;\s,\"')]+);base64,([A-Za-z0-9+/=]+)")
 

@@ -6,7 +6,7 @@ import vm from 'node:vm';
 // Execute the recovered release expressions themselves. Account state is a
 // fixture for pure visibility checks; no account service or inventory is used.
 const paths = [
-  new URL('../recovered/wuwa-tappo-cn-1.0.2/frontend/assets/index-pp8VWaUF.js', import.meta.url),
+  new URL('../recovered/wuwa-tappo-cn-1.0.3/frontend/assets/index-pp8VWaUF.js', import.meta.url),
   new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-pp8VWaUF.js', import.meta.url),
 ];
 

@@ -1,7 +1,8 @@
-# Wuwa Tappo 1.0.2 Windows 版分析
+# Wuwa Tappo 1.0.3 Windows 版分析
 
 分析日期：2026-10-30。样本为 `WuwaTappo/WuwaTappo.exe`，SHA-256 为 `cedc37d0c11d112f4d933647fb6cf00e1dca847fc763250984c647080f849080`。
 
+版本核对：主程序的 PE `VS_FIXEDFILEINFO` 位于文件偏移 `0x4a4cc48`，文件版本与产品版本均为 `1.0.3.0`。本地安装器 `WuwaTappo-cn_1.0.2_x64-setup.exe` 为 1.0.2，两者是不同版本的样本。恢复目录曾按安装器误命名为 1.0.2，现已更正；前端文件及哈希保持不变。
 后续素材排查已补充恢复程序中内联的图片、Windows 原生图标，以及官方公开图鉴和素材索引中的 3,098 张图片；其中包含未在账号中解锁的外观素材。具体范围、中文目录和核验方法见 [美术素材归档](../../assets/README.md)。下文关于仅有默认素材的描述保留为首次分析时的结论。
 
 ## 已恢复的内容
@@ -31,7 +32,7 @@ IDA 将样本识别为 x86-64 Windows PE，可执行代码以 Rust/Tauri 2 为�
 
 ## 主要功能和依赖
 
-从已恢复的界面文案、路由和代码可见桌宠、宝箱、背包、图鉴、合成、联机、设置、登录和更新等功能。应用包含本地默认角色与表情素材，也有使用 CDN 地址获取角色、配件等资源的路径。登录 SDK、服务端 API 和 Socket.IO 联机逻辑存在远端依赖，尚未进行登录或联机实测。
+从已恢复的界面文案、路由和代码可见桌宠、宝箱、背包、图鉴、合成、联机、设置、登录和更新等功能。应用包含本地默认角色与表情素材，也有使用 CDN 地址获取角色、配件等资源的路径。登录 SDK、服务端 API 和 Socket.IO 联机逻辑依赖官方服务。macOS 运行结果见 [在线功能记录](../../docs/在线功能验收.md)。
 
 ## 本地数据与服务端数据
 
@@ -40,10 +41,10 @@ IDA 将样本识别为 x86-64 Windows PE，可执行代码以 Rust/Tauri 2 为�
 - 登录和用户资料、图鉴、背包、合成、外观预设、创建或加入房间、开启宝箱等均有对应的远端 API；房间状态和事件另外使用 Socket.IO。部分角色及配件资源会从服务端返回的素材地址获取。本地已有的默认素材不等于服务端资源全集。
 - 恢复的客户端还包含事件诊断和 SDK 日志上报代码。静态代码存在这些路径并不证明它们在所有状态下都会执行，也不足以完整说明所有上报内容。
 
-当前拿到的是客户端程序和前端发行文件，并非服务端源码。能否复用官方账号、跨平台同步计数、领取同一份奖励并进入原版房间，取决于官方服务端和登录 SDK 对 macOS 客户端的实际响应，尚未验证。
+当前资料包含客户端程序和前端发行文件。macOS 适配通过官方服务复用账号、计数和房间，运行结果见 [在线功能记录](../../docs/在线功能验收.md)。
 
 Windows 原生后端不能直接在 macOS 执行；Rust 反编译伪代码也不是可直接重新编译的源码。快捷键、全局事件、手柄、透明窗口、鼠标命中区域、显示器切换和全屏检测等需要建立 macOS 版本，并与现有前端的命令及事件协议对接。
 
 macOS 的 [NSWindow 全屏辅助窗口行为](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenauxiliary)可作为全屏空间适配的起点；[CGEvent 事件监听](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate%28tap%3Aplace%3Aoptions%3Aeventsofinterest%3Acallback%3Auserinfo%3A%29)涉及系统授权；[Game Controller 后台事件设置](https://developer.apple.com/documentation/gamecontroller/gccontroller/shouldmonitorbackgroundevents)需要单独考虑。是否能在目标机器的原生《鸣潮》全屏状态下正确覆盖、交互和接收输入，必须在实际游戏中验证。
 
-当前尚未创建 macOS 工程，也未运行前端、访问账号服务或验证游戏联动。
+macOS 构建和检查步骤见 [开发指南](../../docs/开发指南.md)。

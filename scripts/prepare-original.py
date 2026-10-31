@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def prepare(resources):
-    source = ROOT / 'recovered/wuwa-tappo-cn-1.0.2/frontend'
+    source = ROOT / 'recovered/wuwa-tappo-cn-1.0.3/frontend'
     recovery = json.loads((source.parent / 'manifest.json').read_text())
     archived = {item['path'].lstrip('/'): item['sha256'] for item in recovery['resources']}
     actual = {str(path.relative_to(source)): hashlib.sha256(path.read_bytes()).hexdigest()

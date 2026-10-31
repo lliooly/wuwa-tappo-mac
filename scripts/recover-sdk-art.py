@@ -15,7 +15,7 @@ from pathlib import Path
 from PIL import Image
 
 
-ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.2/art-assets/sdk"
+ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.3/art-assets/sdk"
 DATA = re.compile(r"data:image/([^;\s,\"')]+);base64,([A-Za-z0-9+/=]+)")
 SOURCES = {"kr-sdk.js": "https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/kr-sdk.js",
            "style.css": "https://pro-cdn-sdk.kurogame.com/pro/web-sdk/1.x/style.css"}

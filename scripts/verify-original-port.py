@@ -6,7 +6,7 @@ import json
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'recovered/wuwa-tappo-cn-1.0.2/frontend'
+SOURCE = ROOT / 'recovered/wuwa-tappo-cn-1.0.3/frontend'
 STAGED = ROOT / 'dist/Wuwa Tappo.app/Contents/Resources/original'
 manifest = json.loads((STAGED / 'adapter-manifest.json').read_text())
 recovery = json.loads((SOURCE.parent / 'manifest.json').read_text())

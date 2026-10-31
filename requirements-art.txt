@@ -1,3 +1,3 @@
 # Optional historical asset recovery/inspection tools only.
 # App build and runtime do not require Pillow.
-Pillow==11.3.0
+Pillow==13.0.0

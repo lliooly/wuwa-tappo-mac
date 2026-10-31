@@ -4,11 +4,11 @@
 
 ## 依据与适用范围
 
-依据本地恢复的 Wuwa Tappo CN 1.0.2 发行产物静态分析，不是官方源工程，也不是运行原版后的实测结论。原文件保持不动。
+依据本地恢复的 Wuwa Tappo CN 1.0.3 发行产物静态分析，不是官方源工程，也不是运行原版后的实测结论。原文件保持不动。
 
-- `recovered/wuwa-tappo-cn-1.0.2/frontend/assets/index-pp8VWaUF.js`：主桌宠、输入、房间玩偶和眨眼。
-- `recovered/wuwa-tappo-cn-1.0.2/frontend/assets/index-CuzHFfJW.js`：素材解析和配饰偏移。
-- `recovered/wuwa-tappo-cn-1.0.2/frontend/assets/index-C3fG-hsi.css`：画布、叠层、表情气泡。
+- `recovered/wuwa-tappo-cn-1.0.3/frontend/assets/index-pp8VWaUF.js`：主桌宠、输入、房间玩偶和眨眼。
+- `recovered/wuwa-tappo-cn-1.0.3/frontend/assets/index-CuzHFfJW.js`：素材解析和配饰偏移。
+- `recovered/wuwa-tappo-cn-1.0.3/frontend/assets/index-C3fG-hsi.css`：画布、叠层、表情气泡。
 - 相邻素材仓库 `AGENTS.md`、`docs/使用指南.md` 和 `data/catalog.json`：实际素材路径及用途。
 
 发行 JS 被压缩为长行，以下按函数名定位，避免用行号假装精确引用。头部 1/2 已另用默认角色图片目视核对为睁眼/闭眼。

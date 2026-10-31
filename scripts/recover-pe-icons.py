@@ -14,7 +14,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = ["WuwaTappo-cn_1.0.2_x64-setup.exe", "WuwaTappo/WuwaTappo.exe", "WuwaTappo/uninstall.exe"]
-OUTPUT = ROOT / "recovered/wuwa-tappo-cn-1.0.2/art-assets/bundled/native-icons"
+OUTPUT = ROOT / "recovered/wuwa-tappo-cn-1.0.3/art-assets/bundled/native-icons"
 
 
 def resources(path: Path) -> list[dict]:

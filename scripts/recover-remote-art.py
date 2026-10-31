@@ -21,7 +21,7 @@ from pathlib import Path, PurePosixPath
 from PIL import Image
 
 
-ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.2/art-assets/remote"
+ROOT = Path(__file__).resolve().parents[1] / "recovered/wuwa-tappo-cn-1.0.3/art-assets/remote"
 API = "https://api-mc-wuwatappo.kurogames-global.com"
 HOST = "https://mc-wuwatappo.kurogames-global.com"
 HOSTNAME = urllib.parse.urlsplit(HOST).hostname
