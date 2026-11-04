@@ -2,7 +2,7 @@ name: Checks
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev/offline-full-atlas]
   pull_request:
   workflow_dispatch:
 
@@ -65,3 +65,17 @@ jobs:
         run: |
           python3 scripts/verify-click-store.py
           python3 scripts/verify-session-store.py
+      - name: Build and verify offline full atlas edition
+        if: runner.os == 'macOS'
+        run: |
+          python3 scripts/build-macos.py --offline-full-atlas
+          python3 scripts/verify-offline.py
+      - name: Upload offline full atlas package
+        if: runner.os == 'macOS'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Wuwa-Tappo-mac-offline-full-atlas-arm64
+          path: |
+            app/dist/Wuwa-Tappo-mac-offline-full-atlas-arm64.zip
+            app/dist/Wuwa-Tappo-mac-offline-full-atlas-arm64.zip.sha256
+          if-no-files-found: error

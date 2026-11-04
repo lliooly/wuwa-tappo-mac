@@ -8,10 +8,15 @@ from pathlib import Path
 import plistlib
 import shutil
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT.parent / 'wuwa-tappo-assets'
-APP = ROOT / 'dist/Wuwa Tappo.app'
+OFFLINE_FULL_ATLAS = '--offline-full-atlas' in sys.argv
+APP_NAME = 'Wuwa Tappo Offline' if OFFLINE_FULL_ATLAS else 'Wuwa Tappo'
+BUNDLE_ID = 'io.lliooly.wuwa-tappo.mac' + ('.offline-full-atlas' if OFFLINE_FULL_ATLAS else '')
+EXECUTABLE = 'WuwaTappoOffline' if OFFLINE_FULL_ATLAS else 'WuwaTappo'
+APP = ROOT / 'dist' / (APP_NAME + '.app')
 CONTENTS = APP / 'Contents'
 RESOURCES = CONTENTS / 'Resources'
 
@@ -21,6 +26,8 @@ def run(*args):
 
 
 def main():
+    if any(arg != '--offline-full-atlas' for arg in sys.argv[1:]):
+        raise SystemExit('usage: build-macos.py [--offline-full-atlas]')
     package = json.loads((ROOT / 'package.json').read_text())
     # Only clean generated bundle content, never source or the asset library.
     if APP.exists():
@@ -161,6 +168,11 @@ def main():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     module.prepare(RESOURCES)
+    if OFFLINE_FULL_ATLAS:
+        spec = importlib.util.spec_from_file_location('prepare_offline', ROOT / 'scripts/prepare-offline.py')
+        offline_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(offline_module)
+        offline_module.prepare(RESOURCES)
     for name in ['版权与来源.md', '字体授权.md']:
         source = LIBRARY / 'docs' / name
         if source.exists():
@@ -193,9 +205,10 @@ def main():
     run('iconutil', '-c', 'icns', str(iconset), '-o', str(RESOURCES / 'WuwaTappo.icns'))
     with (CONTENTS / 'Info.plist').open('wb') as output:
         plistlib.dump({
-            'CFBundleName': 'Wuwa Tappo', 'CFBundleDisplayName': 'Wuwa Tappo',
-            'CFBundleIdentifier': 'io.lliooly.wuwa-tappo.mac',
-            'CFBundleExecutable': 'WuwaTappo', 'CFBundlePackageType': 'APPL',
+            'CFBundleName': APP_NAME, 'CFBundleDisplayName': APP_NAME,
+            'CFBundleIdentifier': BUNDLE_ID,
+            'CFBundleExecutable': EXECUTABLE, 'CFBundlePackageType': 'APPL',
+            'WuwaDistributionVariant': 'offline-full-atlas' if OFFLINE_FULL_ATLAS else 'standard',
             'CFBundleIconFile': 'WuwaTappo.icns',
             'CFBundleShortVersionString': package['version'], 'CFBundleVersion': str(package['macosBuild']),
             'LSMinimumSystemVersion': '13.0', 'LSUIElement': True,
@@ -207,15 +220,17 @@ def main():
     run('xcrun', 'swiftc', '-swift-version', '5', '-O', '-target', 'arm64-apple-macos13.0',
         '-module-cache-path', str(cache), '-framework', 'AppKit', '-framework', 'JavaScriptCore', '-framework', 'WebKit',
         *[str(p) for p in sorted((ROOT / 'native').glob('*.swift'))],
-        '-o', str(CONTENTS / 'MacOS/WuwaTappo'))
+        '-o', str(CONTENTS / 'MacOS' / EXECUTABLE))
     # A developer identity can be supplied to keep a stable identity across local rebuilds.
     identity = os.environ.get('WUWA_SIGN_IDENTITY', '-')
-    run('codesign', '--force', '--sign', identity, '--identifier', 'io.lliooly.wuwa-tappo.mac', str(APP))
+    run('codesign', '--force', '--sign', identity, '--identifier', BUNDLE_ID, str(APP))
     run('codesign', '--verify', '--strict', str(APP))
-    archive = ROOT / 'dist/Wuwa-Tappo-mac-arm64.zip'
+    archive = ROOT / 'dist' / ('Wuwa-Tappo-mac-offline-full-atlas-arm64.zip' if OFFLINE_FULL_ATLAS else 'Wuwa-Tappo-mac-arm64.zip')
     if archive.exists():
         archive.unlink()
     run('ditto', '-c', '-k', '--sequesterRsrc', '--keepParent', str(APP), str(archive))
+    if OFFLINE_FULL_ATLAS:
+        archive.with_suffix('.zip.sha256').write_text(hashlib.sha256(archive.read_bytes()).hexdigest() + '  ' + archive.name + '\n')
     print(f'已生成：{APP}\n压缩包：{archive}', flush=True)
 
 

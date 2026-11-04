@@ -11,6 +11,21 @@
   <p><a href="https://github.com/lliooly/wuwa-tappo-mac/releases/latest">下载安装包</a> · <a href="#使用说明">使用说明</a> · <a href="docs/开发指南.md">开发指南</a></p>
 </div>
 
+## 全解锁离线特别版
+
+`dev/offline-full-atlas` 分支提供独立的 **Wuwa Tappo Offline**。无需登录和联网，可使用当前素材快照中的全部 899 项角色、配件和表情；装扮、收藏与预设保存在本机。保留原版角色适配规则、5 个表情上限和 10 个预设位。
+
+特别版不提供登录、联机、兑换、合成和服务器开箱，不产生线上账号物品。应用标识、存档、日志与可执行文件均和普通版区分，可同时安装。
+
+```sh
+python3 scripts/build-macos.py --offline-full-atlas
+open 'dist/Wuwa Tappo Offline.app'
+```
+
+独立产物为 `dist/Wuwa Tappo Offline.app` 和 `dist/Wuwa-Tappo-mac-offline-full-atlas-arm64.zip`。CI 构建成功后可在 Actions 的 `Wuwa-Tappo-mac-offline-full-atlas-arm64` artifact 中下载安装包；Release 需另行发布。普通构建命令仍生成原有联网版。
+
+特别版的运行、检查和存储说明见[开发指南](docs/开发指南.md#全解锁离线特别版)。以下介绍为普通版功能。
+
 让共鸣者待在 Mac 桌面上，跟着键盘、鼠标和手柄的操作拍桌子。保留 Windows CN 版的界面，支持登录、换装、开箱、合成、兑换和好友联机。
 
 当前源码版本为 **1.0.3**，与所用 Windows CN 前端版本一致。

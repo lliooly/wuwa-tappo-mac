@@ -24,9 +24,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         do {
             guard let resources = Bundle.main.resourceURL else { throw CocoaError(.fileNoSuchFile) }
+            let fullAtlas = Bundle.main.infoDictionary?["WuwaDistributionVariant"] as? String == "offline-full-atlas"
             let legacyTest = CommandLine.arguments.contains("--smoke-test") || CommandLine.arguments.contains("--panel-preview") ||
                 CommandLine.arguments.contains("--render-preview")
-            if CommandLine.arguments.contains("--original-ui") || (!CommandLine.arguments.contains("--legacy-ui") && !legacyTest) {
+            if fullAtlas || CommandLine.arguments.contains("--original-ui") || (!CommandLine.arguments.contains("--legacy-ui") && !legacyTest) {
                 originalFrontend = OriginalFrontend(resources: resources)
                 originalFrontend?.onExit = { [weak self] in
                     guard let self = self else { return }
@@ -41,6 +42,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 originalFrontend?.onRequestInputAccess = { [weak self] in self?.requestPermission() }
                 originalFrontend?.start()
+                if let index = CommandLine.arguments.firstIndex(of: "--offline-atlas-check"), CommandLine.arguments.indices.contains(index+1) {
+                    originalFrontend?.testOfflineAtlas(path: CommandLine.arguments[index+1])
+                    return
+                }
                 if let index = CommandLine.arguments.firstIndex(of: "--maintenance-check"), CommandLine.arguments.indices.contains(index+1) {
                     originalFrontend?.testMaintenance(path: CommandLine.arguments[index+1])
                     return

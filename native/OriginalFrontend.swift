@@ -76,16 +76,27 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private var maintenanceActive = false
     private var maintenancePayload: [String: Any] = [:]
     private var socketBridge: OriginalSocketBridge?
-    private let online = !CommandLine.arguments.contains("--offline") && !CommandLine.arguments.contains("--original-preview") && !CommandLine.arguments.contains("--original-audit")
+    private let fullAtlas = Bundle.main.infoDictionary?["WuwaDistributionVariant"] as? String == "offline-full-atlas"
+    private var offlineStore: OfflineAtlasStore?
+    private let online = Bundle.main.infoDictionary?["WuwaDistributionVariant"] as? String != "offline-full-atlas" && !CommandLine.arguments.contains("--offline") && !CommandLine.arguments.contains("--original-preview") && !CommandLine.arguments.contains("--original-audit")
 
     init(resources: URL) {
         self.resources = resources.appendingPathComponent("original")
         self.source = OriginalAssetScheme(root: resources.appendingPathComponent("original"))
         super.init()
+        if fullAtlas {
+            do { offlineStore = try OfflineAtlasStore(catalog: self.resources.appendingPathComponent("public/offline-inventory.json")) }
+            catch { NSLog("Offline catalog failed to load: %@", error.localizedDescription) }
+        }
         if let shortcuts = UserDefaults.standard.dictionary(forKey: "originalShortcuts") { flags["shortcuts"] = shortcuts }
     }
 
     func start() {
+        if fullAtlas && offlineStore == nil {
+            let alert = NSAlert(); alert.messageText = "离线素材目录无法读取"
+            alert.informativeText = "请重新解压完整的全解锁离线版安装包。"; alert.runModal()
+            NSApp.terminate(nil); return
+        }
         let filters = online ? [
             "^https?://mp-cn-sdklog\\.kurogames\\.com/",
             "^https?://ali-sh-datareceiver\\.kurogame\\.xyz/",
@@ -156,7 +167,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         let initialSession = online ? sessionStore.snapshot() : [:]
         let sessionJSON = String(data: try! JSONSerialization.data(withJSONObject: initialSession), encoding: .utf8)!
         let nativeSocket = !CommandLine.arguments.contains("--browser-socket")
-        let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_NATIVE_SOCKET__=\(nativeSocket ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
+        let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_FULL_ATLAS__=\(fullAtlas ? "true" : "false");window.__MACOS_NATIVE_SOCKET__=\(nativeSocket ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
         config.userContentController.addUserScript(WKUserScript(source: bootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         if let session = try? String(contentsOf: resources.appendingPathComponent("session-adapter.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: session, injectionTime: .atDocumentStart, forMainFrameOnly: true))
@@ -203,6 +214,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     func showPanel(tab: String = "bag") {
+        if fullAtlas && ["room", "exchange"].contains(tab) { return }
         panelOpen = true
         let window = create(label: "panel", route: "/panel?tab=\(tab)")
         let visible = NSScreen.main?.visibleFrame ?? window.frame
@@ -302,6 +314,16 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         let label = args["label"] as? String ?? caller
         let window = windows[label] ?? windows[caller]!
         let null = NSNull()
+        if command == "offline_atlas_request" {
+            guard fullAtlas, let store = offlineStore, let action = args["action"] as? String else { throw CocoaError(.fileReadNoPermission) }
+            let result = try store.request(action, values: args["values"] as? [String: Any] ?? [:])
+            if !["user", "bag", "presets", "status"].contains(action) {
+                for view in views.values {
+                    view.callAsyncJavaScript("window.__OFFLINE_FULL_ATLAS__?.receive(user)", arguments: ["user": store.user()], in: nil, in: .page, completionHandler: nil)
+                }
+            }
+            return result
+        }
         if command == "plugin:event|emit" || command == "plugin:event|emit_to" {
             let event = args["event"] as? String ?? ""
             let payload = args["payload"] ?? null
@@ -315,7 +337,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
         switch command {
         case "plugin:app|version": return Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? ""
-        case "plugin:app|name": return "Wuwa Tappo macOS"
+        case "plugin:app|name": return fullAtlas ? "Wuwa Tappo Offline · 全解锁离线版" : "Wuwa Tappo macOS"
         case "plugin:app|identifier": return Bundle.main.bundleIdentifier ?? "io.lliooly.wuwa-tappo.mac"
         case "plugin:app|tauri_version": return "macOS AppKit adapter"
         case "plugin:window|get_all_windows": return Array(windows.keys)
@@ -348,7 +370,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         case "plugin:window|is_always_on_top": return true
         case "plugin:window|theme": return "light"
         case "plugin:window|title": return window.title
-        case "plugin:window|set_title": window.title = args["value"] as? String ?? window.title; return null
+        case "plugin:window|set_title": window.title = fullAtlas ? "Wuwa Tappo Offline · 全解锁离线版" : args["value"] as? String ?? window.title; return null
         case "plugin:window|show", "plugin:webview|webview_show": window.orderFrontRegardless(); return null
         case "plugin:window|hide", "plugin:webview|webview_hide": window.orderOut(nil); return null
         case "plugin:window|close", "plugin:window|destroy", "plugin:webview|webview_close": window.orderOut(nil); return null
@@ -403,6 +425,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         case "close_about_window": windows["about"]?.orderOut(nil); return null
         case "close_oss_notice_window": windows["oss-notice"]?.orderOut(nil); return null
         case "open_login_window":
+            if fullAtlas { return null }
             create(label: "login", route: "/login").makeKeyAndOrderFront(nil)
             emit("login-modal-open", ["intent": args["intent"] as? String ?? "login"], target: "login")
             return null
@@ -646,6 +669,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                                         ("openRoom", "联机", "room"), ("trayOpenSettings", "设置", "setting"),
                                         ("hidePet", "显示／隐藏玩偶", "togglePet"), ("gameMode", "游戏模式", "gameMode"),
                                         ("quit", "退出", "quit")] {
+            if fullAtlas && ["room", "exchange"].contains(action) { continue }
             let item = NSMenuItem(title: menuLabels[key] ?? fallback, action: #selector(menuAction(_:)), keyEquivalent: "")
             if action == "togglePet", nativeMenuState["petDockVisible"] as? Bool == false {
                 item.title = menuLabels["showPet"] ?? "显示玩偶"
@@ -718,6 +742,64 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         guard let view = views["main"] else { onFailure?(CocoaError(.coderInvalidValue)); return }
         view.callAsyncJavaScript("const m=await import('wuwa://app/assets/quitApp-DE3M1AoN.js');await m.quitApp();", arguments: [:], in: nil, in: .page) { result in
             if case .failure(let error) = result { onFailure?(error) }
+        }
+    }
+
+    func testOfflineAtlas(path: String) {
+        guard fullAtlas else { exit(1) }
+        Task { @MainActor in
+            @MainActor func evaluate(_ label: String, _ script: String, _ args: [String: Any] = [:]) async throws -> Any {
+                guard let view = self.views[label] else { throw CocoaError(.coderInvalidValue) }
+                return try await withCheckedThrowingContinuation { continuation in
+                    view.callAsyncJavaScript(script, arguments: args, in: nil, in: .page) { continuation.resume(with: $0) }
+                }
+            }
+            do {
+                for _ in 0..<100 {
+                    if ready.contains("main") { break }
+                    try await Task.sleep(nanoseconds: 100_000_000)
+                }
+                _ = try await evaluate("main", "for(let i=0;i<100&&!window.__WUWA_ORIGINAL__?.globalStore.userInfo;i++)await new Promise(r=>setTimeout(r,50));return true")
+                openPanelFromMain(tab: "bag")
+                for _ in 0..<100 {
+                    if ready.contains("panel") { break }
+                    try await Task.sleep(nanoseconds: 100_000_000)
+                }
+                windows["about"]?.orderOut(nil)
+                windows["panel"]?.makeKeyAndOrderFront(nil)
+                NSApp.activate(ignoringOtherApps: true)
+                var expected: Any = NSNull()
+                if CommandLine.arguments.contains("--offline-atlas-restore"),
+                   let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+                   let previous = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    expected = previous["expected"] ?? NSNull()
+                }
+                var report = try await evaluate("panel", "return await window.__OFFLINE_ATLAS_AUDIT__(expected)", ["expected": expected]) as! [String: Any]
+                let main = try await evaluate("main", "return JSON.parse(JSON.stringify({user:window.__WUWA_ORIGINAL__.globalStore.userInfo,blocked:window.__ORIGINAL_DIAGNOSTICS__.blockedNetwork,errors:window.__ORIGINAL_DIAGNOSTICS__.errors,images:[...document.querySelectorAll('.cat-stack img')].map(i=>({src:i.src,width:i.naturalWidth}))}))")
+                report["main"] = main; report["runtimeErrors"] = runtimeErrors
+                report["bundleIdentifier"] = Bundle.main.bundleIdentifier
+                report["offline"] = !online
+                let panel = views["panel"]!
+                let image: NSImage = try await withCheckedThrowingContinuation { continuation in
+                    panel.takeSnapshot(with: nil) { image, error in
+                        if let image = image { continuation.resume(returning: image) }
+                        else { continuation.resume(throwing: error ?? CocoaError(.fileWriteUnknown)) }
+                    }
+                }
+                if let tiff = image.tiffRepresentation, let bitmap = NSBitmapImageRep(data: tiff),
+                   let png = bitmap.representation(using: .png, properties: [:]) {
+                    try png.write(to: URL(fileURLWithPath: path + ".png"))
+                }
+                try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: path))
+                exit(0)
+            } catch {
+                let report: [String: Any] = ["status": "failed", "error": String(describing: error), "runtimeErrors": runtimeErrors,
+                                             "snapshot": lastSnapshot ?? [:]]
+                if let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
+                    try? data.write(to: URL(fileURLWithPath: path))
+                }
+                exit(1)
+            }
         }
     }
 
@@ -1074,7 +1156,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     private func logDirectory() throws -> URL {
         let library = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-        let directory = library.appendingPathComponent("Logs/Wuwa Tappo", isDirectory: true)
+        let directory = library.appendingPathComponent(fullAtlas ? "Logs/Wuwa Tappo Offline" : "Logs/Wuwa Tappo", isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         return directory
     }
