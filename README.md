@@ -13,7 +13,7 @@
 
 让共鸣者待在 Mac 桌面上，跟着键盘、鼠标和手柄的操作拍桌子。保留 Windows CN 版的界面，支持登录、换装、开箱、合成、兑换和好友联机。
 
-当前源码版本为 **1.0.4**，与所用 Windows CN 前端版本一致。
+当前源码版本为 **1.0.4 · build 11**，与所用 Windows CN 前端版本一致。
 
 <p align="center">
   <img src="docs/images/backpack.png" alt="Mac 上的背包界面" width="900">
@@ -73,3 +73,10 @@ open 'dist/Wuwa Tappo.app'
 ## 许可
 
 本项目与库洛游戏无官方关联。原创适配代码与文档采用 [MIT](LICENSE)；官方前端、角色美术、字体和商标保留各自权利，详见 [第三方说明](THIRD_PARTY_NOTICES.md) 和 [非官方声明](DISCLAIMER.md)。
+
+
+### 跟随 macOS 游戏模式
+
+在设置的「游戏模式」下方开启「跟随 macOS 游戏模式」。系统为游戏启用或关闭游戏模式时，Tappo 会同步切换。此功能默认关闭，需要 macOS 14 或更新版本。开启后，游戏模式由系统联动管理，原有的全屏自动切换暂停。
+
+检测使用系统游戏模式日志；系统未提供明确状态时，Tappo 保持当前模式。

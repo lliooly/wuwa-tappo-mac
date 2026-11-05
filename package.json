@@ -13,5 +13,5 @@
     "preview": "python3 scripts/preview-animation.py",
     "build:macos": "python3 scripts/build-macos.py"
   },
-  "macosBuild": 10
+  "macosBuild": 11
 }

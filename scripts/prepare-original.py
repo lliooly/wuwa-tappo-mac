@@ -95,6 +95,55 @@ def prepare(resources):
     if main_text.count(reset_before) != 1:
         raise ValueError('Original key-state reset patch drift')
     main_text = main_text.replace(reset_before, reset_before + 'window.__MACOS_RESET_INPUT__=()=>{Yr.clear();ka.clear();oh()};')
+    game_mode_start = main_text.index('function $a(e){')
+    game_mode_end = main_text.index('async function Xc(){', game_mode_start)
+    game_mode_before = main_text[game_mode_start:game_mode_end]
+    game_mode_after = """let followSystemGameMode=window.__MACOS_FOLLOW_SYSTEM_GAME_MODE__===true,systemGameModeActive=null;
+    function updateSystemGameMode(state){
+        if(!followSystemGameMode)systemGameModeActive=null;
+        followSystemGameMode=state.enabled===true;
+        if(typeof state.active==="boolean")systemGameModeActive=state.active;
+        if(!followSystemGameMode){
+            void kt("set_macos_effective_game_mode",{enabled:null}).catch(()=>{});
+            return;
+        }
+        if(systemGameModeActive===null)return;
+        const value=systemGameModeActive;
+        sr({gameMode:value});
+        tn.value=value;
+        void kt("set_macos_effective_game_mode",{enabled:value}).catch(()=>{});
+        jm(value);
+    }
+    function receiveSystemGameMode(event){updateSystemGameMode(event.detail)}
+    function $a(e){
+        if(followSystemGameMode)return;
+        sr({gameMode:e});
+        tn.value=e;
+        vu("game_mode",e);
+        jm(e);
+    }
+    function Op(e){
+        if(followSystemGameMode||!Et().autoGameModeOnFullscreen){_a=false;return}
+        if(e!==_a){_a=e;if(tn.value!==e)$a(e)}
+    }
+    function Fp(){$a(!tn.value)}
+    """
+    for before, after, reason in [
+        (game_mode_before, game_mode_after, 'Synchronize Tappo with both system Game Mode states'),
+        ('ha=await Am(e=>{tn.value=e}),', '''ha=await Am(e=>{if(!followSystemGameMode)tn.value=e}),
+         window.addEventListener("macos-system-game-mode",receiveSystemGameMode),
+         await kt("get_macos_game_mode").then(updateSystemGameMode).catch(()=>{}),''',
+         'Ignore manual mode events while following the system'),
+        ('window.removeEventListener("pet-toast-geometry-changed",Zc),',
+         'window.removeEventListener("macos-system-game-mode",receiveSystemGameMode),window.removeEventListener("pet-toast-geometry-changed",Zc),',
+         'Remove the system state listener when the desktop view unmounts'),
+        ('"tray-toggle-game-mode",()=>{Pe()||$a(!Et().gameMode)}',
+         '"tray-toggle-game-mode",()=>{Pe()||Fp()}', 'Toggle the effective mode from the tray'),
+    ]:
+        if main_text.count(before) != 1:
+            raise ValueError(f'Original game mode patch drift: {reason}')
+        main_text = main_text.replace(before, after)
+        patches.append({'file': main_file.name, 'reason': reason, 'before': before, 'after': after})
     main_file.write_text(main_text)
     patches.append({'reason': 'Recover key state after permission loss or sleep without inventing click counts', 'file': main_file.name, 'before': reset_before})
     patches.append({'reason': 'Use actual WK events for local controls and retain native-only remote member gestures', 'file': main_file.name, 'before': mouse_before})
@@ -138,6 +187,52 @@ def prepare(resources):
             raise ValueError(f'Original update patch drift: {reason}')
         panel_text = panel_text.replace(before, after)
         patches.append({'file': panel_file.name, 'reason': reason, 'before': before, 'after': after})
+    follow_row = """systemMode.value?.supported?(l(),y("div",No,[
+        e("div",Oo,[
+            e("div",Do,String(N.value).startsWith("zh")?"跟随 macOS 游戏模式":"Follow macOS Game Mode",1),
+            e("div",Ho,String(N.value).startsWith("zh")?"自动同步系统游戏模式的开启和关闭状态。":"Keep Tappo in sync when macOS Game Mode turns on or off.",1)
+        ]),
+        e("div",Vo,[e("label",Wo,[
+            e("input",{type:"checkbox",checked:systemMode.value.enabled,disabled:systemModeBusy.value,
+                "aria-label":String(N.value).startsWith("zh")?"跟随 macOS 游戏模式":"Follow macOS Game Mode",
+                onMousedown:R(()=>{},["stop"]),onChange:setSystemMode},null,8,["checked","disabled","aria-label"]),
+            e("span",{class:"setting-slider"})
+        ])])
+    ])):J("",!0),"""
+    panel_game_mode = [
+        ('const H=An,', """const systemMode=b(null),systemModeBusy=b(false);
+        let unlistenEffectiveMode;
+        async function setSystemMode(event){
+            systemModeBusy.value=true;
+            try{systemMode.value=await gs("set_follow_macos_game_mode",{enabled:event.target.checked})}
+            catch{event.target.checked=!!systemMode.value?.enabled;Ne(String(N.value).startsWith("zh")?"无法更新游戏模式设置":"Could not update Game Mode settings")}
+            finally{systemModeBusy.value=false}
+        }
+        function reflectEffectiveMode(value){
+            const effective=value??Ns().gameMode;
+            if(effective!==O.value){pe=true;O.value=effective;ve(()=>{pe=false})}
+        }
+        const H=An,"""),
+        ('gameMode:O.value,autoGameModeOnFullscreen:', 'autoGameModeOnFullscreen:'),
+        ('st("game_mode",O.value),Ve(),Un(O.value)', 'st("game_mode",O.value),Cn({gameMode:O.value}),Un(O.value)'),
+        ('I=!0,i=!0,await Kt(!1),', """unlistenEffectiveMode=await sa("macos-effective-game-mode",event=>reflectEffectiveMode(event.payload));
+        systemMode.value=await gs("get_macos_game_mode").catch(()=>null);
+        if(systemMode.value?.effective!=null)reflectEffectiveMode(systemMode.value.effective);
+        I=!0,i=!0;await Kt(!1),"""),
+        ('dt(()=>{ot(),ge?.()', 'dt(()=>{unlistenEffectiveMode?.();ot(),ge?.()'),
+        ('e("div",No,[e("div",Oo,[e("div",Do,L(v(s)("setting_auto_game_mode_fullscreen"))',
+         follow_row+'e("div",No,[e("div",Oo,[e("div",Do,L(v(s)("setting_auto_game_mode_fullscreen"))'),
+        ('a[10]||(a[10]=x=>O.value=x),type:"checkbox",onMousedown:a[11]||(a[11]=R(()=>{},["stop"]))},null,544)',
+         'a[10]||(a[10]=x=>O.value=x),disabled:!!systemMode.value?.enabled,type:"checkbox",onMousedown:a[11]||(a[11]=R(()=>{},["stop"]))},null,552,["disabled"])'),
+        ('a[12]||(a[12]=x=>g.value=x),type:"checkbox",onMousedown:a[13]||(a[13]=R(()=>{},["stop"]))},null,544)',
+         'a[12]||(a[12]=x=>g.value=x),disabled:!!systemMode.value?.enabled,type:"checkbox",onMousedown:a[13]||(a[13]=R(()=>{},["stop"]))},null,552,["disabled"])'),
+    ]
+    for before, after in panel_game_mode:
+        if panel_text.count(before) != 1:
+            raise ValueError(f'Original game mode settings patch drift: {before}')
+        panel_text = panel_text.replace(before, after)
+        patches.append({'file': panel_file.name, 'reason': 'Expose macOS Game Mode following in settings',
+                        'before': before, 'after': after})
     panel_file.write_text(panel_text)
     # Keep the official selection dialog available without loading an account SDK.
     login_file = target / 'assets/login-6yi5hIzI.js'
