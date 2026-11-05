@@ -8,8 +8,8 @@
 
 ## 跨仓库版本同步
 
-- 接到 [更新监控](../wuwa-scripts/wuwa-tappo-update/README.md) 的国服新版或同版本安装包变更后，核对版本、样本来源和 SHA-256，并与上一版对照素材。
-- 每次都要在 [素材仓库更新日志](../wuwa-tappo-assets/changelog/README.md) 留下该版本的核对记录，即使没有新增素材。写明核对日期、样本、范围和结果，区分内置资源与公开图鉴、CDN 的核对情况。
+- 接到 [更新监控](https://github.com/lliooly/wuwa-scripts/blob/main/wuwa-tappo-update/README.md) 的国服新版或同版本安装包变更后，核对版本、样本来源和 SHA-256，并与上一版对照素材。
+- 每次都要在 [素材仓库更新日志](https://github.com/lliooly/wuwa-tappo-assets/blob/main/changelog/README.md) 留下该版本的核对记录，即使没有新增素材。写明核对日期、样本、范围和结果，区分内置资源与公开图鉴、CDN 的核对情况。
 - 有素材变动时，按素材仓库的规则同步维护文件及索引。已核对且一致时记录沿用的快照，尚未核对的范围也要写明。完成 macOS 版本更新前，确认素材日志及其索引已经同步。
 
 ## 版本号与发布
