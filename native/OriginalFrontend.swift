@@ -75,6 +75,17 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private var networkRules: WKContentRuleList?
     private var maintenanceActive = false
     private var maintenancePayload: [String: Any] = [:]
+    private let systemGameMode = SystemGameModeMonitor()
+    private var systemGameModeFollowing = false
+    private var effectiveGameMode: Bool?
+    private var supportsSystemGameMode: Bool {
+        if #available(macOS 14, *) { return true }
+        return false
+    }
+    private var systemGameModeState: [String: Any] {
+        ["supported": supportsSystemGameMode, "enabled": systemGameModeFollowing,
+         "active": systemGameMode.active as Any? ?? NSNull(), "effective": effectiveGameMode as Any? ?? NSNull()]
+    }
     private var socketBridge: OriginalSocketBridge?
     private let online = !CommandLine.arguments.contains("--offline") && !CommandLine.arguments.contains("--original-preview") && !CommandLine.arguments.contains("--original-audit")
 
@@ -82,6 +93,11 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         self.resources = resources.appendingPathComponent("original")
         self.source = OriginalAssetScheme(root: resources.appendingPathComponent("original"))
         super.init()
+        systemGameModeFollowing = supportsSystemGameMode && UserDefaults.standard.bool(forKey: "followSystemGameMode")
+        systemGameMode.onChange = { [weak self] in
+            guard let self else { return }
+            self.publishSystemGameMode(self.systemGameModeState)
+        }
         if let shortcuts = UserDefaults.standard.dictionary(forKey: "originalShortcuts") { flags["shortcuts"] = shortcuts }
     }
 
@@ -119,6 +135,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             return event
         }
         _ = create(label: "main", route: "/")
+        if systemGameModeFollowing { systemGameMode.start() }
         windows["main"]?.orderFrontRegardless()
         buildApplicationMenu()
         buildMenu()
@@ -157,7 +174,9 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         let sessionJSON = String(data: try! JSONSerialization.data(withJSONObject: initialSession), encoding: .utf8)!
         let nativeSocket = !CommandLine.arguments.contains("--browser-socket")
         let bootstrap = "window.__MACOS_ONLINE__=\(online ? "true" : "false");window.__MACOS_NATIVE_SOCKET__=\(nativeSocket ? "true" : "false");window.__MACOS_INITIAL_SESSION__=\(sessionJSON);"
-        config.userContentController.addUserScript(WKUserScript(source: bootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+        let gameModeJSON = String(decoding: try! JSONSerialization.data(withJSONObject: systemGameModeState), as: UTF8.self)
+        let gameModeBootstrap = "window.__MACOS_SYSTEM_GAME_MODE__=\(gameModeJSON);"
+        config.userContentController.addUserScript(WKUserScript(source: bootstrap + gameModeBootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         if let session = try? String(contentsOf: resources.appendingPathComponent("session-adapter.js"), encoding: .utf8) {
             config.userContentController.addUserScript(WKUserScript(source: session, injectionTime: .atDocumentStart, forMainFrameOnly: true))
         }
@@ -235,6 +254,13 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
     }
 
+    private func publishSystemGameMode(_ state: [String: Any]) {
+        views["main"]?.callAsyncJavaScript("""
+            window.__MACOS_SYSTEM_GAME_MODE__ = state;
+            window.dispatchEvent(new CustomEvent('macos-system-game-mode', {detail: state}));
+            """, arguments: ["state": state], in: nil, in: .page, completionHandler: nil)
+    }
+
     private func screenPoint(_ point: NSPoint) -> NSPoint {
         let top = NSScreen.screens.first?.frame.maxY ?? 0
         return NSPoint(x: point.x, y: top - point.y)
@@ -286,6 +312,33 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
         guard let body = message.body as? [String: Any], let label = body["label"] as? String,
               let command = body["command"] as? String else { replyHandler(nil, "Invalid platform request"); return }
+        if ["get_macos_game_mode", "set_follow_macos_game_mode", "set_macos_effective_game_mode"].contains(command) {
+            guard message.frameInfo.isMainFrame, let view = views[label], message.webView === view else {
+                replyHandler(nil, "Invalid Game Mode request"); return
+            }
+        }
+        if command == "check_mac_release" {
+            guard message.frameInfo.isMainFrame, message.webView === views["panel"] else {
+                replyHandler(nil, "Invalid update request"); return
+            }
+            guard online else { replyHandler(["kind": "disabled"], nil); return }
+            Task { @MainActor in
+                guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+                    replyHandler(["kind": "error"], nil); return
+                }
+                do {
+                    if let update = try await ReleaseUpdate.check(currentVersion: currentVersion) {
+                        presentRelease(update)
+                        replyHandler(["kind": "available", "version": update.version], nil)
+                    } else {
+                        replyHandler(["kind": "none", "currentVersion": currentVersion], nil)
+                    }
+                } catch {
+                    replyHandler(["kind": "error"], nil)
+                }
+            }
+            return
+        }
         let args = body["args"] as? [String: Any] ?? [:]
         do { replyHandler(try invoke(command, args, label), nil) }
         catch { replyHandler(nil, error.localizedDescription) }
@@ -296,6 +349,20 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         let text = redactOriginalLog("[\(entry["label"] ?? "")] \(entry["kind"] ?? ""): \(entry["value"] ?? "")")
         if ["error", "rejection"].contains(entry["kind"] as? String ?? "") { runtimeErrors.append(text) }
         NSLog("Original %@", text)
+    }
+
+    @MainActor
+    private func presentRelease(_ update: ReleaseUpdate.Available) {
+        guard let panel = windows["panel"], panel.isVisible, panel.attachedSheet == nil else { return }
+        let chinese = Locale.preferredLanguages.first?.hasPrefix("zh") == true
+        let alert = NSAlert()
+        alert.messageText = chinese ? "发现新版本 v\(update.version)" : "Version v\(update.version) is available"
+        alert.informativeText = chinese ? "前往 GitHub 下载 macOS 安装包。" : "Download the macOS package from GitHub."
+        alert.addButton(withTitle: chinese ? "打开发布页" : "Open Release")
+        alert.addButton(withTitle: chinese ? "稍后" : "Later")
+        alert.beginSheetModal(for: panel) { response in
+            if response == .alertFirstButtonReturn { NSWorkspace.shared.open(update.page) }
+        }
     }
 
     private func invoke(_ command: String, _ args: [String: Any], _ caller: String) throws -> Any {
@@ -413,10 +480,14 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                   let login = windows["login"] else { throw CocoaError(.coderInvalidValue) }
             let visible = (login.screen ?? NSScreen.main)?.visibleFrame ?? login.frame
             let size = NSSize(width: min(width, visible.width), height: min(height, visible.height))
-            let center = NSPoint(x: login.frame.midX, y: login.frame.midY)
+            let previousFrame = login.frame
+            let keepPosition = payload["keepPosition"] as? Bool == true
             login.setContentSize(size)
-            login.setFrameOrigin(NSPoint(x: max(visible.minX, min(center.x - size.width/2, visible.maxX - size.width)),
-                                         y: max(visible.minY, min(center.y - size.height/2, visible.maxY - size.height))))
+            let frame = login.frame
+            let x = keepPosition ? previousFrame.minX : previousFrame.midX - frame.width / 2
+            let y = keepPosition ? previousFrame.maxY - frame.height : previousFrame.midY - frame.height / 2
+            login.setFrameOrigin(NSPoint(x: max(visible.minX, min(x, visible.maxX - frame.width)),
+                                         y: max(visible.minY, min(y, visible.maxY - frame.height))))
             return null
         case "close_login_window": windows["login"]?.orderOut(nil); return null
         case "load_key_press_count", "load_cumulative_click_count", "save_key_press_count", "save_cumulative_click_count":
@@ -471,6 +542,23 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             if payload["updateNativeInput"] as? Bool == true {
                 mainHitRects = payload["inputRegions"] as? [[String: Any]] ?? []
             }
+            return null
+        case "get_macos_game_mode":
+            return systemGameModeState
+        case "set_follow_macos_game_mode":
+            guard caller == "panel", supportsSystemGameMode, let enabled = args["enabled"] as? Bool else {
+                throw CocoaError(.coderInvalidValue)
+            }
+            systemGameModeFollowing = enabled
+            UserDefaults.standard.set(enabled, forKey: "followSystemGameMode")
+            if enabled { systemGameMode.start() } else { systemGameMode.stop() }
+            publishSystemGameMode(systemGameModeState)
+            return systemGameModeState
+        case "set_macos_effective_game_mode":
+            guard caller == "main" else { throw CocoaError(.coderInvalidValue) }
+            effectiveGameMode = args["enabled"] as? Bool
+            buildMenu()
+            emit("macos-effective-game-mode", effectiveGameMode as Any? ?? NSNull(), target: "panel")
             return null
         case "sync_native_menu":
             menuLabels = args["labels"] as? [String: String] ?? menuLabels
@@ -650,7 +738,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             if action == "togglePet", nativeMenuState["petDockVisible"] as? Bool == false {
                 item.title = menuLabels["showPet"] ?? "显示玩偶"
             }
-            if action == "gameMode" { item.state = nativeMenuState["gameMode"] as? Bool == true ? .on : .off }
+            if action == "gameMode" { item.state = (effectiveGameMode ?? (nativeMenuState["gameMode"] as? Bool ?? false)) ? .on : .off }
             item.representedObject = action; item.target = self; menu.addItem(item)
         }
         for (title, event, values) in [(menuLabels["windowSize"] ?? "窗口大小", "tray-set-pet-scale", Array(stride(from: 50, through: 200, by: 10))),
@@ -716,7 +804,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func requestQuit(onFailure: ((Error) -> Void)? = nil) {
         guard let view = views["main"] else { onFailure?(CocoaError(.coderInvalidValue)); return }
-        view.callAsyncJavaScript("const m=await import('wuwa://app/assets/quitApp-DE3M1AoN.js');await m.quitApp();", arguments: [:], in: nil, in: .page) { result in
+        view.callAsyncJavaScript("const m=await import('wuwa://app/assets/quitApp-KiLkJnLY.js');await m.quitApp();", arguments: [:], in: nil, in: .page) { result in
             if case .failure(let error) = result { onFailure?(error) }
         }
     }
@@ -951,8 +1039,8 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                 ["native": 79, "code": "F18", "key": "F18"], ["native": 80, "code": "F19", "key": "F19"],
                 ["native": 90, "code": "F20", "key": "F20"]]
             let recorded = try await script("""
-                const m = await import('wuwa://app/assets/index-CuzHFfJW.js');
-                return samples.map(s => m.bY(new KeyboardEvent('keydown',{code:s.code,key:s.key,ctrlKey:true})).key);
+                const m = await import('wuwa://app/assets/index-CM6qA69G.js');
+                return samples.map(s => m.c2(new KeyboardEvent('keydown',{code:s.code,key:s.key,ctrlKey:true})).key);
                 """, arguments: ["samples": samples]) as? [Int] ?? []
             try require(recorded == samples.map { virtualKey($0["native"] as! Int) }, "Native shortcuts differ from the original key recorder")
             keySamples = samples.count
@@ -977,6 +1065,23 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             do { _ = try invoke("set_app_shortcuts", ["config": duplicate], "main") } catch { rejected = true }
             try require(rejected, "Duplicate shortcuts were accepted")
             verified.append("native key mapping, modifier shortcut, capture, repeat, conflict")
+            let manualGameMode = try await settings()["gameMode"] as? Bool
+            publishSystemGameMode(["enabled": true, "active": true])
+            try await settle()
+            let followedOn = try item("gameMode").state
+            try require(effectiveGameMode == true && followedOn == .on,
+                        "System Game Mode on did not reach the WebView and menu")
+            publishSystemGameMode(["enabled": true, "active": false])
+            try await settle()
+            let followedOff = try item("gameMode").state
+            try require(effectiveGameMode == false && followedOff == .off,
+                        "System Game Mode off did not reach the WebView and menu")
+            try require(try await settings()["gameMode"] as? Bool == false, "System Game Mode off did not persist")
+            publishSystemGameMode(systemGameModeState)
+            _ = try await script("window.__WUWA_ORIGINAL__.persistDesktopCatSettings({gameMode:mode});", arguments: ["mode": manualGameMode ?? false])
+            emit("cat-settings-game-mode", ["enabled": manualGameMode ?? false], target: "main")
+            try await settle()
+            verified.append("macOS Game Mode on and off via native WebKit state bridge")
             try require(externalURL("sdk.kurogames.com/pro/agreement/common/language_zh-Hans/terms_of_service")?.scheme == "https", "Official scheme-less legal URL rejected")
             try require(externalURL("mailto:mc_support@kurogames.com")?.scheme == "mailto", "Support email rejected")
             try require(externalURL("file:///tmp/private") == nil && externalURL("javascript:alert(1)") == nil, "Non-web URL accepted")
@@ -1172,15 +1277,16 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     private func writeOnlineReport(path: String) async {
         var report: [String: Any] = ["status": "running", "time": ISO8601DateFormatter().string(from: Date()),
                                      "unimplementedCommands": Array(unknownCommands).sorted()]
+        report["systemGameMode"] = systemGameModeState
         for label in ["main", "login"] {
             guard let view = views[label] else { continue }
             do {
                 let result: Any = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Any, Error>) in
                     view.callAsyncJavaScript("""
-                const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+                const api = await import('wuwa://app/assets/index-CM6qA69G.js');
                 const store = window.__WUWA_ORIGINAL__?.globalStore;
                 const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
-                return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
+                return {gameMode: window.__WUWA_ORIGINAL__?.loadDesktopCatSettings().gameMode, network: api.W.value.status, loggedIn: !!store?.isLoggedIn,
                   pendingClicks: store?.localClickCount || 0,
                   confirmedClicks: store?.serverClickTotal || 0,
                   consumedClicks: store?.serverClickConsume || 0,
@@ -1216,6 +1322,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
     }
 
     func stop() {
+        systemGameMode.stop()
         networkMonitor.cancel()
         socketBridge?.stop()
         onlineReportTimer?.invalidate()

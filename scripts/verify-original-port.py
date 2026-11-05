@@ -3,10 +3,11 @@
 from pathlib import Path
 import hashlib
 import json
+import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'recovered/wuwa-tappo-cn-1.0.3/frontend'
+SOURCE = ROOT / 'recovered/wuwa-tappo-cn-1.0.4/frontend'
 STAGED = ROOT / 'dist/Wuwa Tappo.app/Contents/Resources/original'
 manifest = json.loads((STAGED / 'adapter-manifest.json').read_text())
 recovery = json.loads((SOURCE.parent / 'manifest.json').read_text())
@@ -21,7 +22,7 @@ if executable.exists():
         for chunk in iter(lambda: stream.read(1024 * 1024), b''):
             digest.update(chunk)
     assert digest.hexdigest() == recovery['sourceSha256'], 'Archived Windows source executable changed'
-allowed = {'index.html', 'assets/index-CuzHFfJW.js', 'assets/index-pp8VWaUF.js', 'assets/index-CiT_jZa7.js', 'assets/login-B1hThJN-.js'}
+allowed = {'index.html', 'assets/index-CM6qA69G.js', 'assets/index-BFg5ADH5.js', 'assets/index-BIzzuO5B.js', 'assets/login-6yi5hIzI.js'}
 changed = []
 for entry in manifest['sourceFiles']:
     path = entry['path']
@@ -31,6 +32,9 @@ for entry in manifest['sourceFiles']:
         assert path in allowed, f'Undeclared release modification: {path}'
         changed.append(path)
 assert set(changed) == allowed
+for path in [ROOT / 'native/OriginalFrontend.swift', STAGED / 'audit.js']:
+    for module in re.findall(r"wuwa://app/(assets/[^'\"\s]+\.js)", path.read_text()):
+        assert (STAGED / module).is_file(), f'{path.name} imports missing release module: {module}'
 for path in sorted((STAGED / 'assets').glob('*.js')):
     subprocess.run(['node', '--check', str(path)], check=True, capture_output=True)
 subprocess.run(['node', '--check', str(STAGED / 'tauri-adapter.js')], check=True, capture_output=True)

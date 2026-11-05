@@ -1,6 +1,6 @@
 {
   "name": "wuwa-tappo-mac",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Wuwa Tappo 非官方 macOS 适配",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
@@ -13,5 +13,5 @@
     "preview": "python3 scripts/preview-animation.py",
     "build:macos": "python3 scripts/build-macos.py"
   },
-  "macosBuild": 9
+  "macosBuild": 11
 }

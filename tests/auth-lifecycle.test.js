@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CuzHFfJW.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CM6qA69G.js', import.meta.url), 'utf8');
 const sessionSource = readFileSync(new URL('../original-adapter/session.js', import.meta.url), 'utf8');
 function section(start, end) {
   const a = source.indexOf(start), b = source.indexOf(end, a);
@@ -75,7 +75,7 @@ test('shipped renewal coalesces requests and only extends expiry after confirmed
       parseApiErrorCode: error => error.code,
       console: { warn() {} },
     });
-    vm.runInContext(section('let renewInFlight=null;', 'const tokenRenewal='), context);
+    vm.runInContext(section('let renewInFlight=null,', 'const tokenRenewal='), context);
     const first = context.renewTokenIfNeeded(), second = context.renewTokenIfNeeded();
     assert.equal(calls, 1);
     release();

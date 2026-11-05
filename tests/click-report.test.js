@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 // Execute the method actually shipped in the staged original Pinia store.
-const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CuzHFfJW.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CM6qA69G.js', import.meta.url), 'utf8');
 const start = source.indexOf('applyClickReportSuccess(e){');
 const end = source.indexOf(',applyChestClickConsume(e){', start);
 assert(start > 0 && end > start);
