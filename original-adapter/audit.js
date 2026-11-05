@@ -37,8 +37,8 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
   }
   let roomInput;
   if (key === 'room') {
-    const panelModule = await import('wuwa://app/assets/index-CiT_jZa7.js');
-    if (!panelModule.default.setup.toString().includes('roomIdInput:x')) throw Error('Running panel module lacks the current local input echo patch');
+    const panelModule = await import('wuwa://app/assets/index-BIzzuO5B.js');
+    if (!panelModule.default.setup.toString().includes('roomIdInput:I')) throw Error('Running panel module lacks the current local input echo patch');
     window.__ORIGINAL_DIAGNOSTICS__.roomTrace = [];
     const input = section.querySelector('input');
     if (!input) throw Error('Missing original room ID input');
@@ -155,11 +155,11 @@ window.__ORIGINAL_AUDIT_MAIN__ = async function() {
   const originalRole = roles.find(item => item.asset_name.replace(/\.png$/, '') === snapshot.selectedRoleId);
   const otherRole = roles.find(item => item !== originalRole);
   assert(originalRole && otherRole, 'Initial stock requires two original role choices');
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+  const api = await import('wuwa://app/assets/index-CM6qA69G.js');
   let restoreRole = false;
   const selectRole = async item => {
     const role = item.asset_name.replace(/\.png$/, '');
-    await api.cV('cat-panel-action', {type:'select-appearance', item});
+    await api.c_('cat-panel-action', {type:'select-appearance', item});
     const started = performance.now();
     while (performance.now()-started < 3000) {
       const head = document.querySelector('.cat-stack__face'), body = document.querySelector('.cat-stack__base');
@@ -218,8 +218,8 @@ window.__ORIGINAL_AUDIT_BUSINESS__ = async function() {
     for (let n=0; n<60; n++) { if (condition()) return; await wait(50); }
     throw Error(message);
   };
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
-  const action = value => api.cV('cat-panel-action', value);
+  const api = await import('wuwa://app/assets/index-CM6qA69G.js');
+  const action = value => api.c_('cat-panel-action', value);
   document.querySelector('.tab-btn__icon--bag').closest('button').click();
   await until(() => state()?.activeTab === 'bag', 'Bag snapshot did not synchronize');
   assert(!state().isLoggedIn, 'Business audit requires original unauthenticated state');
@@ -277,8 +277,8 @@ window.__ORIGINAL_AUDIT_BUSINESS__ = async function() {
 
 window.__ORIGINAL_AUDIT_EMOTE__ = async function() {
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
-  await api.cV('cat-panel-action', {type:'emote-preview-active', active:true});
+  const api = await import('wuwa://app/assets/index-CM6qA69G.js');
+  await api.c_('cat-panel-action', {type:'emote-preview-active', active:true});
   try {
     for (let n=0; n<40 && !document.querySelector('.emotion-dot'); n++) await wait(50);
     const buttons = [...document.querySelectorAll('.emotion-dot')];
@@ -293,5 +293,5 @@ window.__ORIGINAL_AUDIT_EMOTE__ = async function() {
     await wait(1000);
     if (document.querySelector('.local-emotion-bubble')) throw Error('Original emote bubble was not removed after animation');
     return {fanButtons:buttons.length, bubbleImageLoaded:true, floatAnimation:true, animationCleanup:true};
-  } finally { await api.cV('cat-panel-action', {type:'emote-preview-active', active:false}); }
+  } finally { await api.c_('cat-panel-action', {type:'emote-preview-active', active:false}); }
 };

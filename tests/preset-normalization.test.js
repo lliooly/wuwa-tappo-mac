@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CuzHFfJW.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CM6qA69G.js', import.meta.url), 'utf8');
 const start = source.indexOf('function toFiniteNumber(');
 const end = source.indexOf('function getPresetList(', start);
 assert(start > 0 && end > start);

@@ -41,7 +41,7 @@ def main():
         if not path.exists():
             raise ValueError(f'Broken symlink: {path.relative_to(ROOT)} -> {path.readlink()}')
 
-    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.3'
+    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.4'
     manifest = json.loads((archive / 'manifest.json').read_text())
     package = json.loads((ROOT / 'package.json').read_text())
     if package['version'] != manifest['sourceVersion']:

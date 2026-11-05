@@ -6,8 +6,8 @@ import vm from 'node:vm';
 // Execute the recovered release expressions themselves. Account state is a
 // fixture for pure visibility checks; no account service or inventory is used.
 const paths = [
-  new URL('../recovered/wuwa-tappo-cn-1.0.3/frontend/assets/index-pp8VWaUF.js', import.meta.url),
-  new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-pp8VWaUF.js', import.meta.url),
+  new URL('../recovered/wuwa-tappo-cn-1.0.4/frontend/assets/index-BFg5ADH5.js', import.meta.url),
+  new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-BFg5ADH5.js', import.meta.url),
 ];
 
 function section(source, start, end) {
@@ -17,29 +17,29 @@ function section(source, start, end) {
 }
 
 function originalRules(source, values = {}) {
-  const constants = source.match(/fr=([^,]+),Ns=([^,]+),Yy=([^,]+),/);
+  const constants = source.match(/gr=([^,]+),Ws=([^,]+),Jy=([^,]+),/);
   assert(constants, 'Missing original chest constants');
   const ref = value => ({ value });
   let loginEntries = 0;
   const context = {
     pe: getter => ({ get value() { return getter(); } }),
-    R: { isLoggedIn: values.loggedIn ?? true, totalClickCount: values.clicks ?? 0 },
-    kt: ref(values.loading ?? false), Fn: ref(false),
-    Nt: ref(values.leftMs ?? 0), Ht: ref(values.rightMs ?? 0),
-    Re: ref(values.clicks ?? 0), yr: ref(values.always ?? false), T: ref(values.hover ?? false),
-    Po: ref(0), To: ref(0), Ei: ref(false), xi: ref(false), Oi: ref(false), Fi: ref(false),
-    kr: null, Cr: null, performance: { now: () => 100 }, is: () => 1_000_000,
-    Ie: () => false, lu: () => {}, q: () => { loginEntries++; },
-    Pm: () => { throw Error('Guest chest attempted a reward request'); },
+    A: { isLoggedIn: values.loggedIn ?? true, totalClickCount: values.clicks ?? 0 },
+    _t: ref(values.loading ?? false), On: ref(false),
+    Bt: ref(values.leftMs ?? 0), Nt: ref(values.rightMs ?? 0),
+    Me: ref(values.clicks ?? 0), Cr: ref(values.always ?? false), P: ref(values.hover ?? false),
+    Do: ref(0), Lo: ref(0), Bi: ref(false), Hi: ref(false), Ni: ref(false), qi: ref(false),
+    Ir: null, Mr: null, performance: { now: () => 100 }, fs: () => 1_000_000,
+    Pe: () => false, du: () => {}, Q: () => { loginEntries++; },
+    Dm: () => { throw Error('Guest chest attempted a reward request'); },
   };
-  const code = `const fr=${constants[1]},Ns=${constants[2]},Yy=${constants[3]};`
-    + section(source, 'function rc(e){', 'function Yr(e,t){')
-    + section(source, 'const Wn=pe(', 'function Lp(){')
-    + section(source, 'function Cp(e){', 'function lc(){')
-    + section(source, 'async function pc(e){', 'function Yn(')
-    + `;({snapshot:()=>({left:zr.value,right:jr.value,leftReady:Wn.value,rightReady:Gn.value,
-      actionable:Dp(),duration:fr,minimum:Ns,twoSlots:Yy}),
-      remaining:co,seconds:ic,format:rc,cooldown:Cp,open:pc})`;
+  const code = `const gr=${constants[1]},Ws=${constants[2]},Jy=${constants[3]};`
+    + section(source, 'function lc(e){', 'function $r(e,t){')
+    + section(source, 'const Vn=pe(', 'function qh(){')
+    + section(source, 'function Ih(e){', 'function dc(){')
+    + section(source, 'async function gc(e){', 'function Gn(')
+    + `;({snapshot:()=>({left:Zr.value,right:ei.value,leftReady:Vn.value,rightReady:Wn.value,
+      actionable:Hh(),duration:gr,minimum:Ws,twoSlots:Jy}),
+      remaining:ho,seconds:cc,format:lc,cooldown:Ih,open:gc})`;
   const api = vm.runInNewContext(code, context);
   return { api, context, loginEntries: () => loginEntries };
 }
@@ -55,9 +55,9 @@ for (const path of paths) {
       await api.open('left');
       await api.open('right');
       assert.equal(loginEntries(), 2);
-      assert.equal(context.R.totalClickCount, clicks);
-      assert.equal(context.kr, null);
-      assert.equal(context.Cr, null);
+      assert.equal(context.A.totalClickCount, clicks);
+      assert.equal(context.Ir, null);
+      assert.equal(context.Mr, null);
     }
   });
   test(`${label}: logged-in visibility follows character balance and cooldowns`, () => {
@@ -86,10 +86,10 @@ for (const path of paths) {
     assert.equal(api.snapshot().minimum, 1000);
     assert.equal(api.snapshot().twoSlots, 2000);
     api.cooldown('left');
-    assert.equal(context.kr, 1_800_100);
-    assert.equal(context.Nt.value, 1_800_000);
-    assert.equal(context.Ht.value, 0);
-    assert.equal(context.Cr, null);
+    assert.equal(context.Ir, 1_800_100);
+    assert.equal(context.Bt.value, 1_800_000);
+    assert.equal(context.Nt.value, 0);
+    assert.equal(context.Mr, null);
     assert.equal(api.remaining(1_000_001), 1);
     assert.equal(api.remaining(1_000_000), 0);
     assert.equal(api.remaining(999_999), 0);

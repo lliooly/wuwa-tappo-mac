@@ -5,7 +5,7 @@
   <p>
     <img src="https://img.shields.io/badge/macOS-13%2B-555555?style=flat-square" alt="macOS 13 及以上">
     <img src="https://img.shields.io/badge/Apple_Silicon-arm64-555555?style=flat-square" alt="Apple Silicon">
-    <img src="https://img.shields.io/badge/version-1.0.3-926044?style=flat-square" alt="版本 1.0.3">
+    <img src="https://img.shields.io/badge/version-1.0.4-926044?style=flat-square" alt="版本 1.0.4">
     <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-926044?style=flat-square" alt="原创代码采用 MIT"></a>
   </p>
   <p><a href="https://github.com/lliooly/wuwa-tappo-mac/releases/latest">下载安装包</a> · <a href="#使用说明">使用说明</a> · <a href="docs/开发指南.md">开发指南</a></p>
@@ -13,7 +13,7 @@
 
 让共鸣者待在 Mac 桌面上，跟着键盘、鼠标和手柄的操作拍桌子。保留 Windows CN 版的界面，支持登录、换装、开箱、合成、兑换和好友联机。
 
-当前源码版本为 **1.0.3**，与所用 Windows CN 前端版本一致。
+当前源码版本为 **1.0.4**，与所用 Windows CN 前端版本一致。
 
 <p align="center">
   <img src="docs/images/backpack.png" alt="Mac 上的背包界面" width="900">
@@ -36,7 +36,7 @@
 
 首次启动，从菜单栏的桌宠图标选择「授权输入监控…」，在「系统设置 → 隐私与安全性 → 输入监控」中启用 Wuwa Tappo，然后回到应用选择「重试监听」。系统要求重启时，退出后重新打开应用。
 
-输入监控只用于动作和计数，不记录输入文字。账号会话保存在系统钥匙串；重新签名后，系统可能要求重新授权。Mac 版通过 Releases 更新。
+输入监控只用于动作和计数，不记录输入文字。账号会话保存在系统钥匙串；重新签名后，系统可能要求重新授权。可在设置中点「检查更新」，发现新版本后打开 GitHub 发布页下载。
 
 ## 从源码构建
 

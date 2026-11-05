@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def prepare(resources):
-    source = ROOT / 'recovered/wuwa-tappo-cn-1.0.3/frontend'
+    source = ROOT / 'recovered/wuwa-tappo-cn-1.0.4/frontend'
     recovery = json.loads((source.parent / 'manifest.json').read_text())
     archived = {item['path'].lstrip('/'): item['sha256'] for item in recovery['resources']}
     actual = {str(path.relative_to(source)): hashlib.sha256(path.read_bytes()).hexdigest()
@@ -25,7 +25,7 @@ def prepare(resources):
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' wuwa: data: blob:; script-src 'self' wuwa: 'unsafe-inline' 'unsafe-eval' https://*.kurogame.com https://*.kurogames.com https://*.kurogames-global.com; style-src 'self' wuwa: 'unsafe-inline' https://*.kurogame.com https://*.kurogames.com; connect-src 'self' wuwa: https://*.kurogame.com https://*.kurogames.com https://*.kurogames-global.com wss://api-mc-wuwatappo.kurogames-global.com; img-src 'self' wuwa: data: blob: https:; frame-src https://*.kurogame.com https://*.kurogames.com; object-src 'none'; base-uri 'self'">''')
     html = html.replace('<div id="app"></div>', '<div id="app"></div><script src="./offline-assets.js"></script>')
     (target / 'index.html').write_text(html)
-    entry = target / 'assets/index-CuzHFfJW.js'
+    entry = target / 'assets/index-CM6qA69G.js'
     original = entry.read_text()
     staged = original
     patches = []
@@ -85,35 +85,72 @@ def prepare(resources):
             'r=toFiniteNumber(o.preset_id??o.id),i=toFiniteNumber(o.character_asset_id)',
             'Preserve numeric preset IDs encoded as strings instead of replacing them with list positions')
     entry.write_text(staged)
-    main_file = target / 'assets/index-pp8VWaUF.js'
+    main_file = target / 'assets/index-BFg5ADH5.js'
     main_text = main_file.read_text()
-    mouse_before = 'async function Xc(e,t,o,l,f){'
+    mouse_before = 'async function Jc(e,t,o,l,f){'
     if main_text.count(mouse_before) != 1:
         raise ValueError('Original pointer dispatch patch drift')
     main_text = main_text.replace(mouse_before, mouse_before + 'if(window.__MACOS_DIRECT_MOUSE__){const hit=Wt(o,l);if(!hit||!document.elementFromPoint(hit.x,hit.y)?.closest("[data-room-cat-id]"))return;}')
-    reset_before = 'const qr=new Set,va=new Set;'
+    reset_before = 'const Yr=new Set,ka=new Set;'
     if main_text.count(reset_before) != 1:
         raise ValueError('Original key-state reset patch drift')
-    main_text = main_text.replace(reset_before, reset_before + 'window.__MACOS_RESET_INPUT__=()=>{qr.clear();va.clear();Zd()};')
+    main_text = main_text.replace(reset_before, reset_before + 'window.__MACOS_RESET_INPUT__=()=>{Yr.clear();ka.clear();oh()};')
     main_file.write_text(main_text)
     patches.append({'reason': 'Recover key state after permission loss or sleep without inventing click counts', 'file': main_file.name, 'before': reset_before})
     patches.append({'reason': 'Use actual WK events for local controls and retain native-only remote member gestures', 'file': main_file.name, 'before': mouse_before})
-    panel_file = target / 'assets/index-CiT_jZa7.js'
+    panel_file = target / 'assets/index-BIzzuO5B.js'
     panel_text = panel_file.read_text()
-    input_before = 'set:x=>{ue({type:"set-room-id-input",value:x})}'
-    input_after = 'set:x=>{f.value&&(f.value={...f.value,roomIdInput:x});ue({type:"set-room-id-input",value:x})}'
+    input_before = 'set:I=>{re({type:"set-room-id-input",value:I})}'
+    input_after = 'set:I=>{p.value&&(p.value={...p.value,roomIdInput:I});re({type:"set-room-id-input",value:I})}'
     if panel_text.count(input_before) != 1:
         raise ValueError('Original room input echo patch drift')
     panel_file.write_text(panel_text.replace(input_before, input_after))
     patches.append({'file': panel_file.name, 'reason': 'Echo room input locally before asynchronous WK snapshot acknowledgement',
                     'before': input_before, 'after': input_after})
+    # Reuse the version row and status messages with the macOS Release check.
+    panel_text = panel_file.read_text()
+    enabled_before = 'X=on(),se=b(!1)'
+    enabled_after = 'X=window.__MACOS_ONLINE__===true,se=b(!1)'
+    handler_start = panel_text.index('async function Ds(){')
+    handler_end = panel_text.index('Je(async()=>', handler_start)
+    handler_before = panel_text[handler_start:handler_end]
+    handler_after = """async function Ds(){
+        if(!X||se.value)return;
+        se.value=true;
+        oe.value=s("setting_version_checking");
+        try{
+            const result=await gs("check_mac_release");
+            if(result.kind==="available")oe.value=s("setting_version_new_confirm",{version:result.version});
+            else if(result.kind==="none")oe.value=s("setting_version_latest",{version:result.currentVersion});
+            else if(result.kind==="disabled")oe.value=s("setting_version_disabled");
+            else oe.value=s("setting_version_check_failed");
+        }catch{
+            oe.value=s("setting_version_check_failed");
+        }finally{
+            se.value=false;
+        }
+    }"""
+    for before, after, reason in [
+        (enabled_before, enabled_after, 'Enable the macOS release button only in the online edition'),
+        (handler_before, handler_after, 'Check GitHub releases via the native bridge from the settings button'),
+    ]:
+        if panel_text.count(before) != 1:
+            raise ValueError(f'Original update patch drift: {reason}')
+        panel_text = panel_text.replace(before, after)
+        patches.append({'file': panel_file.name, 'reason': reason, 'before': before, 'after': after})
+    panel_file.write_text(panel_text)
     # Keep the official selection dialog available without loading an account SDK.
-    login_file = target / 'assets/login-B1hThJN-.js'
+    login_file = target / 'assets/login-6yi5hIzI.js'
     login_text = login_file.read_text()
     login_patches = [
-        ('async function n(){if(!m){', 'async function n(){if(!window.__MACOS_ONLINE__){p();return}if(!m){', 'Keep offline choice while restoring original SDK initialization online'),
-        ('Re({link:[{rel:"stylesheet",href:Pe}],script:[{src:Ae,onload:()=>{_(),u&&(u=!1,n())}}]});', 'window.__MACOS_ONLINE__&&Re({link:[{rel:"stylesheet",href:Pe}],script:[{src:Ae,onload:()=>{_(),u&&(u=!1,n())}}]});', 'Load original authentication SDK only online'),
-        ('window.addEventListener("cat-pass-login-overlay",F),K()});', 'window.addEventListener("cat-pass-login-overlay",F),K(),n()});', 'Open original choice after mounting even if initial native open event preceded listeners'),
+        ('Oe({link:[{rel:"stylesheet",href:Ae}],script:[{src:Fe,onload:()=>{y()}}]});',
+         'window.__MACOS_ONLINE__&&Oe({link:[{rel:"stylesheet",href:Ae}],script:[{src:Fe,onload:()=>{y()}}]});',
+         'Load original authentication SDK only online'),
+        ('if(i==="online"){if(x(L)){ze().then', 'if(window.__MACOS_ONLINE__&&i==="online"){if(x(L)){ze().then',
+         'Keep SDK initialization and recovery offline during audit'),
+        ('window.addEventListener("cat-pass-login-overlay",V),e()});',
+         'window.addEventListener("cat-pass-login-overlay",V),e()||b()});',
+         'Open original choice after mounting even if initial native open event preceded listeners'),
     ]
     for before, after, reason in login_patches:
         if login_text.count(before) != 1:

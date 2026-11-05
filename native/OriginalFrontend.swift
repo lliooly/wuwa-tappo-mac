@@ -286,6 +286,28 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         }
         guard let body = message.body as? [String: Any], let label = body["label"] as? String,
               let command = body["command"] as? String else { replyHandler(nil, "Invalid platform request"); return }
+        if command == "check_mac_release" {
+            guard message.frameInfo.isMainFrame, message.webView === views["panel"] else {
+                replyHandler(nil, "Invalid update request"); return
+            }
+            guard online else { replyHandler(["kind": "disabled"], nil); return }
+            Task { @MainActor in
+                guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+                    replyHandler(["kind": "error"], nil); return
+                }
+                do {
+                    if let update = try await ReleaseUpdate.check(currentVersion: currentVersion) {
+                        presentRelease(update)
+                        replyHandler(["kind": "available", "version": update.version], nil)
+                    } else {
+                        replyHandler(["kind": "none", "currentVersion": currentVersion], nil)
+                    }
+                } catch {
+                    replyHandler(["kind": "error"], nil)
+                }
+            }
+            return
+        }
         let args = body["args"] as? [String: Any] ?? [:]
         do { replyHandler(try invoke(command, args, label), nil) }
         catch { replyHandler(nil, error.localizedDescription) }
@@ -296,6 +318,20 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
         let text = redactOriginalLog("[\(entry["label"] ?? "")] \(entry["kind"] ?? ""): \(entry["value"] ?? "")")
         if ["error", "rejection"].contains(entry["kind"] as? String ?? "") { runtimeErrors.append(text) }
         NSLog("Original %@", text)
+    }
+
+    @MainActor
+    private func presentRelease(_ update: ReleaseUpdate.Available) {
+        guard let panel = windows["panel"], panel.isVisible, panel.attachedSheet == nil else { return }
+        let chinese = Locale.preferredLanguages.first?.hasPrefix("zh") == true
+        let alert = NSAlert()
+        alert.messageText = chinese ? "发现新版本 v\(update.version)" : "Version v\(update.version) is available"
+        alert.informativeText = chinese ? "前往 GitHub 下载 macOS 安装包。" : "Download the macOS package from GitHub."
+        alert.addButton(withTitle: chinese ? "打开发布页" : "Open Release")
+        alert.addButton(withTitle: chinese ? "稍后" : "Later")
+        alert.beginSheetModal(for: panel) { response in
+            if response == .alertFirstButtonReturn { NSWorkspace.shared.open(update.page) }
+        }
     }
 
     private func invoke(_ command: String, _ args: [String: Any], _ caller: String) throws -> Any {
@@ -413,10 +449,14 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                   let login = windows["login"] else { throw CocoaError(.coderInvalidValue) }
             let visible = (login.screen ?? NSScreen.main)?.visibleFrame ?? login.frame
             let size = NSSize(width: min(width, visible.width), height: min(height, visible.height))
-            let center = NSPoint(x: login.frame.midX, y: login.frame.midY)
+            let previousFrame = login.frame
+            let keepPosition = payload["keepPosition"] as? Bool == true
             login.setContentSize(size)
-            login.setFrameOrigin(NSPoint(x: max(visible.minX, min(center.x - size.width/2, visible.maxX - size.width)),
-                                         y: max(visible.minY, min(center.y - size.height/2, visible.maxY - size.height))))
+            let frame = login.frame
+            let x = keepPosition ? previousFrame.minX : previousFrame.midX - frame.width / 2
+            let y = keepPosition ? previousFrame.maxY - frame.height : previousFrame.midY - frame.height / 2
+            login.setFrameOrigin(NSPoint(x: max(visible.minX, min(x, visible.maxX - frame.width)),
+                                         y: max(visible.minY, min(y, visible.maxY - frame.height))))
             return null
         case "close_login_window": windows["login"]?.orderOut(nil); return null
         case "load_key_press_count", "load_cumulative_click_count", "save_key_press_count", "save_cumulative_click_count":
@@ -716,7 +756,7 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
 
     func requestQuit(onFailure: ((Error) -> Void)? = nil) {
         guard let view = views["main"] else { onFailure?(CocoaError(.coderInvalidValue)); return }
-        view.callAsyncJavaScript("const m=await import('wuwa://app/assets/quitApp-DE3M1AoN.js');await m.quitApp();", arguments: [:], in: nil, in: .page) { result in
+        view.callAsyncJavaScript("const m=await import('wuwa://app/assets/quitApp-KiLkJnLY.js');await m.quitApp();", arguments: [:], in: nil, in: .page) { result in
             if case .failure(let error) = result { onFailure?(error) }
         }
     }
@@ -951,8 +991,8 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
                 ["native": 79, "code": "F18", "key": "F18"], ["native": 80, "code": "F19", "key": "F19"],
                 ["native": 90, "code": "F20", "key": "F20"]]
             let recorded = try await script("""
-                const m = await import('wuwa://app/assets/index-CuzHFfJW.js');
-                return samples.map(s => m.bY(new KeyboardEvent('keydown',{code:s.code,key:s.key,ctrlKey:true})).key);
+                const m = await import('wuwa://app/assets/index-CM6qA69G.js');
+                return samples.map(s => m.c2(new KeyboardEvent('keydown',{code:s.code,key:s.key,ctrlKey:true})).key);
                 """, arguments: ["samples": samples]) as? [Int] ?? []
             try require(recorded == samples.map { virtualKey($0["native"] as! Int) }, "Native shortcuts differ from the original key recorder")
             keySamples = samples.count
@@ -1177,10 +1217,10 @@ final class OriginalFrontend: NSObject, WKScriptMessageHandlerWithReply, WKScrip
             do {
                 let result: Any = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Any, Error>) in
                     view.callAsyncJavaScript("""
-                const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+                const api = await import('wuwa://app/assets/index-CM6qA69G.js');
                 const store = window.__WUWA_ORIGINAL__?.globalStore;
                 const sdk = typeof KrSDK !== 'undefined' ? KrSDK : null;
-                return {network: api.V.value.status, loggedIn: !!store?.isLoggedIn,
+                return {network: api.W.value.status, loggedIn: !!store?.isLoggedIn,
                   pendingClicks: store?.localClickCount || 0,
                   confirmedClicks: store?.serverClickTotal || 0,
                   consumedClicks: store?.serverClickConsume || 0,
