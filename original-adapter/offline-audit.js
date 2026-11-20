@@ -22,7 +22,7 @@ window.__OFFLINE_ATLAS_AUDIT__ = async function(expected) {
     assert((await local.request('presets')).length === expected.presetCount, 'Presets were not restored');
     return {status:'passed', restored:true, inventory:bag.length, expected};
   }
-  const character = bag.find(e=>e.asset_type === 'character_skin' && e.asset_id !== user.character.id);
+  const character = bag.find(e=>e.asset_type === 'character_skin' && e.asset_name === 'role_1506_1001.png');
   const accessory = bag.find(e=>e.asset_type === 'accessory' && e.role_id === '0');
   const emotes = bag.filter(e=>e.asset_type === 'emote' && e.role_id === '0').slice(0,6);
   assert(character && accessory && emotes.length === 6, 'Missing test choices');
@@ -66,7 +66,7 @@ window.__OFFLINE_ATLAS_AUDIT__ = async function(expected) {
   const atlasPage = await window.__ORIGINAL_AUDIT_PAGE__('atlas');
   assert(state().atlasList.length === bag.length, 'Full atlas did not render');
   const settingsPage = await window.__ORIGINAL_AUDIT_PAGE__('setting');
-  assert([...document.querySelectorAll('[data-offline-unavailable]')].every(el=>!el.getClientRects().length), 'Online settings are visible');
+  assert([...document.querySelectorAll('[data-offline-unavailable],.offline-unavailable,.btn-login,.btn-logout')].every(el=>!el.getClientRects().length), 'Online settings are visible');
   document.querySelector('.tab-btn__icon--bag').closest('button').click();await wait(400);
   return {status:'passed',inventory:bag.length,expected:result,fullInventory:true,appearance:true,
     fiveEmoteLimit:true,reorder:true,presets:true,favorites:true,images:true,

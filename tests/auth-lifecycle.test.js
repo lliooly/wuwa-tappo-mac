@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
-const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-CuzHFfJW.js', import.meta.url), 'utf8');
+const source = readFileSync(new URL('../dist/Wuwa Tappo.app/Contents/Resources/original/assets/index-BelNnexT.js', import.meta.url), 'utf8');
 const sessionSource = readFileSync(new URL('../original-adapter/session.js', import.meta.url), 'utf8');
 function section(start, end) {
   const a = source.indexOf(start), b = source.indexOf(end, a);
@@ -59,8 +59,8 @@ test('shipped business errors and success codes do not clear the session', () =>
 });
 
 test('shipped renewal coalesces requests and only extends expiry after confirmed success', async () => {
-  for (const outcome of ['success', 'invalid-data', 'network', 'auth']) {
-    let release, calls = 0, extensions = 0;
+  for (const outcome of ['success', 'invalid-data', 'network', 'auth', 'session-replaced']) {
+    let release, calls = 0, extensions = 0, token = "fixture-original";
     const gate = new Promise(resolve => { release = resolve; });
     const context = vm.createContext({
       shouldRenewToken: () => true,
@@ -68,16 +68,24 @@ test('shipped renewal coalesces requests and only extends expiry after confirmed
         calls++; await gate;
         if (outcome === 'network') throw Object.assign(Error('fixture network failure'), { code: -1 });
         if (outcome === 'auth') throw Object.assign(Error('fixture expired session'), { code: 10002 });
-        return outcome === 'success';
+        return { expire_at_ms: outcome === 'invalid-data' ? '123' : 1_900_000_000_000 };
       },
       unwrapApiData: value => value,
-      extendTokenExpireLocally() { extensions++; },
+      getCookie: () => token,
+      TOKEN_COOKIE_DAYS: 7,
+      setCookie(key, expiry, days) {
+        assert.equal(key, 'lastLoginTime');
+        assert.equal(expiry, '1900000000000');
+        assert.equal(days, 7);
+        extensions++;
+      },
       parseApiErrorCode: error => error.code,
       console: { warn() {} },
     });
-    vm.runInContext(section('let renewInFlight=null;', 'const tokenRenewal='), context);
+    vm.runInContext(section('let renewInFlight=null,', 'const tokenRenewal='), context);
     const first = context.renewTokenIfNeeded(), second = context.renewTokenIfNeeded();
     assert.equal(calls, 1);
+    if (outcome === 'session-replaced') token = 'fixture-new';
     release();
     const results = await Promise.allSettled([first, second]);
     assert.equal(extensions, outcome === 'success' ? 1 : 0);

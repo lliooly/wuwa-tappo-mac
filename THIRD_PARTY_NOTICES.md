@@ -5,14 +5,14 @@
 | 范围 | 来源与许可边界 |
 | --- | --- |
 | `native/`、`original-adapter/`、`src/`、`panel/`、`preview/`、脚本、测试及原创文档 | 本项目自行编写的适配与工具代码适用 MIT；不包括其中引用或嵌入的上游内容。 |
-| `recovered/wuwa-tappo-cn-1.0.3/` | 从官方 CN 1.0.3 发行文件恢复的前端、SDK 与安装器资料，保留原始权利；不是官方开源源码，也不由本项目授予再分发权。 |
+| `recovered/` | 从对应版本的官方 CN 发行文件恢复的前端、SDK 与安装器资料，保留原始权利；不是官方开源源码，也不由本项目授予再分发权。 |
 | `assets/`、相邻 `wuwa-tappo-assets` 中的游戏图片与数据 | 官方客户端及公开接口的归档；按用途保留符号链接、来源与哈希，不授予新的开放许可。 |
 | `docs/images/` | 现有发行图标与本项目真实运行截图；包含上游美术及界面，不属于原创代码的 MIT 授权。 |
 | 第三方字体与打包进原版前端的库 | 适用各自原始许可与版权声明，见下文。 |
 
 ## 原版第三方清单
 
-原客户端携带的 [开源声明数据](recovered/wuwa-tappo-cn-1.0.3/frontend/assets/ossNoticeData-BO8f3UDL.js) 保留完整；应用的「开源声明」页面继续展示它。其中包含 Vue、Pinia、Vue Router、Vue I18n、Axios、Socket.IO、Tauri 等项目的声明与许可文本。
+原客户端携带的 [开源声明数据](recovered/wuwa-tappo-cn-1.0.5/frontend/assets/ossNoticeData-BO8f3UDL.js) 保留完整；应用的「开源声明」页面继续展示它。其中包含 Vue、Pinia、Vue Router、Vue I18n、Axios、Socket.IO、Tauri 等项目的声明与许可文本。
 
 这份清单描述原始 Windows 客户端的声明，包含 Rust、Windows 和构建工具条目，不能据此认为 macOS 适配仍使用其原生运行库。当前 macOS 宿主由 Swift 与系统框架构建，不使用 Cargo 或 npm 安装这些原生组件。依赖层次见 [开发指南](docs/开发指南.md)。
 

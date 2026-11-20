@@ -52,6 +52,14 @@ final class OriginalSessionStore {
         values = next
     }
 
+    func clear() throws {
+        let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                    kSecAttrService as String: service, kSecAttrAccount as String: account]
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else { throw error(status) }
+        values = [:]
+    }
+
     private func error(_ status: OSStatus) -> Error {
         NSError(domain: NSOSStatusErrorDomain, code: Int(status), userInfo: [NSLocalizedDescriptionKey: "Unable to persist login session (\(status))"])
     }

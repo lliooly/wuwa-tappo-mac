@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import plistlib
 import shutil
+import struct
 import subprocess
 import sys
 
@@ -202,7 +203,25 @@ def main():
             else:
                 subprocess.run(['sips', '-z', str(pixels), str(pixels), str(icon_source), '--out', str(destination)],
                                check=True, capture_output=True)
-    run('iconutil', '-c', 'icns', str(iconset), '-o', str(RESOURCES / 'WuwaTappo.icns'))
+    icon_output = RESOURCES / 'WuwaTappo.icns'
+    result = subprocess.run(['iconutil', '-c', 'icns', str(iconset), '-o', str(icon_output)],
+                            capture_output=True)
+    if result.returncode:
+        # iconutil may fail in restricted shells. ICNS supports these PNG
+        # representations directly, including the separate Retina slots.
+        representations = [
+            (b'icp4', 16, 1), (b'ic11', 16, 2), (b'icp5', 32, 1), (b'ic12', 32, 2),
+            (b'ic07', 128, 1), (b'ic13', 128, 2), (b'ic08', 256, 1), (b'ic14', 256, 2),
+            (b'ic09', 512, 1), (b'ic10', 512, 2),
+        ]
+        chunks = bytearray()
+        for kind, size, scale in representations:
+            png = (iconset / f'icon_{size}x{size}{"@2x" if scale == 2 else ""}.png').read_bytes()
+            chunks.extend(struct.pack('>4sI', kind, 8 + len(png)))
+            chunks.extend(png)
+        icon_output.write_bytes(struct.pack('>4sI', b'icns', 8 + len(chunks)) + chunks)
+        subprocess.run(['sips', '-g', 'pixelWidth', '-g', 'pixelHeight', str(icon_output)],
+                       capture_output=True, check=True)
     with (CONTENTS / 'Info.plist').open('wb') as output:
         plistlib.dump({
             'CFBundleName': APP_NAME, 'CFBundleDisplayName': APP_NAME,

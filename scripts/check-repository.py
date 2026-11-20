@@ -32,16 +32,23 @@ class References(HTMLParser):
 
 
 def main():
-    tracked = subprocess.check_output(
-        ['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT
-    ).decode().split('\0')
-    paths = sorted({ROOT / path for path in tracked if path})
+    if (ROOT / '.git').exists():
+        tracked = subprocess.check_output(
+            ['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT
+        ).decode().split('\0')
+        paths = sorted({ROOT / path for path in tracked if path})
+    else:
+        # Source archives have the same layout without Git metadata.
+        ignored = {'build', 'dist', 'output', 'WuwaTappo', 'node_modules', '.venv'}
+        paths = sorted(path for entry in ROOT.iterdir() if entry.name not in ignored
+                       for path in ([entry] if not entry.is_dir() else entry.rglob('*'))
+                       if path.is_file() or path.is_symlink())
     links = [path for path in paths if path.is_symlink()]
     for path in links:
         if not path.exists():
             raise ValueError(f'Broken symlink: {path.relative_to(ROOT)} -> {path.readlink()}')
 
-    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.3'
+    archive = ROOT / 'recovered/wuwa-tappo-cn-1.0.5'
     manifest = json.loads((archive / 'manifest.json').read_text())
     package = json.loads((ROOT / 'package.json').read_text())
     if package['version'] != manifest['sourceVersion']:

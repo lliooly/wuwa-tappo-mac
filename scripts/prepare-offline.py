@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Apply declared full-atlas patches to the staged frontend, never the archive."""
 import json
+import re
 from pathlib import Path
 import shutil
 from urllib.parse import quote
@@ -62,7 +63,7 @@ def prepare(resources):
         path.write_text(text.replace(before, after))
         manifest['entryPatches'].append({'file': file, 'before': before, 'after': after, 'reason': reason})
 
-    entry = 'assets/index-CuzHFfJW.js'
+    entry = 'assets/index-BelNnexT.js'
     api = 'window.__OFFLINE_FULL_ATLAS__.api'
     for function, args, action, values in [
         ('getBagList', '', 'bag', '{}'), ('userInfo', '', 'user', '{}'),
@@ -73,7 +74,8 @@ def prepare(resources):
     ]:
         anchor = f'function {function}({args})' + '{'
         patch(entry, anchor, anchor + f'return {api}("{action}",{values});', f'Local {function}')
-    for function, args in [('createRoom', ''), ('joinRoom', 'e'), ('openChest', 'e'),
+    for function, args in [('createRoom', ''), ('joinRoom', 'e'), ('randomJoinRoom', ''),
+                           ('setRoomPublic', 'e,t'), ('openChest', 'e'),
                            ('synthesisAtlas', 'e'), ('synthesisAtlasSame', 'e'), ('redeemUse', 'e'),
                            ('userLogout', 'e')]:
         anchor = f'function {function}({args})' + '{'
@@ -82,34 +84,34 @@ def prepare(resources):
       applyCatalog(buildCatalogMaps(window.__OFFLINE_CATALOG__),"wuwa://app",1);
       await window.__OFFLINE_FULL_ATLAS__.initialize(globalStore);
       ''', 'Initialize local catalog and appearance before mounting')
-    patch(entry, 'function buildAssetUrl(e,t){',
-          'function buildAssetUrl(e,t){const offline=window.__ORIGINAL_ASSET_MAP__?.[t.replace(/^\\//,"").split("?")[0]];if(offline)return offline;',
-          'Always use one public-snapshot source for offline layers including default characters')
-    # Catalog already installed synchronously. Never fetch or cache a remote appearance directory.
+    patch(entry, 'if(local&&!(isLocalRoleAssetsHost(e)&&resolveLocalRoleAssetUrl(t)))return local;',
+          'if(local)return local;', 'Use one snapshot for all offline appearance layers')
     patch(entry, 'async function ensureAppearanceAssetCatalog(e){',
           'async function ensureAppearanceAssetCatalog(e){return true;', 'Keep bundled appearance catalog')
 
-    main = 'assets/index-pp8VWaUF.js'
-    patch(main, 'async function Xo(e){', '''async function Xo(e){
-      L.value="wuwa://app";lc();uc();Ge.value=true;it();return;
-      ''', 'Use local assets without activity configuration requests')
-    patch(main, 'async function pn(_="unknown"){', 'async function pn(_="unknown"){return;', 'Disable socket connection initialization')
-    patch(main, 'async function Zt(_){', 'async function Zt(_){return;', 'Disable waiting for account socket authentication')
-    # Main window remains owner of original panel lists; native changes trigger a refresh.
-    patch(main, 'function it(){ge.value&&Au(hc())}', '''function it(){ge.value&&Au(hc())}
-      window.addEventListener("offline-atlas-changed",()=>{lc();uc();Promise.all([G(),Ot({force:true})]).then(it)});
+    main = 'assets/index-BGIVWra7.js'
+    patch(main, 'async function Xh(){', '''async function Xh(){
+      L.value="wuwa://app";Sc();Rc();Ge.value=true;await nr();return;
+      ''', 'Initialize the pet with the stored local appearance')
+    patch(main, 'async function sr(e){', 'async function sr(e){return;', 'Skip remote configuration')
+    patch(main, 'async function Pt(w="unknown"){', 'async function Pt(w="unknown"){return;', 'Skip lobby socket initialization')
+    patch(main, 'async function ln(w=!1,b=P){', 'async function ln(w=!1,b=P){return;', 'Keep click totals local')
+    patch(main, 'function ht(){ve.value&&Yu(Tc())}', '''function ht(){ve.value&&Yu(Tc())}
+      window.addEventListener("offline-atlas-changed",()=>{
+        Sc();Rc();Promise.all([nr(),ee(),st({force:true})]).then(ht);
+      });
       ''', 'Refresh appearance, inventory and presets across windows')
-    panel = 'assets/index-CiT_jZa7.js'
-    patch('assets/switchDisplayMonitor-B50jXMGD.js',
+    panel = 'assets/index-Gk2CevxF.js'
+    patch('assets/switchDisplayMonitor-CKvd7TTl.js',
           '{key:"exchange",labelKey:"nav_synthesis"},{key:"room",labelKey:"nav_rooms"},',
           '', 'Remove synthesis and room navigation from offline panels')
-    patch(panel, 'Ja={class:"setting-item"}', 'Ja={class:"setting-item offline-unavailable"}',
-          'Remove server chest setting')
-    # Add semantic attributes at the original handlers so CSS hides exactly these entries.
-    for handler in ['Ns', 'Us', 'Ps', 'Vt']:
-        anchor = 'onClick:R(' + handler + ',["stop"])'
-        patch(panel, anchor, '"data-offline-unavailable":"",' + anchor, 'Hide online settings action ' + handler)
-    import re
+    for row, feature in [('Bl', 'server chests'), ('Sa', 'redemption')]:
+        patch(panel, row+'={class:"setting-item"}', row+'={class:"setting-item offline-unavailable"}',
+              f'Hide {feature} row')
+    for handler, feature in [('tn', 'updates'), ('js', 'account reset'), ('Ys', 'account character selection')]:
+        anchor = 'onClick:M(' + handler + ',["stop"])'
+        patch(panel, anchor, '"data-offline-unavailable":"",' + anchor, f'Hide {feature} action')
+
     # Offline stylesheet and DOM decoration cover lazy-loaded original components.
     css = '''
       .reward-btn,.reward-countdown,.btn-login,.btn-logout,[data-offline-unavailable],
@@ -118,19 +120,12 @@ def prepare(resources):
         font:12px sans-serif;color:#ffe3aa;pointer-events:none; }
     '''
     (target / 'offline-full-atlas.css').write_text(css)
-    # Inspect semantic image names and original controls as panels mount or locale changes.
     with (target / 'offline-full-atlas.js').open('a') as output:
         output.write('''
 document.addEventListener('DOMContentLoaded',()=>{
+  if(window.__ORIGINAL_NATIVE_LABEL__!=='panel')return;
   const label=document.createElement('div');label.className='offline-edition-label';
-  if(window.__ORIGINAL_NATIVE_LABEL__==='panel'){label.textContent='全解锁离线版 · 装扮仅保存在本机';document.body.append(label);}
-  const decorate=()=>{
-    document.querySelectorAll('[data-offline-unavailable]').forEach(el=>{
-      if(el.tagName==='BUTTON'&&el.querySelector('input'))return;
-      if(el.closest('.setting-item'))el.closest('.setting-item').classList.add('offline-unavailable');
-    });
-  };
-  new MutationObserver(decorate).observe(document.getElementById('app'),{childList:true,subtree:true});decorate();
+  label.textContent='全解锁离线版 · 装扮仅保存在本机';document.body.append(label);
 });
 ''')
     html = (target / 'index.html').read_text()

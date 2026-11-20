@@ -1,90 +1,53 @@
 <div align="center">
   <img src="docs/images/app-icon.png" alt="Wuwa Tappo" width="96" height="96">
   <h1>Wuwa Tappo · macOS</h1>
-  <p>鸣潮桌宠的非官方 Mac 适配</p>
-  <p>
-    <img src="https://img.shields.io/badge/macOS-13%2B-555555?style=flat-square" alt="macOS 13 及以上">
-    <img src="https://img.shields.io/badge/Apple_Silicon-arm64-555555?style=flat-square" alt="Apple Silicon">
-    <img src="https://img.shields.io/badge/version-1.0.3-926044?style=flat-square" alt="版本 1.0.3">
-    <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-926044?style=flat-square" alt="原创代码采用 MIT"></a>
-  </p>
-  <p><a href="https://github.com/lliooly/wuwa-tappo-mac/releases/latest">下载安装包</a> · <a href="#使用说明">使用说明</a> · <a href="docs/开发指南.md">开发指南</a></p>
+  <p>把鸣潮桌宠带到 Mac 桌面</p>
+  <p><strong>1.0.5 全解锁离线版 · build 16</strong> · Apple Silicon · macOS 13+</p>
+  <p><a href="https://github.com/lliooly/wuwa-tappo-mac/actions/workflows/check.yml?branch=dev%2Foffline-full-atlas">离线构建</a> · <a href="#使用说明">使用说明</a> · <a href="CHANGELOG.md">更新记录</a></p>
 </div>
 
-## 全解锁离线特别版
+全解锁离线版提供素材快照中的 **899 项角色外观、配件和表情**。无需账号即可在本机换装、收藏和保存预设。此版沿用 1.0.5 的窗口、按钮、计数和 macOS 游戏模式适配，纳入菲比 · 经典的新版完整图及两张头部分层。
 
-`dev/offline-full-atlas` 分支提供独立的 **Wuwa Tappo Offline**。无需登录和联网，可使用当前素材快照中的全部 899 项角色、配件和表情；装扮、收藏与预设保存在本机。保留原版角色适配规则、5 个表情上限和 10 个预设位。
+- **独立安装**。应用名为 `Wuwa Tappo Offline.app`，可与 [标准版](https://github.com/lliooly/wuwa-tappo-mac/tree/main)并存。
+- **本地装扮**。保留角色专属配件与表情规则，最多装备 5 个表情，保存 10 个预设。
+- **版本与下载**。离线版在 `dev/offline-full-atlas` 分支维护。打开 [GitHub Actions](https://github.com/lliooly/wuwa-tappo-mac/actions/workflows/check.yml?branch=dev%2Foffline-full-atlas)，在对应运行的 Artifacts 下载离线版 ZIP 和 SHA-256 校验文件。
 
-特别版不提供登录、联机、兑换、合成和服务器开箱，不产生线上账号物品。应用标识、存档、日志与可执行文件均和普通版区分，可同时安装。
+<p align="center">
+  <img src="docs/images/backpack.png" alt="Wuwa Tappo macOS 1.0.5 的背包界面" width="900">
+</p>
+
+## 安装
+
+需要 **Apple Silicon Mac 和 macOS 13 或更新版本**。
+
+下载并解压 Actions 构建附件中的 `Wuwa-Tappo-mac-offline-full-atlas-arm64.zip`，把 `Wuwa Tappo Offline.app` 拖进「应用程序」。同一附件提供 SHA-256 文件。
+
+安装包使用 ad-hoc 签名。若 macOS 拦截启动，先尝试打开一次，再到「系统设置 → 隐私与安全性」选择「仍要打开」。
+
+## 使用说明
+
+- **启动并计数**。在菜单栏桌宠图标中选择「授权输入监控…」，在「系统设置 → 隐私与安全性 → 输入监控」启用 Wuwa Tappo，回到应用选择「重试监听」。输入监控用于桌宠动作与点击计数。
+- **本地装扮**。从背包选择角色、配件和表情，当前配置、收藏与预设均保存到离线版的独立本地存档。
+- **跟随系统游戏模式**。在「设置 → 游戏模式设置」打开「跟随 macOS 游戏模式」。该功能默认关闭，需要 macOS 14 或更新版本。开启后，桌宠跟随系统状态，桌宠自身的全屏自动切换暂时停用。
+
+## 从源码构建
+
+需要 Xcode Command Line Tools、Python 3.9+ 和 Git。将应用和素材仓库放在同一个父目录。
 
 ```sh
+git clone https://github.com/lliooly/wuwa-tappo-assets.git
+git -C wuwa-tappo-assets checkout cbc59ee9fd257f15c1d1db5bebd74e673a21184a
+git clone https://github.com/lliooly/wuwa-tappo-mac.git
+cd wuwa-tappo-mac
+git switch dev/offline-full-atlas
 python3 scripts/build-macos.py --offline-full-atlas
 open 'dist/Wuwa Tappo Offline.app'
 ```
 
-独立产物为 `dist/Wuwa Tappo Offline.app` 和 `dist/Wuwa-Tappo-mac-offline-full-atlas-arm64.zip`。CI 构建成功后可在 Actions 的 `Wuwa-Tappo-mac-offline-full-atlas-arm64` artifact 中下载安装包；Release 需另行发布。普通构建命令仍生成原有联网版。
+构建会生成独立应用、离线 ZIP 和校验文件。使用 Node.js 22+ 运行 `python3 scripts/verify-offline.py` 校验离线包。构建和签名见[开发指南](docs/开发指南.md)，本地换装和重启恢复检查见[离线验收](docs/离线特别版验收.md)。参与项目见[贡献指南](CONTRIBUTING.md)。
 
-特别版的运行、检查和存储说明见[开发指南](docs/开发指南.md#全解锁离线特别版)。以下介绍为普通版功能。
+## 致谢与许可
 
-让共鸣者待在 Mac 桌面上，跟着键盘、鼠标和手柄的操作拍桌子。保留 Windows CN 版的界面，支持登录、换装、开箱、合成、兑换和好友联机。
+感谢 [Wuwa Tappo 国服](https://download-mc-wuwatappo.kurogames-global.com/download/) 的桌宠、角色美术及界面，感谢 [wuwa-tappo-assets](https://github.com/lliooly/wuwa-tappo-assets) 的素材整理与校验。
 
-当前源码版本为 **1.0.3**，与所用 Windows CN 前端版本一致。
-
-<p align="center">
-  <img src="docs/images/backpack.png" alt="Mac 上的背包界面" width="900">
-</p>
-
-<p align="center">
-  <img src="docs/images/settings.png" alt="Mac 上的设置界面" width="900">
-</p>
-
-
-## 安装
-
-需要 **Apple Silicon Mac、macOS 13 或更新版本**。
-
-从 [Releases](https://github.com/lliooly/wuwa-tappo-mac/releases/latest) 下载 arm64 压缩包，解压后将 `Wuwa Tappo.app` 拖入「应用程序」。
-
-安装包未经过 Apple 公证。若系统拦截，请先尝试打开一次，再到「系统设置 → 隐私与安全性」中选择「仍要打开」。
-
-## 使用说明
-
-首次启动，从菜单栏的桌宠图标选择「授权输入监控…」，在「系统设置 → 隐私与安全性 → 输入监控」中启用 Wuwa Tappo，然后回到应用选择「重试监听」。系统要求重启时，退出后重新打开应用。
-
-输入监控只用于动作和计数，不记录输入文字。账号会话保存在系统钥匙串；重新签名后，系统可能要求重新授权。Mac 版通过 Releases 更新。
-
-## 从源码构建
-
-需要 Xcode Command Line Tools、Python 3.9+ 和 Git。将应用与素材仓库放在同一父目录：
-
-```sh
-git clone https://github.com/lliooly/wuwa-tappo-assets.git
-git -C wuwa-tappo-assets checkout 478ae2fdf4f1308189df87a5b249cd0deb1dfb64
-git clone https://github.com/lliooly/wuwa-tappo-mac.git
-cd wuwa-tappo-mac
-python3 scripts/build-macos.py
-open 'dist/Wuwa Tappo.app'
-```
-
-产物为 `dist/Wuwa Tappo.app` 和 `dist/Wuwa-Tappo-mac-arm64.zip`。运行测试另需 Node.js 22+，无需 `npm install`。
-
-目录结构、测试、签名和调试命令见 [开发指南](docs/开发指南.md)。选用素材前请阅读素材库的 [使用指南](https://github.com/lliooly/wuwa-tappo-assets/blob/478ae2fdf4f1308189df87a5b249cd0deb1dfb64/docs/使用指南.md)。
-
-## 项目文档
-
-- [更新记录](CHANGELOG.md)
-- [贡献指南](CONTRIBUTING.md)
-- [验收记录](docs/最终验收结果.md)与[在线功能记录](docs/在线功能验收.md)
-- [宝箱与屏幕切换规则](docs/宝箱与跨屏原版逻辑.md)
-- [联网接口索引](docs/原版联网业务索引.md)
-- [历史设计记录](docs/superpowers/specs/README.md)
-
-## 致谢
-
-- [Wuwa Tappo（CN 国服）](https://download-mc-wuwatappo.kurogames-global.com/download/)：原版桌宠及其角色美术与界面。
-- [wuwa-tappo-assets](https://github.com/lliooly/wuwa-tappo-assets)：整理本项目使用的角色、配件、表情、界面和字体素材，保留来源与校验信息。
-- Vue、Pinia、Socket.IO 等开源项目：支撑原版前端与联机功能，完整清单见 [第三方说明](THIRD_PARTY_NOTICES.md)。
-
-## 许可
-
-本项目与库洛游戏无官方关联。原创适配代码与文档采用 [MIT](LICENSE)；官方前端、角色美术、字体和商标保留各自权利，详见 [第三方说明](THIRD_PARTY_NOTICES.md) 和 [非官方声明](DISCLAIMER.md)。
+本项目是社区维护的非官方移植。原创适配代码和文档采用 [MIT](LICENSE)，原作素材、字体及商标保留各自权利。参见 [第三方说明](THIRD_PARTY_NOTICES.md) 和 [非官方声明](DISCLAIMER.md)。

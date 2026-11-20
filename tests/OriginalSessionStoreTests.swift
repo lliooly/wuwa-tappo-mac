@@ -7,9 +7,7 @@ import Foundation
         precondition(log.contains("rm=123"))
         let service = "io.lliooly.wuwa-tappo.session-test.\(UUID().uuidString)"
         let store = OriginalSessionStore(service: service)
-        defer {
-            for name in ["infoToken", "lastLoginTime", "lang"] { try? store.set(name: name, value: "", days: -1) }
-        }
+        defer { try? store.clear() }
         precondition(store.snapshot().isEmpty)
         try store.set(name: "infoToken", value: "isolated-test-token", days: 7)
         try store.set(name: "lastLoginTime", value: "123", days: 7)
@@ -19,6 +17,10 @@ import Foundation
         try store.set(name: "infoToken", value: "", days: -1)
         precondition(OriginalSessionStore(service: service).snapshot()["infoToken"] == nil)
         do { try store.set(name: "unsupported", value: "value", days: 7); fatalError("Unknown key accepted") } catch {}
+        try store.clear()
+        try store.clear()
+        precondition(store.snapshot().isEmpty)
+        precondition(OriginalSessionStore(service: service).snapshot().isEmpty)
         print("PASS: log redaction; isolated Keychain session persistence, restore, clear and key restrictions")
     }
 }

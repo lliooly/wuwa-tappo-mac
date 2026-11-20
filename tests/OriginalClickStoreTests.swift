@@ -50,6 +50,14 @@ import Foundation
         check(try cumulative()["count"] as? Int == 80)
         _ = try call("save_key_press_count", ["count": OriginalClickStore.maximumSafeCount])
         check(try pending() == OriginalClickStore.maximumSafeCount)
+        try store.preserveForReset(["environment": env, "localCount": 12, "cumulativeCount": NSNull(), "cuid": ""])
+        check(try pending() == 12, "Guest reset lost pending clicks")
+        try store.preserveForReset(["environment": env, "localCount": 12, "cumulativeCount": 92, "cuid": "account-b"])
+        store = OriginalClickStore(defaults: defaults)
+        check(try pending() == 0, "Archived pending clicks would be counted again")
+        check(try call("load_reset_click_archive", ["cuid": "account-b"]) as? Int == 92)
+        check(try call("load_reset_click_archive", ["cuid": "account-a"]) as? Int == 0)
+        check(try call("load_reset_click_archive", ["cuid": "account-b"], environment: "global-prod") as? Int == 0)
         print("PASS: migration, persistence, acknowledgement reset, account replacement, environment isolation and invalid writes")
     }
 }

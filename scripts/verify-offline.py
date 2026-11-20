@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import uuid
 import zipfile
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 APP = ROOT / 'dist/Wuwa Tappo Offline.app'
@@ -39,8 +40,13 @@ def main():
     assert plist['CFBundleIdentifier'] == 'io.lliooly.wuwa-tappo.mac.offline-full-atlas'
     assert plist['CFBundleExecutable'] == 'WuwaTappoOffline'
     assert plist['WuwaDistributionVariant'] == 'offline-full-atlas'
+    package = json.loads((ROOT / 'package.json').read_text())
+    assert plist['CFBundleShortVersionString'] == package['version']
+    assert plist['CFBundleVersion'] == str(package['macosBuild'])
     run('codesign', '--verify', '--strict', str(APP))
     archive = ROOT / 'dist/Wuwa-Tappo-mac-offline-full-atlas-arm64.zip'
+    checksum = archive.with_suffix('.zip.sha256').read_text().split()
+    assert checksum == [hashlib.sha256(archive.read_bytes()).hexdigest(), archive.name]
     with zipfile.ZipFile(archive) as zipped:
         files = {APP.name + '/' + str(path.relative_to(APP)): path for path in APP.rglob('*') if path.is_file()}
         members = {mac_name(info): info for info in zipped.infolist()
@@ -83,7 +89,7 @@ def main():
     run('codesign', '--force', '--sign', '-', '--identifier', validation_id, str(copied))
     REPORT.unlink(missing_ok=True)
     for restore in [False, True]:
-        run('open', '-n', '-W', str(copied), '--args', '--offline-atlas-check', str(REPORT),
+        run('open', '-n', '-W', '--stderr', str(ROOT / 'build/offline-ui.stderr.log'), str(copied), '--args', '--offline-atlas-check', str(REPORT),
             *(['--offline-atlas-restore'] if restore else []), cwd='/private/tmp', timeout=90)
         report = json.loads(REPORT.read_text())
         assert report['status'] == 'passed', report.get('error', 'UI audit failed; see ' + str(REPORT))
@@ -92,6 +98,9 @@ def main():
         assert not report['main']['errors'], report['main']['errors']
         assert len(report['main']['images']) >= 2 and all(image['width'] > 0 for image in report['main']['images']), 'Pet layers failed to load'
         assert report['main']['user']['character']['id'] == report['expected']['character']
+        assert report['expected']['character'] == 2773
+        assert any('版本/1.0.5/头部分层/role_1506_1001_head_' in unquote(image['src'])
+                   for image in report['main']['images']), 'The updated Phoebe head layer is not in use'
         if restore:
             assert report['restored']
         else:

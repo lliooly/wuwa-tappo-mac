@@ -1,0 +1,73 @@
+/* macOS controls share a warm neutral palette and retain the pet artwork. */
+.panel-window-root {
+  --mac-ink: #46382e;
+  --mac-muted: #695950;
+  --mac-accent: #815338;
+  --mac-surface: #f7efe5;
+  --mac-border: #d8c7b5;
+}
+
+.panel-window-root .module-content {
+  background: var(--mac-surface);
+  border: 1px solid var(--mac-border);
+  border-radius: 18px;
+}
+
+.panel-window-root .module-content .common-btn {
+  border: 1px solid var(--mac-border);
+  border-radius: 9px;
+  background: #efe0ce;
+  color: var(--mac-ink);
+  filter: none;
+}
+
+.panel-window-root .module-content .common-btn:not(:disabled):not(.common-btn--disabled):hover {
+  background: #e7d4bd;
+}
+
+.panel-window-root .settings-module .setting-item:not(.setting-game-mode-heading) {
+  background: #fffaf4;
+  border: 1px solid var(--mac-border);
+  border-radius: 10px;
+}
+
+.panel-window-root .settings-module .setting-title {
+  color: var(--mac-ink);
+}
+
+.panel-window-root .settings-module .setting-sub {
+  color: var(--mac-muted);
+}
+
+.panel-window-root .settings-module input:checked + .setting-slider {
+  background: var(--mac-accent);
+}
+
+.panel-window-root .module-content :is(button, input, a):focus-visible {
+  outline: 2px solid var(--mac-accent);
+  outline-offset: 2px;
+}
+
+.panel-window-root :is(.settings-module .setting-btns, .room-module, .synthesis-panel .synthesis-btns) .common-btn {
+  background: #ffd8a3;
+  border-color: #d6a267;
+  border-radius: 17px;
+  box-shadow: 0 2px #d6a267;
+  color: #784c32;
+}
+
+.panel-window-root :is(.settings-module .setting-btns, .room-module, .synthesis-panel .synthesis-btns) .common-btn:hover:not(:disabled):not(.common-btn--disabled) {
+  background: #ffe2b7;
+}
+
+.panel-window-root :is(.settings-module .setting-btns, .room-module, .synthesis-panel .synthesis-btns) .common-btn:active:not(:disabled):not(.common-btn--disabled) {
+  box-shadow: 0 1px #d6a267;
+  transform: translateY(1px);
+}
+
+.panel-window-root .synthesis-panel .synthesis-btns .common-btn:is(:disabled, .common-btn--disabled) {
+  background: #f1e2c9;
+  border-color: #dbc7ab;
+  box-shadow: none;
+  color: #83674b;
+}

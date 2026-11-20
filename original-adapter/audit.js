@@ -29,16 +29,27 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
         tabs[index].click(); await wait(100);
         const count = section.querySelectorAll('.synthesis-item').length;
         if (count !== expected || section.querySelector('.synthesis-item--filled')) throw Error('Original unauthenticated synthesis slots incorrect');
-        if (!section.querySelector('.common-btn--disabled')) throw Error('Empty synthesis submission was enabled');
+        const actions = section.querySelectorAll('.synthesis-btns .common-btn');
+        if (actions.length !== 2) throw Error('Missing synthesis buttons');
+        const [quickSelect, submit] = actions;
+        if (!submit.classList.contains('common-btn--disabled') || getComputedStyle(submit).pointerEvents !== 'none') {
+          throw Error('Empty synthesis submission was enabled');
+        }
+        const [selectStyle, submitStyle] = [getComputedStyle(quickSelect), getComputedStyle(submit)];
+        const selectColor = quickSelect.disabled ? 'rgb(241, 226, 201)' : 'rgb(255, 216, 163)';
+        if (selectStyle.backgroundColor !== selectColor || submitStyle.backgroundColor !== 'rgb(241, 226, 201)' ||
+            selectStyle.borderTopLeftRadius !== '17px' || submitStyle.borderTopLeftRadius !== '17px') {
+          throw Error('Synthesis buttons lost their rounded warm colors');
+        }
         slots.push(count);
       }
-      synthesisModes = {slots, emptySubmissionDisabled:true};
+      synthesisModes = {slots, emptySubmissionDisabled:true, roundedButtonStyles:true};
     } finally { tabs[0].click(); await wait(100); }
   }
-  let roomInput;
+  let roomInput, roomControls;
   if (key === 'room') {
-    const panelModule = await import('wuwa://app/assets/index-CiT_jZa7.js');
-    if (!panelModule.default.setup.toString().includes('roomIdInput:x')) throw Error('Running panel module lacks the current local input echo patch');
+    const panelModule = await import('wuwa://app/assets/index-Gk2CevxF.js');
+    if (!panelModule.default.setup.toString().includes('roomIdInput:a')) throw Error('Running panel module lacks the current local input echo patch');
     window.__ORIGINAL_DIAGNOSTICS__.roomTrace = [];
     const input = section.querySelector('input');
     if (!input) throw Error('Missing original room ID input');
@@ -66,6 +77,30 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
       }
       roomInput = {typingCadencesMs:cadences, authoritativeAcknowledgement:true};
     } finally { set(before); await acknowledged(before); }
+    const panelState = window.__ORIGINAL_DIAGNOSTICS__.panelState;
+    const keys = ['currentRoomId', 'roomMode', 'participantsLength', 'canLeaveRoom', 'roomIsPublic',
+      'roomMembers', 'localMemberId', 'dockVisibleMemberIds', 'onlyShowSelf'];
+    const originalRoom = Object.fromEntries(keys.map(key => [key, panelState[key]]));
+    const applyRoom = value => window.__ORIGINAL_RECEIVE__('cat-panel-room-members-patch', {...panelState, ...value});
+    try {
+      applyRoom({currentRoomId:'preview', roomMode:'member', participantsLength:2, canLeaveRoom:true, roomIsPublic:null,
+        roomMembers:[{id:1,nickname:'Host',isOwner:true,online:true},{id:2,nickname:'Guest',online:true}],
+        localMemberId:2, dockVisibleMemberIds:[1], onlyShowSelf:false});
+      await wait(100);
+      const leave = section.querySelector('.leave-room-btn');
+      const members = section.querySelector('.room-members');
+      if (!leave || leave.disabled || !members || members.children.length !== 2) throw Error('Joined room controls did not render');
+      if (getComputedStyle(leave).backgroundColor !== 'rgb(255, 216, 163)' ||
+          getComputedStyle(members).borderTopWidth !== '0px' ||
+          getComputedStyle(leave.parentElement.querySelector('.room-number-copy')).backgroundImage === 'none' ||
+          getComputedStyle(members.querySelector('.room-visible-btn')).backgroundImage === 'none') {
+        throw Error('Room controls lost their button treatment or original icons');
+      }
+      roomControls = {joinedRoomFixture:true, originalIcons:true, memberRows:members.children.length};
+    } finally {
+      applyRoom(originalRoom);
+      await wait(100);
+    }
   }
   let categoryTabs;
   if (key === 'bag') {
@@ -106,6 +141,15 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
   if (key === 'setting') {
     const settings = window.__WUWA_ORIGINAL__;
     const ipc = window.__TAURI_INTERNALS__;
+    const heading = section.querySelector('.setting-game-mode-heading');
+    const actions = [...section.querySelectorAll('.setting-btns .common-btn')];
+    const versionActions = section.querySelectorAll('.setting-item-version .setting-btn');
+    if (!heading || getComputedStyle(heading).backgroundColor !== 'rgba(0, 0, 0, 0)' ||
+        getComputedStyle(heading).borderTopWidth !== '0px') throw Error('Game Mode heading still has a card');
+    if (actions.length < 3 || versionActions.length !== 2 ||
+        actions.some(button => getComputedStyle(button).backgroundColor !== 'rgb(255, 216, 163)')) {
+      throw Error('Settings actions lost their grouped button treatment');
+    }
     const shortcuts = await ipc.invoke('get_app_shortcuts');
     const duplicate = {...shortcuts, togglePet:{key:120,modifiers:0}, gameMode:{key:120,modifiers:0}};
     let rejected;
@@ -113,7 +157,8 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
     if (rejected !== 'duplicate') throw Error('Native shortcut error lost original primitive-string contract');
     nativeErrorCodes = {duplicate:rejected};
     // Exercise only reversible local display options, never autostart or account actions.
-    for (const [name, field] of [['禁用拖动','windowPassthrough'], ['鼠标悬停','hoverAutoHide'], ['总是展示宝箱','alwaysShowChest']]) {
+    for (const [name, field] of [['禁用拖动','windowPassthrough'], ['鼠标悬停','hoverAutoHide'], ['总是展示宝箱','alwaysShowChest'], ['始终置顶','alwaysOnTop'], ['禁用指针监控','disablePointerMonitoring']]) {
+      if (window.__MACOS_FULL_ATLAS__ && field === 'alwaysShowChest') continue;
       const row = [...section.querySelectorAll('.setting-item')].find(row => row.querySelector('.setting-title')?.textContent.includes(name));
       const input = row?.querySelector('input[type=checkbox]');
       if (!input) throw Error(`Missing original display setting: ${name}`);
@@ -136,7 +181,7 @@ window.__ORIGINAL_AUDIT_PAGE__ = async function(key) {
     }
   }
   return {key,text,classes,cardCount:section.querySelectorAll('.atlas-item').length,
-    localSettings, categoryTabs, roomInput, nativeErrorCodes, synthesisModes,
+    localSettings, categoryTabs, roomInput, roomControls, nativeErrorCodes, synthesisModes,
     checkboxes:section.querySelectorAll('input[type=checkbox]').length,
     ranges:section.querySelectorAll('input[type=range]').length,
     errors:[...window.__ORIGINAL_DIAGNOSTICS__.errors],
@@ -155,11 +200,11 @@ window.__ORIGINAL_AUDIT_MAIN__ = async function() {
   const originalRole = roles.find(item => item.asset_name.replace(/\.png$/, '') === snapshot.selectedRoleId);
   const otherRole = roles.find(item => item !== originalRole);
   assert(originalRole && otherRole, 'Initial stock requires two original role choices');
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
+  const api = await import('wuwa://app/assets/index-BelNnexT.js');
   let restoreRole = false;
   const selectRole = async item => {
     const role = item.asset_name.replace(/\.png$/, '');
-    await api.cV('cat-panel-action', {type:'select-appearance', item});
+    await api.dc('cat-panel-action', {type:'select-appearance', item});
     const started = performance.now();
     while (performance.now()-started < 3000) {
       const head = document.querySelector('.cat-stack__face'), body = document.querySelector('.cat-stack__base');
@@ -218,8 +263,8 @@ window.__ORIGINAL_AUDIT_BUSINESS__ = async function() {
     for (let n=0; n<60; n++) { if (condition()) return; await wait(50); }
     throw Error(message);
   };
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
-  const action = value => api.cV('cat-panel-action', value);
+  const api = await import('wuwa://app/assets/index-BelNnexT.js');
+  const action = value => api.dc('cat-panel-action', value);
   document.querySelector('.tab-btn__icon--bag').closest('button').click();
   await until(() => state()?.activeTab === 'bag', 'Bag snapshot did not synchronize');
   assert(!state().isLoggedIn, 'Business audit requires original unauthenticated state');
@@ -277,8 +322,8 @@ window.__ORIGINAL_AUDIT_BUSINESS__ = async function() {
 
 window.__ORIGINAL_AUDIT_EMOTE__ = async function() {
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const api = await import('wuwa://app/assets/index-CuzHFfJW.js');
-  await api.cV('cat-panel-action', {type:'emote-preview-active', active:true});
+  const api = await import('wuwa://app/assets/index-BelNnexT.js');
+  await api.dc('cat-panel-action', {type:'emote-preview-active', active:true});
   try {
     for (let n=0; n<40 && !document.querySelector('.emotion-dot'); n++) await wait(50);
     const buttons = [...document.querySelectorAll('.emotion-dot')];
@@ -293,5 +338,5 @@ window.__ORIGINAL_AUDIT_EMOTE__ = async function() {
     await wait(1000);
     if (document.querySelector('.local-emotion-bubble')) throw Error('Original emote bubble was not removed after animation');
     return {fanButtons:buttons.length, bubbleImageLoaded:true, floatAnimation:true, animationCleanup:true};
-  } finally { await api.cV('cat-panel-action', {type:'emote-preview-active', active:false}); }
+  } finally { await api.dc('cat-panel-action', {type:'emote-preview-active', active:false}); }
 };

@@ -48,6 +48,28 @@ final class OriginalClickStore {
         // Keep the legacy value for rollback, without importing it again.
     }
 
+    func preserveForReset(_ args: [String: Any], beforeCommit: () throws -> Void = {}) throws {
+        let env = try environment(args)
+        let pending = try count(args["localCount"])
+        guard let cuid = args["cuid"] as? String, cuid.count <= 256 else { throw CocoaError(.coderInvalidValue) }
+        let total = args["cumulativeCount"] as? NSNull == nil ? try count(args["cumulativeCount"]) : nil
+        try beforeCommit()
+        migrateLegacy()
+        var all = records()
+        var record = all[env] ?? [:]
+        if let total, !cuid.isEmpty {
+            var archived = record["resetArchive"] as? [String: Int] ?? [:]
+            archived[cuid] = max(archived[cuid] ?? 0, total)
+            record["resetArchive"] = archived
+            // The account's gross total already includes these pending clicks.
+            record["pending"] = 0
+        } else {
+            record["pending"] = pending
+        }
+        all[env] = record
+        defaults.set(all, forKey: storageKey)
+    }
+
     func invoke(_ command: String, args: [String: Any]) throws -> Any {
         let env = try environment(args)
         migrateLegacy()
@@ -56,6 +78,10 @@ final class OriginalClickStore {
         switch command {
         case "load_key_press_count":
             return (try? count(record["pending"])) ?? 0
+        case "load_reset_click_archive":
+            guard let cuid = args["cuid"] as? String, cuid.count <= 256 else { throw CocoaError(.coderInvalidValue) }
+            let archived = record["resetArchive"] as? [String: Int] ?? [:]
+            return (try? count(archived[cuid])) ?? 0
         case "save_key_press_count":
             record["pending"] = try count(args["count"])
         case "load_cumulative_click_count":

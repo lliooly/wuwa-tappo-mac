@@ -73,7 +73,8 @@ def main():
     code_hash = unsigned_hash(SOURCE / 'Contents/MacOS/WuwaTappo', app.parent / 'source-unsigned')
     assert code_hash == unsigned_hash(app / 'Contents/MacOS/WuwaTappo', app.parent / 'validation-unsigned'), 'Executable code changed'
     Path(str(PREFIX) + '.audit.json').write_text(json.dumps({'status': 'launching'}))
-    subprocess.run(['open', '-n', '-W', str(app), '--args', '--original-ui', '--original-audit',
+    subprocess.run(['open', '-n', '-W', '--stdout', str(ROOT / 'build/standalone.stdout.log'),
+                    '--stderr', str(ROOT / 'build/standalone.stderr.log'), str(app), '--args', '--original-ui', '--original-audit',
                     '--original-preview', str(PREFIX)], cwd='/private/tmp', check=True, timeout=120)
     report = json.loads(Path(str(PREFIX) + '.audit.json').read_text())
     assert report.get('status') == 'passed', report.get('failure', 'Audit did not complete')

@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: lliooly/wuwa-tappo-assets
-          ref: 478ae2fdf4f1308189df87a5b249cd0deb1dfb64
+          ref: cbc59ee9fd257f15c1d1db5bebd74e673a21184a
           path: wuwa-tappo-assets
           persist-credentials: false
       - name: Set up Node.js
@@ -60,11 +60,12 @@ jobs:
           npm test
           python3 scripts/verify-original-port.py
           python3 scripts/verify-package.py
-      - name: Verify native storage
+      - name: Verify native storage and Game Mode monitoring
         if: runner.os == 'macOS'
         run: |
           python3 scripts/verify-click-store.py
           python3 scripts/verify-session-store.py
+          python3 scripts/verify-game-mode.py
       - name: Build and verify offline full atlas edition
         if: runner.os == 'macOS'
         run: |

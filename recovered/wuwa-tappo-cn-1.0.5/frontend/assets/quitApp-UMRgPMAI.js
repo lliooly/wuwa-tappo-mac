@@ -1,0 +1,1 @@
+import{ea as e,eb as t,p as r,d8 as i}from"./index-BelNnexT.js";async function o(){await e(),await t();try{await r("exit_app")}catch(a){console.error("[quitApp] exit_app failed",a)}}async function s(){await e(),await t();try{await i()}catch(a){console.error("[restartApp] relaunch failed",a)}}export{o as quitApp,s as restartApp};
